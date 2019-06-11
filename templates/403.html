@@ -1,0 +1,23 @@
+{% extends "portals/base_administration_portal.html" %}
+
+{% block content %}
+
+<div class="page_right_panel col-md-10">
+  	<div class="inner_left_panel">
+    	<div class="row">
+			<div class="error-wrapper">
+			    <div class="row">
+			        <div class="well col-md-10 col-md-offset-1 font-color-black page-403">
+			            <h3>Ouch! You are not allowed to get into this page!</h3>
+			            <p>Either you are not logged in or you don't have permission to
+			              access the page.</p>
+			            <p><a class="btn btn-link" href="{% url 'user_login' %}?next={{ request.path }}">
+			              <b>Go to the login page</b></a></p>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

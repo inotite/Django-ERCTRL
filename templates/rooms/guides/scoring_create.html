@@ -1,0 +1,55 @@
+<form id="edit-scoring-form" method="POST" action="{% url 'room_scoring_create' object.id %}">
+  {% csrf_token %}
+  {{ scoring_form.non_field_errors }}
+  <div class="theme-box-group">
+    <div class="box-card">
+      <div class="grey_box">
+        <h2>Scoring Edit</h2>
+        <div class="page_form">
+          <div class="page_form_field col-md-12">
+            <label for="{{ scoring_form.enable_scoring.id_for_label }}">
+                <input type="checkbox" name="{{scoring_form.enable_scoring.name}}" id="id_{{scoring_form.enable_scoring.name}}" {% if scoring_form.enable_scoring.value %} checked {% endif %}>Enable scoring:
+            </label>
+            {{ scoring_form.enable_scoring.errors }}
+          </div>
+          <div class="page_form_field col-md-12">
+              <label for="{{ scoring_form.starting_score.id_for_label }}">Starting score:</label>
+              {{ scoring_form.starting_score }}
+              {{ scoring_form.starting_score.errors }}
+          </div>
+          <div class="page_form_field col-md-12">
+              <label for="{{ scoring_form.score_title.id_for_label }}">Score Title:</label>
+              {{ scoring_form.score_title }}
+              {{ scoring_form.score_title.errors }}
+          </div>
+          <div class="page_form_field col-md-2 chk-always-reduce">
+            <label for="{{ scoring_form.always_reduce.id_for_label }}">
+                <input type="checkbox" name="{{scoring_form.always_reduce.name}}" id="id_{{scoring_form.always_reduce.name}}" {% if scoring_form.always_reduce.value %} checked {% endif %}>Penalty per minute:
+            </label>
+            {{ scoring_form.always_reduce.errors }}
+          </div>
+          <div class="page_form_field col-md-10">
+              <label for="{{ scoring_form.penalty_per_minute.id_for_label }}"></label>
+              {{ scoring_form.penalty_per_minute }}
+              {{ scoring_form.penalty_per_minute.errors }}
+          </div>
+          <div class="page_form_field col-md-12">
+            <label for="{{ scoring_form.is_penalize.id_for_label }}">
+                <input type="checkbox" name="{{scoring_form.is_penalize.name}}" id="id_{{scoring_form.is_penalize.name}}" {% if scoring_form.is_penalize.value %} checked {% endif %}>Penalize for viewing clues again:
+            </label>
+            {{ scoring_form.is_penalize.errors }}
+          </div>
+          <div class="page_form_field col-md-12">
+            <label for="{{ scoring_form.end_game_at_zero.id_for_label }}">
+                <input type="checkbox" name="{{scoring_form.end_game_at_zero.name}}" id="id_{{scoring_form.end_game_at_zero.name}}" {% if scoring_form.end_game_at_zero.value %} checked {% endif %}>End game when score reaches 0, regardless of timer status:
+            </label>
+            {{ scoring_form.end_game_at_zero.errors }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page_form_field theme-form-submit">
+    <button class="purple_btn">save</button>
+  </div>
+</form>

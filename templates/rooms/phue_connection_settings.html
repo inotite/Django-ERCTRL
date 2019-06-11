@@ -1,0 +1,85 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% block content %}
+
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+        <div class="alert alert-success fade in alert-dismissible connection_msg" style="margin-top:18px;display: none;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong></strong> <span id="id_connection_msg">This alert box indicates a successful or positive action.</span>
+        </div>
+      <div class="col-md-12">
+        <h1 class="page_heading">Philips Hue Settings</h1>
+      </div>
+      <div class="col-md-10">
+        <div class="grey_box">
+            <h2 class="phue-grey-box"> <div class="page_form_field">
+                <select id="id-room-list">
+                  {%  for room in rooms %}
+                    <option value="{{room.id}}">{{room.room_name}}</option>
+                  {% endfor %}
+                </select>
+              </div></h2>
+            <form class="phue-connection-form sync-with-bridge">
+                <div class="page_form">
+                    <div class="page_form_field">
+                        <label for="id_ipAddress">Bridge IP Address:</label>
+                        <input type="text" name="ipAddress" required="" maxlength="255" id="id_ipAddress">
+                    </div>
+                    <div class="page_form_field">
+                        <button type="submit" class="btn btn-primary">Connect</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+      <div class="col-md-10 ph-groups-content" style="display: none;">
+        <div class="grey_box">
+            <div class="page_form">
+
+                <div class="page_form_field">
+                    <a href="" class="btn btn-primary pull-right" style="color:#fff; ">Add Group </a>
+                    <a href="" class="btn btn-primary pull-right" style="color:#fff; ">Add Scene </a>
+                </div>
+                <div class="page_form_field">
+                    <label for="id-available-groups">
+                    Available Groups: <select id="id-available-groups">
+                    </select></label>
+                </div>
+                <div class="page_form_field">
+                    <label for="id-available-scenes">
+                    Available Scenes: <select id="id-available-scenes">
+                    </select></label>
+                </div>
+                <div class="page_form_field">
+                    <button type="submit" class="btn btn-primary" id="testConfig">Test Lighting Scene on Group</button>
+                </div>
+
+                <div class="page_form_field">
+                    <label for="id_addScene">
+                    Add selected configuration to room. Drag items to re-order: <button class="btn btn-primary" id="id_addScene" >Add</button></label>
+                </div>
+                <div class="page_form_field">
+                    <div id="orderedSceneContainer" class="list-group ui-sortable"></div>
+                    <label for="id_save_scene_and_group">
+                    Save selected configuration for availability in room: <button class="btn btn-success" id="id_save_scene_and_group" data-room-id="0">Save</button></label>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<!-- Le javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{{ block.super }}
+<link href="{% static 'pages/room/phue-settings.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/room/phue-settings.js' %}"></script>
+{% endblock %}

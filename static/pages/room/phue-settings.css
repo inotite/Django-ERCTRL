@@ -1,0 +1,14 @@
+.phue-grey-box .page_form_field select {
+    display: inline-block;
+    width: 458px;
+    background: #fff url(../../vendor/bootstrap/images/bdwonarrow.png) no-repeat scroll right top;
+}
+
+
+.phue-grey-box .page_form_field {
+    float: right;
+}
+
+h2.phue-grey-box{
+    height: 61px;
+}

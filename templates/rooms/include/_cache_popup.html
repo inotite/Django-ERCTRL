@@ -1,0 +1,53 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmClearCache">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center">Warning!</h2>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to clear the cache? You will have to reload all currently open rooms on this device.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default pull-left purple_btn"   onclick="deleteAllEntries();" id="id-open-live-window">Clear</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="cacheSuccess">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center">Success</h2>
+      </div>
+      <div class="modal-body">
+        <p>Cache has been successfully enabled.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Great!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="cacheFailure">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center">Failure</h2>
+      </div>
+      <div class="modal-body">
+        <p>Uh oh! Something went wrong, please give us a call, or send us an email so we can help!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

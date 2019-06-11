@@ -1,0 +1,8 @@
+<div class="page_form_field">
+  <label>Min:</label>
+  <input type="number" name="event_min" {% if is_edit %} value="{{event_reference.event_min}}" {% else %} value="0" {% endif %}/>
+</div>
+<div class="page_form_field">
+  <label>Sec:</label>
+  <input type="number" name="event_sec" {% if is_edit %} value="{{event_reference.event_sec}}" {% else %} value="0" {% endif %}/>
+</div>

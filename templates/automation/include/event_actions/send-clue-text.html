@@ -1,0 +1,9 @@
+<div class="page_form_field">
+  <label>Clue Text:</label>
+  <input type="text" name="clue_text" value="{{action_referen.clue_text}}" />
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

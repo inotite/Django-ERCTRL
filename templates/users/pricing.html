@@ -1,0 +1,177 @@
+{% extends "landing_base.html" %}
+{% load staticfiles %}
+{% block extra_css %}
+  <link href="{% static 'pages/payments/payment.css' %}" rel="stylesheet">
+{% endblock %}
+{% block header_sec %}
+    <header class="faq_header">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="{% static 'vendor/bootstrap/images/landing/logo.png' %}" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class=""><a href="{% url 'erctrl_home'%}">Home</a></li>
+                            <li class="active"><a href="{% url 'pricing_plan'%}">Pricing</a></li>
+                            <li><a href="{% url 'erctrl_faq'%}">Faq</a></li>
+                            <li><a href="{% url 'erctrl_contact'%}">Contact</a></li>
+                            <li><a href="{% url 'user_login'%}">LOGIN</a></li>
+                            <li><a href="{% url 'erctrl_contact'%}">Request Demo</a></li>
+                        </ul>
+                    </ul>
+                </div>
+          </nav>
+        </div>
+    </header>
+{% endblock %}
+{% block main_sec_body %}
+  <div class="price_box">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="payment_heading">
+            <h2>Pricing plans</h2>
+            <p>Unlock exclusive features and unlimited waivers by upgrading your plan</p>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-offset-2">
+          <div class="price_plain_box">
+            <h3>Basic</h3>
+            <h2>Free</h2>
+            <ul>
+              <li>Room Dashboard</li>
+              <li>Automation</li>
+              <li>Hardware Integration (Philip Hues, Arduin) </li>
+              <li>Tablet Live View</li>
+              <li>Self Guided Room</li>
+              <li>Leaderboard</li>
+              <li>User Management</li>
+              <li>IOS Remote App</li>
+              <li>Free with SwiftWaiver</li>
+              <li>Live Screen Customizable</li>
+            </ul>
+            <div class="buy_btn"><a href="{% url 'user-pricing-signup' 1 %}">Sign Up</a></div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="price_plain_box hightlight">
+            <h3>Business</h3>
+            <h2>$40/Month</h2>
+            <ul>
+              <li>Room Dashboard</li>
+              <li>Automation</li>
+              <li>Hardware Integration (Philip Hues, Arduin) </li>
+              <li>Tablet Live View</li>
+              <li>Self Guided Room</li>
+              <li>Leaderboard</li>
+              <li>User Management</li>
+              <li>IOS Remote App</li>
+              <li>Live Screen Customizable</li>
+            </ul>
+            <div class="buy_btn"><a href="{% url 'user-pricing-signup' 2 %}">Sign Up</a></div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4">
+          <div class="price_plain_box">
+            <h3>Enterprise</h3>
+            <h2>14 days Trial</h2>
+            <ul>
+              <li>All the Features of Free Membership</li>
+              <li>Unlimited Waivers</li>
+              <li>Facebook Post with Watermark Integration</li>
+              <li>SMS and Email Followup</li>
+              <li>MailChimp Integration</li>
+              <li>Export Waiver Data</li>
+              <li>Review Funnel</li>
+              <li>-</li>
+            </ul>
+            <div class="buy_btn"><a href="">Sign Up</a></div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="faq_box">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="payment_heading">
+            <h2>FAQ</h2>
+            <p>Frequently Asked Question</p>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="panel-group accordion" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1 <span><img src="{% static 'vendor/bootstrap/images/arrowSprite.gif' %}" class="open"></span></a> </h4>
+              </div>
+              <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body"></div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2 <span><img src="{% static 'vendor/bootstrap/images/arrowSprite.gif' %}" class="open"></span></a> </h4>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body"></div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 2 <span><img src="{% static 'vendor/bootstrap/images/arrowSprite.gif' %}" class="open"></span></a> </h4>
+              </div>
+              <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body"></div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Collapsible Group 3 <span><img src="{% static 'vendor/bootstrap/images/arrowSprite.gif' %}" class="open"></span></a> </h4>
+              </div>
+              <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="faq_img"><img src="{% static 'vendor/bootstrap/images/faq.png' %}" alt=""/></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %}
+    <div class="subscribe_box">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="payment_heading">
+              <h2>Subscribe to our newsletter</h2>
+              <p>You will be the first to know about our updates!</p>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="subscribe_email">
+              <input type="text" placeholder="Enter email" />
+              <button class="blue_btn">submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endcomment %}
+{% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <link href="{% static 'vendor/bootstrap/css/newstyle.css' %}" rel="stylesheet">
+{% endblock %}

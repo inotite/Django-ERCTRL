@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block main_body %}
+    
+	{% block header %}
+	    {% if user.is_authenticated %}
+	      {% include "header.html" with is_no_user=False %}
+	    {% endif %}
+  	{% endblock %}
+
+	 <div class="full_dashboard">
+	    <div class="container-fluid">
+	     	<div class="row">
+	        	{% block messages %}
+		          <div class="messages col-md-9 col-md-offset-3">
+		              {% if messages %}
+		              {% for message in messages %}
+		              <div class='alert alert-{% if message.tags %}{{ message.tags }}{% endif %}'>
+		                <button type="button" class="close" data-dismiss="alert">&times;</button>
+		                <span class="alert-message-text">{{ message }}</span>
+		              </div>
+		              {% endfor %}
+		              {% endif %}
+		          </div>
+	        	{% endblock %}
+
+		        {% block sidebar_content%}
+		          {% if user.is_authenticated %}
+		            {% include "sidebar.html" %}
+		          {% endif %}
+		        {% endblock %}
+	          <!-- {% block title %}Confirm user delete{% endblock %} -->
+
+		        {% block content %}
+		        {{ content }}
+		        {% endblock %}
+	      </div>
+	    </div>
+	 </div>
+
+{% endblock %}

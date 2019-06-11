@@ -1,0 +1,140 @@
+.Terminal_window .terminal_box .inner_time_box .countdown {
+    margin: 0px 0px 50px;
+}
+
+.Terminal_window .displayValue {
+    text-align: center;
+    font-size: 160px;
+    line-height: inherit;
+    color: #000000 !important;
+    font-weight: 900;
+}
+.Terminal_window .displayValue span {
+    font-size: 160px;
+    line-height: inherit;
+    color: #000000 !important;
+    font-weight: 900;
+    margin-left: -30px;
+    margin-right: 0;
+    text-align: center;
+}
+.Terminal_window .displayValue i {
+    font-style: normal;
+    line-height: 100%;
+    vertical-align: top;
+    white-space: unset;
+    word-wrap: unset;
+    position: relative;
+    top: -15px;
+}
+.default_head_ttl h2 {
+    font-weight: 700;
+    font-size: 61px;
+    color: #000000 !important;
+}
+.default_awaiting h1 {
+    font-weight: 700;
+    font-size: 48px;
+    white-space: pre-wrap;
+    background-color: rgba(0,0,0,0.6);
+    display: inline-block;
+    padding: 2px 15px;
+}
+
+.cust_counter_wrap .countdown {
+    background-color: transparent !important;
+}
+
+.default_cluesBox {
+    width: auto;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.default_cluesBox h2 {
+    font-weight: 700;
+    color: #000000 !important;
+    font-size: 72px;
+    text-align: left;
+    margin-bottom: 10px;
+    text-align: right;
+}
+.default_cluesBox .displayValue {
+    font-size: 50px;
+    text-align: right;
+    display: inline-block;
+    max-width: 275px;
+}
+.default_cluesBox .displayValue li {
+    width: auto;
+    text-align: right;
+    height: auto;
+    line-height: inherit;
+    padding: 0;
+    margin: 0px 0px 5px 10px !important;
+}
+
+.default_cluesBox {
+    top: -15px;
+    left: 0;
+}
+.default_cluesBox .displayValue {
+    max-width: 100%;
+}
+.Terminal_window .terminal_box .inner_time_box .countdown {
+    margin: 125px 0px 50px;
+}
+.default_cluesBox ul li i {
+    color: rgb(0, 0, 0);
+}
+.cust_counter_wrap {
+    color: #000000;
+}
+.default_awaiting.data_feed_v_scrooler {
+    text-align: center;
+}
+
+@media screen and (max-width:1170px) {
+.default_head_ttl h2 {
+    font-size: 40px;
+}
+.default_cluesBox h2 {
+    font-size: 40px;
+}
+.Terminal_window .terminal_box .inner_time_box .countdown {
+    margin: 30px 0px 20px;
+}
+
+}
+.gm-clue-element .gm-clue-on i{
+    color: rgba(20, 195, 211, 1);
+}
+
+.newclue_lock > li a i.fa-close {
+    color: rgb(209, 6, 6);
+    font-size: 42px;
+}
+
+.logo-container {
+    margin-top: 15px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+div#photoClueContainer {
+    position: fixed;
+    z-index: 99;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}

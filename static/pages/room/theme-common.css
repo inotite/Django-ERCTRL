@@ -1,0 +1,116 @@
+.overlayVideoText {overflow: hidden;}
+.overlayVideoText #bodyMainContainerDiv {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0px;
+}
+.overlayVideoText #bgvidObject {
+	width: 100%;
+}
+
+.success-video-container, .fail-video-container, video{
+	object-fit: cover !important;
+}
+
+div#roomCompleted, #timeExpiredNotification {
+    text-align: center;
+    padding: 50px;
+    height: 100%;
+    font-size: 99px;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+}
+div#successBranding, div#failureBranding {
+    margin-bottom: 90px;
+}
+
+div#successMessage, div#failureMessage{
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100%;
+}
+.check-transparent .panel-heading-transparent {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.check-transparent .countdown.panel-body-transparent {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.check-transparent .panel-default-transparent {
+	box-shadow: none !important;
+}
+
+.bg-container-img {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+}
+
+/*     New theme Css (Horror & UnderWarter)
+=======================================*/
+.transparent-panel-theme .panel-heading {
+    background-color: transparent !important;
+    border: hidden !important;
+    display: none;
+}
+.transparent-panel-theme .panel-body {
+    background-color: transparent !important;
+}
+.transparent-panel-theme .displayValue span#clueLabel {
+    display: block;
+    font-size: 36px;
+    color: #ffffff;
+}
+.transparent-panel-theme .default_window .displayValue {
+    font-size: 36px;
+}
+.transparent-panel-theme .default_head_ttl h2 {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 15px;
+}
+.transparent-panel-theme .ttl-icon img {
+    max-width: 50px;
+}
+
+
+
+@media screen and (min-width: 1199px) {
+	div#successBranding, div#failureBranding{
+      margin-bottom: 175px;
+    }
+}
+
+/*.roomEnd {
+    width: 100%;
+    height: 100%;
+    background-color: #86d31b;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    font-weight: 900;
+    text-align: center;
+    color: #33f10f;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+.default_countdown .panel-heading {
+    border-bottom: 1px solid #ccc;
+}
+

@@ -1,0 +1,14 @@
+<div class="page_form_field">
+  <label>Scene:</label>
+  <select name="scene_id" id="id_ph_scene">
+    <option value>-- No Scene Selected --</option>
+    {% for idxs, sval in phScenes.items %}
+      <option value="{{idxs}}" {% if is_edit and action_referen.scene_id and action_referen.scene_id == idxs %} selected {% endif %}>{{sval.name}}</option>
+    {% endfor %}
+  </select>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+    <div class="page_form_field">
+        <button class="red_btn remove-action-form">Delete</button>
+    </div>
+{% endif %}

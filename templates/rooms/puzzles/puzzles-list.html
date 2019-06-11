@@ -1,0 +1,27 @@
+<table id="table-puzzle" class="table table-bordered">
+    <tbody>
+      {% for puzzle in puzzles %}
+        <tr data-puzzle-id="{{puzzle.id}}">
+            <td class="actions-puzzle-td">
+              <!--  <p>{{puzzle.puzzle_name}}</p> -->
+              <div class="panel-group">
+                <div class="panel panel-default" id="panel-default-{{puzzle.id}}">
+                  <div class="panel-heading">
+                    <div class="panel-title puzzle-panel-title">
+                      <span class="glyphicon glyphicon-move" id="glyphicon-move-{{puzzle.id}}"></span>
+                      <span class="puzzle-name" id="puzzle-name-{{puzzle.id}}">{{puzzle.puzzle_name}}</span>
+                      <a href="#" data-room-id="{{puzzle.room.id}}" data-id="{{puzzle.id}}" class=" pull-right delete-puzzle-a btn btn-danger">Delete</a >
+                      <a href="#collapse{{puzzle.id}}" data-room-id="{{puzzle.room.id}}" data-id="{{puzzle.id}}" class="btn btn-default pull-right edit-puzzle-a accordion-toggle" data-toggle="collapse" id="id-edit-puzzle-{{puzzle.id}}"><span class="glyphicon glyphicon-chevron-up"></span> Edit</a>
+                    </div>
+                  </div>
+                  <div id="collapse{{puzzle.id}}" class="panel-collapse collapse">
+                    <div class="panel-body" id="panel-body-{{puzzle.id}}" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

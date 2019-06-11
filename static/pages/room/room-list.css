@@ -1,0 +1,153 @@
+.darhboard_box_break{
+	margin-top: 12px;
+}
+
+#message-dialog p strong{
+	color: #3eb448;
+}
+
+.room-message #message-dialog p, .confirmation-modal{
+	color: #3c763d !important;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 300px;
+    width: auto;
+    overflow-x: hidden;
+}
+
+/*.custom_poupup_section4{
+	 overflow: hidden !important;
+}*/
+/*
+
+.custom_poupup_section4{
+	overflow: none !important;
+	max-height: 207px;
+    overflow: hidden;
+}*/
+
+
+#predefinedImages li a{
+	background-color: #fff;
+}
+
+.inner_time_box span{
+    color: #000000;
+}
+
+#hms_timer{
+	color: #fff;
+}
+
+#gmLiveViewAlreadyOpen h4{
+	color: #000000;
+}
+
+
+#gmLivePreviewText {
+    white-space: pre-wrap;
+}
+
+
+/*           03-03-2018
+==================================*/
+.audio_dropdown > ul.dropdown-menu {
+    border-radius: 0px;
+    background-color: #647288;
+    width: 100%;
+    min-width: 280px;
+    height: 250px;
+    overflow-y: scroll;
+}
+.audio_dropdown > ul.dropdown-menu > li {
+    display: block;
+    min-height: 34px;
+    margin-right: 0;
+    padding: 5px 15px 5px 8px;
+    border: hidden;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+.audio_dropdown > ul.dropdown-menu > li:last-child {
+	border: hidden;
+}
+.audio_dropdown > ul.dropdown-menu > li > p {
+	margin-bottom: 5px;
+}
+.audio_dropdown .ui-slider .ui-slider-handle {
+    border-radius: 50%;
+}
+.audio_dropdown .ui-widget.ui-widget-content {
+    border: 1px solid #2d6379;
+    border-radius: 25px;
+}
+.audio_dropdown .ui-widget-header {
+    border: 4px solid #2d6379 !important;
+    background: #2d6379 !important;
+}
+.audio_dropdown .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: 1px solid #03354b !important;
+    background: #03354b !important;
+    box-shadow: none !important;
+}
+
+
+#runRoomTimer #countdown {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.modal-body p {
+    color: #000;
+}
+
+/*      Custom Css here [07-05-2018]
+=====================================*/
+.dark_green_box {
+    background: #2a363f;
+}
+.dashboard_color_box {
+    min-height: 220px;
+    padding: 15px 30px 39px;
+    border-radius: 0px;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.3);
+    background: #3c4a54;
+    min-height: 245px;
+}
+.dark_green_box:hover {
+    background: #27a9e3;
+}
+
+.dashboard_color_box {
+    padding: 0px;
+}
+.dashboard_color_box h2 {
+    font-size: 22px;
+    background-color: #2a363f;
+    text-align: left;
+    padding: 8px 15px;
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+
+}
+.dashboard_color_footer {
+    border-top: 1px solid #394147;
+    padding: 8px 0px;
+    margin-top: 10px;
+}
+.dashboard_color_footer a {
+    text-align: center;
+    background-color: #2a363f;
+    border-radius: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.dashboard_color_footer a span {
+    margin-left: 5px;
+    vertical-align: middle;
+    float: none;
+}
+.card-body {
+    padding: 10px 15px;
+}

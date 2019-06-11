@@ -1,0 +1,20 @@
+<table id="table-video" class="table table-striped table-bordered">
+    <tbody>
+      {% for video in videos%}
+        <tr data-clue-id="{{video.id}}">
+            <td>
+               <video width="320" height="240" controls>
+				  <source src="{{STATIC_URL}}{{ video.get_video_url }}" type="{{video.get_video_filetype}}">
+				  Your browser does not support the video tag.
+				</video>
+            </td>
+            <td>
+                <p>{{video.name}}</p>
+            </td>
+            <td class="actions-video-td">
+                <a href="#" data-room-id="{{room_id}}" data-id="{{video.id}}" class="btn btn-primary pull-right delete-video-a">Delete</a>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

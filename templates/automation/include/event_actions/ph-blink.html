@@ -1,0 +1,14 @@
+<div class="page_form_field">
+  <label>Blink Interval (milliseconds):</label>
+  <input type="number" name="blink_interval" id="id_blink_interval" {% if is_edit %} value="{{action_referen.blink_interval}}" {% endif %}/>
+</div>
+
+<div class="page_form_field">
+  <label>Duration (milliseconds):</label>
+  <input type="number" name="duration" id="id_duration" {% if is_edit %} value="{{action_referen.duration}}" {% endif %}/>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+  <div class="page_form_field">
+    <button class="red_btn remove-action-form">Delete</button>
+  </div>
+{% endif %}

@@ -1,0 +1,48 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+    <div class="col-md-12">  <h1 class="page_heading">Update Account Settings</h1></div>
+      <div class="col-md-4">
+    
+        <div class="grey_box">
+          <h2>Account Settings</h2>
+          <form id="id-account-settings-form" class="account-settings-form" method="POST" action="{% url 'account_settings' %}">
+            {% csrf_token %}
+              {{ form.non_field_errors }}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            <div class="page_form">
+                {% for field in form %} 
+                    <div class="page_form_field">
+                        {{ field.label_tag }}
+                        {{ field.errors }}
+                        {{ field }}
+                        {{ field.help_text }}
+                    </div>
+                {% endfor %}
+                <div class="page_form_field">
+                    <button class="purple_btn" type="submit">Save</button>
+                    <button class="red_btn">Cancel</button>
+                </div>
+            </div>
+        </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

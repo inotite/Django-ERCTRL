@@ -1,0 +1,9 @@
+<div class="page_form_field">
+  <label>Time To Adjust:</label>
+  <input type="number" name="time_to_adjust" id="id_time_to_adjust" {% if is_edit and action_referen.time_to_adjust %} value="{{action_referen.time_to_adjust}}" {% else %} value="0" {% endif %} />
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

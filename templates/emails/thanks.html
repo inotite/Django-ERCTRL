@@ -1,0 +1,75 @@
+{% extends "landing_base.html" %}
+{% load staticfiles %}
+{% block header_sec %}
+    <header class="faq_header">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="{% static 'vendor/bootstrap/images/landing/logo.png' %}" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{% url 'erctrl_home'%}">Home</a></li>
+                            <li><a href="{% url 'erctrl_faq'%}">Faq</a></li>
+                            <li><a href="{% url 'erctrl_contact'%}">Contact</a></li>
+                            <li><a href="{% url 'user_login'%}">LOGIN</a></li>
+                            <li><a href="{% url 'pricing_plan'%}">SIGNUP</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+{% endblock %}
+{% block main_sec_body %}
+    <section class="faq_content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 contect-main-section">
+                    <div class="alert alert-success" role="alert">Thanks for contact.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer_section %}
+    <footer id="footer-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="#" class="footer_logo"><img src="{% static 'vendor/bootstrap/images/landing/footer_logo.png' %}" alt="" /></a>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="footer_menu">
+                        <li><a href="#">Policy</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="{% url 'erctrl_contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <ul class="share_icons">
+                        <li><a href="https://www.facebook.com/Escaperoomctrl-1978351169124270"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/californiastateescape/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="https://plus.google.com/100765298395364023632"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UC_1QNv29jLAwuAHrRZ7UPIQ"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 text-right">
+                    <p>Copyright © 2018 escaperoomctrl</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
+    <link href="{% static 'pages/landing/css/contact.css' %}" rel="stylesheet">
+{% endblock %}

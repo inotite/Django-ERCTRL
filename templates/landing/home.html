@@ -1,0 +1,146 @@
+{% extends "landing_base.html" %}
+{% load staticfiles %}
+{% block main_sec_body %}
+    <section class="banner">
+        <div class="container">
+            <div class="banner_content">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="banner_caption">
+                            <h2>Easy, customizable, </h2>
+                            <h3>live escape game software suite.</h3>
+                            <h6>Game Master · Waivers · Leaderboards</h6>
+                            <a href="#" class="read_more_btn"> Read more</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item"><img src="{% static 'vendor/bootstrap/images/landing/banner_slider1.jpg' %}" alt="" /></div>
+                            <div class="item"><img src="{% static 'vendor/bootstrap/images/landing/banner_slider2.jpg' %}" alt=""/></div>
+                            <div class="item"><img src="{% static 'vendor/bootstrap/images/landing/banner_slider3.jpg' %}" alt="" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="category">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="heading_d"><span> ERCTRL</span> Game software</h3>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="category_box">
+                        <div class="category_image">
+                            <img src="{% static 'vendor/bootstrap/images/landing/cat1.jpg' %}" alt=""/>
+                        </div>
+                        <h4>Automation</h4>
+                        <p></p>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="category_box">
+                        <div class="category_image">
+                            <img src="{% static 'vendor/bootstrap/images/landing/cat2.jpg' %}" alt="" />
+                        </div>
+                        <h4>LEADERBOARDS</h4>
+                        <p> </p>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="category_box">
+                        <div class="category_image">
+                            <img src="{% static 'vendor/bootstrap/images/landing/cat3.jpg' %}" alt=""/>
+                        </div>
+                        <h4>ROOM MANAGEMENT</h4>
+                        <p> </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="digital">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h3 class="heading_d">Digital <span> Waivers</span> </h3>
+                    <h4>Get rid of paper forever!</h4>
+                </div>
+                <div class="col-sm-4">
+                    <div class="digital_box">
+                        <h4 class="heading_small">User Management</h4>
+                        <p class="normal_text"> </p>
+                        <a href="#" class="read_more_bd_btn"> read more</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="digital_box">
+                        <h4 class="heading_small"> Update Billing CC</h4>
+                        <p class="normal_text"> </p>
+                        <a href="#" class="read_more_bd_btn"> read more</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="digital_box">
+                        <h4 class="heading_small">TABLET ROOMS</h4>
+                        <p class="normal_text"> </p>
+                        <a href="#" class="read_more_bd_btn"> read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="heading_d">How <span>we work</span></h3>
+
+                    <div class="all_boxes">
+                        <div class="work_box">
+                            <div class="work_image">
+                                <a href="#"><img src="{% static 'vendor/bootstrap/images/landing/contract.png' %}" alt="" /><img src="{% static 'vendor/bootstrap/images/landing/contract_red.png' %}" alt="" /></a>
+
+                            </div>
+                            <p>Same day </p>
+                            <p>phone/email support</p>
+                        </div>
+                        <div class="work_box">
+                            <div class="work_image">
+                                <a href="#"><img src="{% static 'vendor/bootstrap/images/landing/mac.png' %}" alt="" /><img src="{% static 'vendor/bootstrap/images/landing/mac_red.png' %}" alt="" /></a>
+                            </div>
+                            <p>Mac/pc/chromebook </p>
+                            <p>compatible</p>
+                        </div>
+                        <div class="work_box">
+                            <div class="work_image">
+                                <a href="#"><img src="{% static 'vendor/bootstrap/images/landing/feedback.png' %}" alt="" /><img src="{% static 'vendor/bootstrap/images/landing/feedback_red.png' %}" alt="" /></a>
+                            </div>
+                            <p>Driven by </p>
+                            <p>your feedback</p>
+                        </div>
+                        <div class="work_box">
+                            <div class="work_image">
+                                <a href="#"><img src="{% static 'vendor/bootstrap/images/landing/power.png' %}" alt="" /><img src="{% static 'vendor/bootstrap/images/landing/power_red.png' %}" alt="" /></a>
+                            </div>
+                            <p>Always available </p>
+                            <p>no downtime</p>
+                        </div>
+                        <div class="work_box">
+                            <div class="work_image">
+                                <a href="#"><img src="{% static 'vendor/bootstrap/images/landing/browser.png' %}" alt="" /><img src="{% static 'vendor/bootstrap/images/landing/browser_red.png' %}" alt="" /></a>
+                            </div>
+                            <p>New features </p>
+                            <p>shipped constantly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

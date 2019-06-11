@@ -1,0 +1,401 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="pleaseOpenLiveView">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Communication Error</h2>
+      </div>
+      <div class="modal-body">
+        <p>Please open the Live View Window.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok</button>
+        <button type="button" class="btn btn-default pull-left purple_btn"   data-room-id="{{object.id}}" id="id-open-live-window">Open Live Window</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="liveViewAlreadyClosed" role="dialog" style="color: rgb(52, 73, 94); display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content font-color-black">
+            <div class="modal-header">
+                <button type="button red_btn" class="close red_btn" data-dismiss="modal">×</button>
+                <h2 class="modal-title">Communication Error</h2>
+            </div>
+            <div class="modal-body">
+                <p>The Live View Window is already closed.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red_btn" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="gmConfirmCloseLiveView">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Close Live View?</h2>
+      </div>
+      <div class="modal-body">
+        <p>Closing the Live View will end the room without saving any data. Are you sure you wish to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-left" data-dismiss="modal" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default pull-right purple_btn"   data-room-id="{{object.id}}" id="id-close-live-view" onclick="closeLiveView();"">Close Live View</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="gmResetRoom">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Reset Room?</h2>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you would like to reset the room?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-left" data-dismiss="modal" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default pull-right purple_btn"   data-room-id="{{object.id}}" id="id-reset-room-popup">Reset Room</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="puzzles-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Puzzles</h2>
+      </div>
+      <div class="modal-body rm-puzzle-list">
+        <table class="table table-striped" id="puzzle-list-table">
+          <tbody>
+            {% for puzzle in object.room_puzzles.all %}
+            <tr>
+              <td>
+              <input type="checkbox" value="{{puzzle.id}}" class="chk-puzzle" data-url="" onclick=""></td>
+
+              <td class="puzzle_name_check_{{puzzle.id}}">{{puzzle.puzzle_name}}</td>
+              <td class="puzzle_name_input_{{puzzle.id}} puzzle_td"><input type="text" value="{{puzzle.puzzle_name}}"></td>
+
+              <td class="puzzle_notes_check_{{puzzle.id}}">{{puzzle.damage_or_notes}}</td>
+              <td class="puzzle_notes_input_{{puzzle.id}} puzzle_td"><input type="text" value="{{puzzle.damage_or_notes}}"></td>
+
+              <td class="puzzle_edit_{{puzzle.id}}"><a href="#" class="onClickEditPuzzle" data-id="{{puzzle.id}}" data-key="puzzle_save_{{puzzle.id}}" data-room="{{puzzle.room_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+              
+              <td class="puzzle_save_{{puzzle.id}} puzzle_click"><a href="#" class="onClicksavePuzzle" data-id="{{puzzle.id}}" data-key="puzzle_edit_{{puzzle.id}}" data-room="{{puzzle.room_id}}" data-instructions="{{puzzle.reset_instructions}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="roomLeaderboardModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Game Over!</h2>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">Would you like to save team data for leaderboards?</p>
+        <div class="form-group">
+            <input type="text" id="teamName" placeholder="Team Name" style="display:block;margin:0 auto;text-align:center;">
+        </div>
+        <div class="form-group">
+            <input type="text" id="numPlayers" placeholder="Number of Players" style="display:block;margin:0 auto;text-align:center;">
+        </div>
+        <div class="form-group">
+            <input type="text" id="cluesGiven" placeholder="Clues Given" style="display:block;margin:0 auto;text-align:center;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-left" data-dismiss="modal" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn purple_btn pull-right" data-dismiss="modal" data-dismiss="modal" id="saveleaderboards">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="gmLiveViewAlreadyOpen">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Communication Error</h2>
+      </div>
+      <div class="modal-body rm-puzzle-list">
+       <h4>The Live View Window is already open.</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="loadingAssets" role="dialog" style="color:#34495e;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Loading Assets</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">Background Video: </div>
+            <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" id="backgroundVideoProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Video Brief: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" id="videoBriefProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Soundtrack: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="soundtrackProgress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Alert Tone: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="alertToneProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Success Soundtrack: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="successSoundtrackProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Fail Soundtrack: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="failSoundtrackProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Fail Video: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="failVideoProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">Success Video: </div>
+          <div class="col-md-6">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%" id="successVideoProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% with object.room_videos.all as progressroomvideos %}
+          {% for progres_room_video in progressroomvideos %}
+            <div class="row">
+              <div class="col-md-3">Video {{progres_room_video.name}}: </div>
+              <div class="col-md-6">
+                <div class="progress">
+                  <div class="progress-bar" style="width: 0%" id="video{{progres_room_video.id}}Progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endwith %}
+        {% with object.room_sounds.all as progressroomsounds %}
+          {% for progres_room_sound in progressroomsounds %}
+            <div class="row">
+              <div class="col-md-3">Sound {{progres_room_sound.name}}: </div>
+              <div class="col-md-6">
+                <div class="progress">
+                  <div class="progress-bar" style="width: 0%" id="sound{{progres_room_sound.id}}Progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="ProgressModel" class="modal fade theme-Modelbox ProgressModel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Assets Loading</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="ProgressBars_list">
+          <div class="Search-Progress">
+            <div class="outer_progress">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p>Soundtrack</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%;"></div>
+                    <div class="progress-value">100%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="outer_progress">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p>Alert Tone</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%;"></div>
+                    <div class="progress-value">100%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="outer_progress">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p>Video video-1</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%;"></div>
+                    <div class="progress-value">100%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="outer_progress">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p>Video video-2</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%;"></div>
+                    <div class="progress-value">100%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="outer_progress">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p>Faild Soundtrack</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:55%;"></div>
+                    <div class="progress-value">50%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="uploadSoundTrackWarning">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Error</h2>
+      </div>
+      <div class="modal-body">
+       <p>Please upload a sound track!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="uploadVideoBriefWarning">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Error</h2>
+      </div>
+      <div class="modal-body">
+       <p>Please upload a video brief!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="overlayImageWarning">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content font-color-black">
+      <div class="modal-header">
+        <button type="button" class="close red_btn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Error</h2>
+      </div>
+      <div class="modal-body">
+       <p>Please upload a overlay image!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn red_btn pull-right" data-dismiss="modal" data-dismiss="modal">Ok</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

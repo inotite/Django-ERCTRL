@@ -1,0 +1,20 @@
+<table id="table-sound" class="table table-striped table-bordered">
+    <tbody>
+      {% for sound in sounds%}
+        <tr data-clue-id="{{sound.id}}">
+            <td>
+                <audio controls>
+                  <source src="{{STATIC_URL}}{{ sound.get_audio_url }}" type="{{sound.get_audio_filetype}}">
+                  Your browser does not support the audio tag.
+                </audio>
+            </td>
+            <td>
+                <p>{{sound.name}}</p>
+            </td>
+            <td class="actions-sound-td">
+                <a href="#" data-room-id="{{room_id}}" data-id="{{sound.id}}" class="btn btn-primary pull-right delete-sound-a">Delete</a>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,244 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="page_right_panel lb-settings col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page_heading"></h1>
+      </div>
+      <div class="col-md-12">
+        <div class="tabs">
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a class="" href="#general" data-toggle="tab">General</a></li>
+			<li role="presentation" style="display: none;"><a href="#slides" data-toggle="tab">Slides</a></li>
+            <li style="display: none;"><a class="" href="#public-information">Public Information</a></li>
+          </ul>
+
+		  <div class="tab-content" style="padding: 15px 0;">
+              <div style="display: block;" id="general" class="tabs_box tab-pane fade in active">
+                <div class="col-sm-12 " style="padding: 0;">
+                  <form class="leaderboard-form" id="id-leaderboard-form" method="POST" action="{% url 'leaderboard_settings' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="theme-box-group">
+                      <div class="box-card">
+                        <div class="grey_box">
+                          <h2>Leaderboard Theme Settings</h2>
+                          <div class="page_form">
+                            <div class="page_form_field">
+                                {{ form.entries_to_display.errors }}
+                                <label for="{{ form.entries_to_display.id_for_label }}">Entries to display*:</label>
+                                {{ form.entries_to_display }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.background_color.errors }}
+                              <label for="{{ form.background_color.id_for_label }}">Background color*</label>
+                              <input type="color" name="{{ form.background_color.name }}" maxlength="255" id="id_{{ form.background_color.name }}" required="true" value="{{ form.background_color.value }}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_background_header_color.errors }}
+                              <label for="{{ form.column_background_header_color.id_for_label }}">Column Header color*</label>
+                              <input type="color" name="{{ form.column_background_header_color.name }}" maxlength="255" id="id_{{ form.column_background_header_color.name }}" required="true" value="{{form.column_background_header_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_week_header_color.errors }}
+                              <label for="{{ form.column_week_header_color.id_for_label }}">Column Week Header color*</label>
+                              <input type="color" name="{{ form.column_week_header_color.name }}" maxlength="255" id="id_{{ form.column_week_header_color.name }}" required="true" value="{{form.column_week_header_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_month_header_color.errors }}
+                              <label for="{{ form.column_month_header_color.id_for_label }}">Column Month Header color*</label>
+                              <input type="color" name="{{ form.column_month_header_color.name }}" maxlength="255" id="id_{{ form.column_month_header_color.name }}" required="true" value="{{form.column_month_header_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_year_header_color.errors }}
+                              <label for="{{ form.column_year_header_color.id_for_label }}">Column Year Header color*</label>
+                              <input type="color" name="{{ form.column_year_header_color.name }}" maxlength="255" id="id_{{ form.column_year_header_color.name }}" required="true" value="{{form.column_year_header_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_alltime_header_color.errors }}
+                              <label for="{{ form.column_alltime_header_color.id_for_label }}">Column All Time Header color*</label>
+                              <input type="color" name="{{ form.column_alltime_header_color.name }}" maxlength="255" id="id_{{ form.column_alltime_header_color.name }}" required="true" value="{{form.column_alltime_header_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_body_color.errors }}
+                              <label for="{{ form.column_body_color.id_for_label }}">Column Body color*</label>
+                              <input type="color" name="{{ form.column_body_color.name }}" maxlength="255" id="id_{{ form.column_body_color.name }}" required="true" value="{{form.column_body_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_background_color.errors }}
+                              <label for="{{ form.column_background_color.id_for_label }}">Column background color*</label>
+                              <input type="color" name="{{ form.column_background_color.name }}" maxlength="255" id="id_{{ form.column_background_color.name }}" required="true" value="{{form.column_background_color.value}}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.font_color.errors }}
+                              <label for="{{ form.font_color.id_for_label }}">Font color*</label>
+                              <input type="color" name="{{ form.font_color.name }}" maxlength="255" id="id_{{ form.font_color.name }}" required="true" value="{{ form.font_color.value }}">
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_font_color.errors }}
+                              <label for="{{ form.column_font_color.id_for_label }}">Column Font color*</label>
+                              <input type="color" name="{{ form.column_font_color.name }}" maxlength="255" id="id_{{ form.column_font_color.name }}" required="true" value="{{ form.column_font_color.value }}">
+                            </div>
+                            <div class="page_form_field">
+                                {{ form.scroll_speed.errors }}
+                                <label for="{{ form.scroll_speed.id_for_label }}">Seconds between slides*:</label>
+                                {{ form.scroll_speed }}
+                            </div>
+                            <div class="page_form_field">
+                                {{ form.refresh_interval.errors }}
+                                <label for="{{ form.refresh_interval.id_for_label }}">Refresh interval*:</label>
+                                {{ form.refresh_interval }}
+                            </div>
+                            <div class="page_form_field">
+                                {{ form.display_time_elapsed.errors }}
+                                <label for="{{ form.display_time_elapsed.id_for_label }}">
+                                    <input type="checkbox" name="{{form.display_time_elapsed.name}}" id="id_{{form.display_time_elapsed.name}}" {% if form.display_time_elapsed.value %} checked {% endif %}> Display time elapsed:
+                                </label>
+                                <span>Show how long a group spent trying to get out of the room, instead of time remaining</span>
+                            </div>
+                          <!--   <div class="page_form_field">
+                              {{ form.display_timer_milliseconds.errors }}
+                              <label for="{{ form.display_timer_milliseconds.id_for_label }}">
+                                  <input type="checkbox" name="{{form.enable_time_warp.name}}" id="id_{{form.display_timer_milliseconds.name}}" {% if form.display_timer_milliseconds.value %} checked {% endif %}> Display timer milliseconds:
+                              </label>
+                              <span>Show milliseconds counting down on the timer display</span>
+                            </div> -->
+                            <div class="page_form_field">
+                              {{ form.escape_rate_label.errors }}
+                              <label for="{{ form.escape_rate_label.id_for_label }}">Escape rate label*:</label>
+                              {{ form.escape_rate_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.week_label.errors }}
+                              <label for="{{ form.week_label.id_for_label }}">Week label*:</label>
+                              {{ form.week_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.month_label.errors }}
+                              <label for="{{ form.month_label.id_for_label }}">Month label*:</label>
+                              {{ form.month_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.year_label.errors }}
+                              <label for="{{ form.year_label.id_for_label }}">Year label*:</label>
+                              {{ form.year_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.year_label.errors }}
+                              <label for="{{ form.year_label.id_for_label }}">Year label*:</label>
+                              {{ form.year_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.all_time_label.errors }}
+                              <label for="{{ form.all_time_label.id_for_label }}">All time label*:</label>
+                              {{ form.all_time_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.no_winners_yet_label.errors }}
+                              <label for="{{ form.no_winners_yet_label.id_for_label }}">No winners yet label*:</label>
+                              {{ form.no_winners_yet_label }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.live_view_font.errors }}
+                              <label for="{{ form.live_view_font.id_for_label }}">Leaderboard font*</label>
+                              <select name="live_view_font" id="id_live_view_font">
+                                {% for lvf in live_view_fonts%}
+                                  <option data-value="{{lvf.font_name}}" value="{{lvf.id}}">{{lvf.get_short_font_name}}</option>
+                                {% endfor %}
+                                </select>
+                              <div class="font-preview">The quick brown fox jumps over the lazy dog</div>
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.room_name_font_size.errors }}
+                              <label for="{{ form.room_name_font_size.id_for_label }}">Room name font size*:</label>
+                              {{ form.room_name_font_size }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.room_escape_rate_font_size.errors }}
+                              <label for="{{ form.room_escape_rate_font_size.id_for_label }}">Room escape rate font size*:</label>
+                              {{ form.room_escape_rate_font_size }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.column_header_font_size.errors }}
+                              <label for="{{ form.column_header_font_size.id_for_label }}">Column header font size*:</label>
+                              {{ form.column_header_font_size }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.team_name_font_size.errors }}
+                              <label for="{{ form.team_name_font_size.id_for_label }}">Team name font size*:</label>
+                              {{ form.team_name_font_size }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.time_font_size.errors }}
+                              <label for="{{ form.time_font_size.id_for_label }}">Time font size*:</label>
+                              {{ form.time_font_size }}
+                            </div>
+                            <div class="page_form_field">
+                              {{ form.image_height.errors }}
+                              <label for="{{ form.image_height.id_for_label }}">Image height*:</label>
+                              {{ form.image_height }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="page_form_field theme-form-submit">
+                      <button class="purple_btn">save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="slides">
+
+		      </div>
+
+              <div style="display: none;" id="public-information" class="tabs_box">
+                <div class="col-sm-12 ld-settings">
+                  <h3 >Public API URL</h3>
+                  <h5></h5>
+                  <pre class="prettyprint">
+                    <a href="#" target="_blank" class="btn btn-link"></a>
+                  </pre>
+                  <hr>
+                  <h3></h3>
+                  <h5></h5>
+                  <pre class="prettyprint"><xmp>
+                    <div style="text-align:center;">
+                      <iframe src="" style="width:90%;height:700px" frameborder="0">
+                      </iframe>
+                    </div>
+                    </xmp>
+                  </pre>
+                </div>
+              </div>
+		    </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+
+<link href="{% static 'pages/leaderboard/leaderboards-settings.css' %}" rel="stylesheet">
+<script type="text/javascript">
+  $(document).ready(function(){
+    var live_view_font_val = $("#id_live_view_font option:first").data("value");
+    display_live_view_font_by_font_family(live_view_font_val)
+    $(document).on("change", "#id_live_view_font", function () {
+      var optionSelected = $(this).find('option:selected').attr("data-value");
+      display_live_view_font_by_font_family(optionSelected)
+    });
+
+    function display_live_view_font_by_font_family(optionSelected){
+      $('.font-preview').css("font-family", optionSelected);
+    }
+
+  });
+</script>
+{% endblock %}

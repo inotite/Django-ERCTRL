@@ -1,0 +1,18 @@
+<div class="page_form_field">
+  <label>URL:</label>
+  <input type="text" name="url" {% if is_edit %} value="{{event_reference.url}}" {% endif %} value="http://" id="id_url" />
+</div>
+<div class="page_form_field">
+  <label>Trigger Value:</label>
+  <input type="text" name="trigger_value" {% if is_edit %} value="{{event_reference.trigger_value}}" {% endif %} id="id_trigger_value" />
+</div>
+<div class="page_form_field">
+  <label>Poll Interval (ms):</label>
+  <input type="number" name="poll_interval" {% if is_edit %} value="{{event_reference.poll_interval}}" {% endif %} value="500" id="id_poll_interval"/>
+</div>
+
+<div class="page_form_field">
+  <button class="btn btn-default btn-test-connection" id="test-connection">Test Connection</button>
+  <span style="display: none;" id="connection-status"></span>
+  <span style="display: none;" id="connection-response" class="comment more">Response:</span>
+</div>

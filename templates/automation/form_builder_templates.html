@@ -1,0 +1,82 @@
+<script type="text/html" id="automation-time-elapsed-tpl">
+    {% include "automation/include/events/time-elapsed.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-network-polling-tpl">
+    {% include "automation/include/events/network-polling.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-custom-button-tpl">
+    {% include "automation/include/events/custom-button.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-custom-event-tpl">
+    {% include "automation/include/events/custom-event.html" with is_edit=False %}
+</script>
+
+<!--                      Action                                    -->
+<script type="text/html" id="automation-send-clue-text-tpl">
+    {% include "automation/include/event_actions/send-clue-text.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-play-sound-tpl">
+    {% include "automation/include/event_actions/play-sound.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-play-video-tpl">
+    {% include "automation/include/event_actions/play-video.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-display-image-tpl">
+    {% include "automation/include/event_actions/display-image.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-send-network-request-tpl">
+    {% include "automation/include/event_actions/send-network-request.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-complete-puzzle-tpl">
+    {% include "automation/include/event_actions/complete-puzzle.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-adjust-time-tpl">
+    {% include "automation/include/event_actions/adjust-time.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-run-script-tpl">
+    {% include "automation/include/event_actions/run-script.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-action-form-tpl">
+    <div class="page_form">
+      <div class="page_form_field">
+        <select class="event-action" name="event_action">
+          {% for act in actions %}
+            <option value="{{act.id}}">{{act.action_name}}</option>
+          {% endfor %}
+        </select>
+        <p class="action-help-message">Display this text to the players</p>
+      </div>
+      <div class="action-inner-box-body">
+        <div class="page_form_field">
+          <label>Clue Text</label>
+          <input type="text" name="clue_text"/>
+        </div>
+      </div>
+    </div>
+</script>
+
+<script type="text/html" id="automation-ph-lights-group-and-scene-tpl">
+  {% include "automation/include/event_actions/ph-group.html" with is_edit=False %}
+  {% include "automation/include/event_actions/ph-groups-and-scene.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-ph-lights-blink-tpl">
+  {% include "automation/include/event_actions/ph-group.html" with is_edit=False %}
+  {% include "automation/include/event_actions/ph-blink.html" with is_edit=False %}
+</script>
+
+<script type="text/html" id="automation-ph-lights-onoff-tpl">
+  {% include "automation/include/event_actions/ph-group.html" with is_edit=False %}
+  {% include "automation/include/event_actions/ph-groups-and-onoff.html" with is_edit=False %}
+</script>

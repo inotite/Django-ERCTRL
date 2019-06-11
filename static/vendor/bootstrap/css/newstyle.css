@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+.newfont { font-family: 'Roboto', sans-serif; padding:0 !important;    padding-top: 44px !important;}
+.communication_box { background: url(../images/roomcommuinactionbg.jpg) no-repeat; background-size: cover; }
+.communication_box h2 { background: #2d6379; text-align: center; font-size:18px; color: #fff; padding: 10px; }
+.room_communication { padding: 10px }
+.communication_btn { width: 100%; margin-bottom: 10px }
+.textarea_box { width: 100%; margin-bottom: 10px }
+.communication_send_btn { width: 100%; text-align: right; overflow: hidden; padding: 0 }
+.awaiting_box { background: url(../images/livescreen.jpg) no-repeat; background-size: cover; }
+.awaiting_box h2 { background: #03354b; text-align: center; font-size: 18px; color: #fff; padding: 10px; }
+.live_screen_preview_box { display: table; height: 275px; padding: 10px; text-align: center; width: 100%; }
+.waiting_timer.inner_time_box { width: 100%; margin: 0 0 13px; border-radius: 0; border: 1px solid #e3e3e3; min-height:151px; }
+.inner_time_box .countdown { padding: 10px; }
+.time_adjust_box { padding: 10px; text-align: center }
+.newclue_lock { padding: 10px; }
+
+.waiting_timer.inner_time_box .dark_grey_box { background: #647288; text-align: center; font-size: 18px !important; color: #fff;padding: 10px;font-family: 'Roboto', sans-serif;  }
+.waiting_timer.inner_time_box .dark_newgreen_box { background: #2d6379; text-align: center; font-size: 18px !important; color: #fff;padding: 10px; font-family: 'Roboto', sans-serif; }
+.wan-spinner { margin-bottom: 10px; }
+.wan-spinner .minus, .wan-spinner .plus { border-radius: 50%; height: 25px; width: 25px; font-size: 13px; background: #fff; border: 1px solid #d9dfe5; padding: 0; display: inline-block; line-height: 23px; text-align: center; margin: 10px 0; }
+.wan-spinner input {
+    border: medium none;
+    color: #000;
+    font-size: 60px;
+    height: 50px;
+    margin: 0 25px;
+    padding: 0;
+    width: 80px !important;
+}
+.black_btn { font-size: 19px; font-style: italic; color: #000; text-transform: uppercase; background: none; border: none; display: block; margin: 0 auto; font-weight: bold }
+.countdown p { font-size:50px; font-family: "HelveticaNeue-CondensedBold"; color: #000; line-height: 24px; margin-bottom: 10px }
+.countdown span { font-size: 60px; margin: 0; color: #000; font-family: "HelveticaNeue-CondensedBold"; line-height: normal; position: relative; display: inline-block; vertical-align: middle; line-height:44px; }
+.popup_section2 { background: #f2f8fa; margin-bottom: 10px; }
+.player_btn { background: #f2f8fa; padding: 11px; padding-right: 0 }
+.player_btn li { border: 1px solid #dee5e9; padding: 0; margin-right: 10px }
+.player_btn li:last-child { margin: 0 }
+.player_btn li a > span {
+    background: #6b808e none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    font-size: 21px;
+    height: 38px;
+     line-height: 36px;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 38px;
+}
+.audio_dropdown .ui-widget.ui-widget-content {
+	position: relative;
+}
+.player_btn span.ui-slider-handle.ui-corner-all.ui-state-default {
+    width: 15px;
+    height: 15px;
+    bottom: -3px;
+    top: auto;
+    right: auto;
+    position: absolute;
+    margin-left: -5px !important;
+}
+.player_btn li a { padding: 8px 70px 8px 15px; font-size: 16px; font-weight: 300; text-shadow: none; color: #2b3546; font-family: 'Roboto', sans-serif; position: relative; background: #fff; overflow:hidden }
+.sound_track { background: #f2f8fa; padding: 15px;    padding-left: 0;}
+.sound_track_btn li { margin-right: 10px }
+.sound_track_btn li:last-child { margin: 0 }
+.sound_track_btn a { background: #6b808e; height: 30px; width: 30px; border: none; color: #fff; border-radius: 5px; display: block; line-height: 34px; }
+.popup_header_btn { overflow: hidden }
+.popup_header_btn li { margin: 0; float: left; width: 20%; }
+.popup_header_btn a { background: #404a5b; border: none; border-radius: 0; color: #fff; font-size: 14px; font-weight: 300; text-align: center; height: 35px; line-height: 32px;    padding:0;}
+.popup_header_btn a:hover { background: #198abc; }
+.room_banner { background: url(../images/runroombg.jpg) no-repeat; background-size: cover; padding: 30px 0 }
+.room_banner h2 { color: #fff; font-size: 39px; text-align: center; font-weight: 300 }
+.live_screen_preview_box h1 { color: #fff; font-size: 42px; font-weight: 300; font-style: italic; margin-bottom: 20px }
+.darkgreen_btn { background: #17a668; color: #fff; border: 1px solid #748996; text-align: center; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px }
+.pink_btn { background: #b270b4; color: #fff; border: 1px solid #748996; text-align: center; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px }
+.live_screen_preview_box li { margin-bottom: 0; margin-right: 15px;     width: auto;}
+.live_screen_preview_box li:last-child { margin: 0 }
+.communication_send_btn ul { text-align: right; }
+.communication_send_btn li:last-child { margin: 0 }
+.communication_send_btn li { margin-top: 0;   margin-bottom: 0; display: inline-block; padding: 0; margin-right: 15px; vertical-align: middle; }
+.blue_btn { background: #27a9e3; color: #fff; border: 1px solid #748996; text-align: center; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px }
+.record_btn { background: #edf0f5; color: #373057; border: 1px solid #3d6098; text-align: center; display: block; height: 26px; border-radius: 50%; font-size: 18px; width: 26px }
+.communication_send_btn .blue_btn { width: 116px; }
+.inner_screen_box { display: table-cell; height: 100%; vertical-align: middle; width: 100%; }
+.green_select_box { color: #fff; border: 1px solid #748996; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px; background-color: #17a668; appearance: none; -moz-appearance: none; -webkit-appearance: none; font-family: 'Roboto', sans-serif; }
+.blue_select_box { color: #fff; border: 1px solid #748996; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px;  background-color: #27a9e3; appearance: none; -moz-appearance: none; -webkit-appearance: none; font-family: 'Roboto', sans-serif;  }
+.pink_select_box { color: #fff; border: 1px solid #748996; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px; background-color: #b270b4; appearance: none; -moz-appearance: none; -webkit-appearance: none; font-family: 'Roboto', sans-serif;  }
+.light_select_box { color: #fff; border: 1px solid #748996; display: block; padding: 8px 15px; border-radius: 35px; font-size: 17px; width: 174px;  background-color: #4dbec4; appearance: none; -moz-appearance: none; -webkit-appearance: none; font-family: 'Roboto', sans-serif;  }
+.communication_btn li { padding: 0; margin-right: 15px;    margin-bottom: 0; }
+.communication_btn li:last-child { margin: 0 }
+
+.textarea_box textarea{padding:15px; font-size:15px; color:#000000; height: 100px;}
+.sound_track ul{    margin-left: 0;}
+.inner_page_body .container-fluid {
+    padding: 0;
+}
+.scrollable-menu{width: auto !important; }
+.communication_btn .scrollable-menu li {
+    width: 100%;
+    margin: 0;
+        padding: 5px;
+}
+#predefinedImages li a{    text-align: center;}
+.communication_btn .scrollable-menu li button {
+    width: 100%;
+    margin: 0 !important;
+}
+.modal-body p{ color: #000 }
+
+/*          05/02/2018
+--------------------------------*/
+.btn-theme {
+    max-width: 115px;
+    width: auto;
+    display: inline-block;
+    padding: 5px 15px;
+    height: 34px;
+}
+.newclue_lock > li > a {
+    padding: 5px;
+    text-align: center;
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 7%;
+    text-align: center;
+    width: 45px;
+    color:rgb(127, 140, 141);
+}
+.newclue_lock li a {
+/*    background: #27a9e3 none repeat scroll 0 0;
+    border-radius: 50%;*/
+}
+.newclue_lock > li > a > i {
+    font-size: 65px;
+    color:rgb(127, 140, 141);
+}
+.newclue_lock > li a  i.fa-close {
+    color: rgb(209, 6, 6);
+}
+
+.textarea_box textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+}
+.textarea_box textarea::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+}
+.textarea_box textarea:-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
+}
+.textarea_box textarea:-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
+}
+
+
+ @media screen and (max-width:1366px) {
+    .live_screen_preview_box{    height: 231px;}
+    .tablet_live_screen_preview_box { height: 187px; }
+    .room_banner h2{font-size: 28px;}
+.room_banner{padding: 10px 0;}
+.wan-spinner input{font-size: 40px;    height: 50px;
+    margin: 0 15px;
+    height: 32px;}
+    .wan-spinner .minus, .wan-spinner .plus{margin: 2px 0;}
+    .waiting_timer.inner_time_box{    min-height: 134px;}
+    .countdown span {    line-height: 37px;
+    font-size: 40px;}
+    .wan-spinner {
+    margin-bottom: 0px;
+}
+.countdown p{    margin-bottom: 2px;}
+.player_btn li a{    font-size: 14px;}
+.player_btn li span{    font-size: 16px;    line-height: 33px;}
+.sound_track{    padding: 13px 15px;padding-left: 0;}
+.waiting_timer.inner_time_box .dark_grey_box{padding: 8px;}
+.communication_box h2{    padding: 8px;}
+.live_screen_preview_box h1{font-size: 30px;}
+.textarea_box textarea{    height: 80px;}
+.pink_select_box{    font-size: 14px;}
+.light_select_box{    font-size: 14px;}
+.blue_btn{    font-size: 14px;}
+.green_select_box{    font-size: 14px;}
+.darkgreen_btn{    font-size: 14px;}
+.pink_btn{    font-size: 14px;}
+.newclue_lock li a{    height: 45px;width: 45px;    line-height: 40px;}
+.player_btn li:last-child {
+    border: 1px solid #ddd;
+}
+.player_btn li a{
+    border: none;
+    padding: 8px 55px 8px 15px;
+}
+
+}
+ @media screen and (max-width:991px) {
+.player_btn li {
+    margin: 0 5px 5PX;
+    padding: 0;
+    width: 47%;
+    float: none;
+}
+.player_btn li:last-child {
+    margin: 0 5px 5PX; 
+}
+.sound_track{padding-top: 0}
+}
+ @media screen and (max-width:620px) {
+    .newfont{    padding-top: 0 !important;
+}
+.sound_track{padding-top: 0;}
+    
+.communication_box{margin-bottom:15px;}
+.pink_select_box{    width: 140px;}
+.green_select_box{    width: 140px;}
+.light_select_box{    width: 140px;}
+.pink_btn{    width: 140px;}
+.darkgreen_btn{    width: 140px;}
+.popup_header_btn li{ width: 100%; border-bottom: 1px solid #fff }
+.player_btn li{    width: 45%;
+}
+.page_right_panel {
+    padding-left: 0;
+    padding-right: 0;
+}
+}
+
+ @media screen and (max-width:500px) {
+.communication_btn li{width: auto;    margin-right: 5px;}
+.live_screen_preview_box li{    margin-right: 5px;}
+.player_btn li{    width: 100%; margin-left: 0; margin-right: 0
+}
+.player_btn li:last-child {
+    margin-left: 0; margin-right: 0
+}
+ }
+
+ @media screen and (max-width:360px) {
+.communication_btn li{width: 100%; margin-bottom: 10px}
+.pink_select_box{    width: 100%;}
+.green_select_box{    width: 100%;}
+.light_select_box{    width: 100%;}
+.pink_btn{    width: 100%;}
+.darkgreen_btn{    width: 100%;}
+.live_screen_preview_box li{width: 100%; margin-bottom: 10px}
+
+ }
+
+
+/*.main-run-room .displayValue {
+    text-align: left;
+    font-size: 160px;
+    line-height: inherit;
+    color: #6391e4 !important;
+    font-weight: 900;
+}*/
+
+.gm-clue-element .gm-clue-on i{
+    color: rgba(20, 195, 211, 1);
+}
+
+
+#puzzle-list-table input.chk-puzzle{
+    height: 14px;
+}
+
+#puzzle-list-table td, #puzzle-list-table i{
+    color: #000;
+}
+/*------------------------08-03-2018-----------------*/
+.sound_track_btn label {
+    display: inline-block;
+    position: relative;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+#soundtrackRepeat {
+    margin: 8px 0 0;
+    height: 12px;
+    border: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'proxima_nova_rgregular';
+    position: absolute;
+    left: 0px;
+    width: 14px;
+    float: left;
+    top: 0;
+}
+.newclue_lock li a {
+    height: 65px;
+    width: 65px;
+    line-height: 35px;
+}
+.newclue_lock img {
+    max-width: 100%;
+}
+
+.communication_box #clearClueRequestBtn{
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    background: #17a668 !important;
+    margin-right: 10px;
+}
+
+
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+.communication_box .blink{
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function:ease-in-out;
+    -webkit-animation-direction: alternate;
+}
+
+.communication_box .blink-room-communication-text{
+    background-color: #90df19;
+}
+
+.tablet_popup_header_btn a:hover { background: #404a5b; }
+
+.tablet_sound_track{ color: #000000; }
+
+.tablet_sound_track .ok-color {
+    color: #078013;
+}
+
+.tablet_sound_track .fail-color {
+    color: red;
+}
+
+.gmRoomController .nwp_box{
+    margin-top: 2px;
+}
+
+
+.gmRoomController #nwk-url, .gmRoomController #nwk-response{
+    padding: 24px 0px 14px 34px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+ul#predefinedClues {
+    width: 830px !important;
+    height: auto;
+    max-height: 300px;
+    width: 832px !important;
+    overflow-x: hidden;
+}

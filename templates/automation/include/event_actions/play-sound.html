@@ -1,0 +1,14 @@
+<div class="page_form_field">
+  <label>Sound:</label>
+  <select name="sound" id="id_sound">
+    <option value>-- No Sound Selected --</option>
+    {% for sound in sounds %} 
+        <option value="{{sound.id}}" {% if is_edit and action_referen.sound and  action_referen.sound == sound %} selected {% endif %} >{{sound.name}}</option>
+    {% endfor %}
+  </select>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

@@ -1,0 +1,137 @@
+{% extends "base_tablet.html" %}
+{% load staticfiles %}
+{% load room_helper %}
+
+{% block body %}
+  <body id="clue-communication-body" class="newinner_page_body {%if object.background_video %} overlayVideoText{% endif %}" {% if not object.background_video %} style="background-color:{{object.background_color}}" {% endif %}>
+    {% block content %}
+      <div class="waitng_page default_window">
+        <div id="photoClueContainer" class="showfullscreen" style="display: none;">
+          <div class="outerWrapperThing">
+            <img id="photoClueOutput" src="{%if object.overlay_image%}{{MEDIA_URL}}{{object.overlay_image.url}}{% endif %}" style="text-align:center;" alt="">
+          </div>
+        </div>
+
+        {% if object.background_image %}
+          <div class="bg-container bg-container-img" id="bgImageContainer">
+            <img src="{{MEDIA_URL}}{{object.background_image.url}}" alt="BG Image" style="height:100%;display:block;margin:auto;">
+          </div>
+        {% endif %}
+
+        <div id="roomCompleted" class="roomEnd room-success-screen" style="display: none;">
+          <div id="successBranding" class="roomEndTop">{{object.success_screen_header}}</div>
+          <div id="completedRoomHeader" class="roomEndMiddle">00:00</div>
+          <div id="successMessage" class="roomEndBottom">{{object.success_screen_footer}}</div>
+        </div>
+
+        <div id="timeExpiredNotification" class="roomEnd room-failure-screen" style="display: none; background-color: {{object.game_end_screen_background_color}};">
+          <div id="failureBranding" class="roomEndTop" style="color: {{object.game_end_screen_font_color}}; font-size: {{object.room_end_header_font_size}}px;">{{object.failure_screen_header}}</div>
+          {% if not object.hide_time_remaining_on_failure %}
+            <div class="roomEndMiddle" style="color: {{object.game_end_screen_font_color}}; font-size: {{object.room_end_time_font_size}}px">
+              {% if object.display_timer_milliseconds %}00:00.0{%else%}00:00{% endif %}
+            </div>
+          {% endif %}
+          <div id="failureMessage" class="roomEndBottom" style="color: {{object.room_end_footer_font_size}}; font-size: {{object.room_end_header_font_size}}px;">{{object.failure_screen_footer}}</div>
+        </div>
+
+        <div class="container-fluid {% if object.transparent_data_feed_background or object.transparent_timer_background %}check-transparent{% endif %}" id="bodyMainContainerDiv">
+          <div class="row"> <!-- End Row -->
+            <div class="col-md-12 default_header page-header">
+                <!--<div class="waiting_timer">
+                      <div class="inner_waiting_timer inner_time_box countdown-container"> -->
+                <div class="default_head_inner">
+                  <div class="default_head_ttl">
+                    <h2 style="color:{{object.font_color}}; font-family: {{object.live_view_font.font_name}} !important;">{{room.room_name}} {{minutes}}</h2>
+                  </div>
+                  <div class="clues_box displayValue default_cluesBox">
+                     <!-- <h2>{{room.clue_label}}</h2> -->
+                     <span id="clueLabel" class="ext-right" style="color:{{object.font_color}}; font-size: {{object.clue_label_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;">{{object.clue_label}}</span>
+                     <ul class="newclue_lock" id="liveClueDisplay">
+                      {% for nc in object.num_clues|times %}
+                          <!-- <li><a href="#"><img src="{% static 'vendor/bootstrap/images/clueb.png' %}" alt=""/></a></li> -->
+                          <li class="gm-clue-element">
+                            <a href="#" id="fa-off-{{nc}}" data-lock-id="{{nc}}" class="gm-clue-off">
+                            {% if object.clue_count_off_img %}
+                              <img src="{{MEDIA_URL}}{{object.clue_count_off_img.url}}" {% if object.clue_count_img_width > 0 %} width="{{object.clue_count_img_width}}px" {% endif %}>
+                            {% else %}
+                              <i class="fa fa-lock" aria-hidden="true"></i>
+                            {% endif %}
+                            </a>
+                            <a href="#" id="fa-on-{{nc}}" data-lock-id="{{nc}}" style="display: none;" class="gm-clue-on">
+                              {% if object.clue_count_available_img %}
+                                <img src="{{MEDIA_URL}}{{object.clue_count_available_img.url}}"  {% if object.clue_count_img_width > 0 %}  style="width:{{object.clue_count_img_width}}px" {% endif %}>
+                              {% else %}
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                              {% endif %}
+                            </a>
+                            <a href="#" id="fa-used-{{nc}}" data-lock-id="{{nc}}" style="display: none;" class="gm-clue-used">
+                              {% if object.clue_count_used_img %}
+                                <img src="{{MEDIA_URL}}{{object.clue_count_used_img.url}}"  {% if  object.clue_count_img_width > 0 %}  style="width:{{object.clue_count_img_width}}px" {% endif %}>
+                              {% else %}
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                              {% endif %}
+                            </a>
+                          </li>
+                      {% endfor %}
+                     </ul>
+                 </div>
+                </div>
+            </div>
+          </div> <!-- End Row -->
+          <div class="row">
+            {% if not object.hide_timer %}
+              <div class="col-sm-12 default_countdown panel {% if object.transparent_timer_background %}panel-default-transparent{% endif %}" {% if object.timer_distance_from_top %} style="top:{{object.timer_distance_from_top}}px !important;left:{{object.timer_distance_from_left}}px !important;" {% endif %}>
+                <div class="panel-heading {% if object.transparent_timer_background %}panel-heading-transparent {% endif %}"  {% if object.widget_header_color %} style="background-color:{{object.widget_header_color}}; font-size: {{object.header_font_size}}px;" {% endif %}>
+                  <h3 class="panel-title" {% if object.live_view_font.font_name %} style="color:{{object.font_color}}; font-size: {{object.header_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;" {% endif %}>{{object.time_remaining_label|default:"Time Remaining"}}</h3>
+                </div>
+                <div class="countdown panel-body {% if object.transparent_timer_background %}panel-body-transparent{% endif %}"  {% if object.widget_body_color %} style="background-color:{{object.widget_body_color}}" {% endif %} >
+                  <form id="default-live-form">
+                      {% if object.display_timer_milliseconds %}
+                      <span id="countdown" {% if object.font_color %} style="font-size: {{object.timer_font_size}}px; color: {{object.font_color}}; font-family: {{object.live_view_font.font_name}} !important;" {% endif %}>{{object.default_time_limit}}:00.00</span>
+                      {% else %}
+                        <span id="countdown" {% if object.font_color %} style="font-size: {{object.timer_font_size}}px; color:{{object.font_color}}; font-family: {{object.live_view_font.font_name}} !important; " {% endif %}>{{object.default_time_limit}}:00</span>
+                      {% endif %}
+                    <input type='text' name='startTime' value='3600' style='width:30px; display: none;' id="liveTimeRemaining" />
+                  </form>
+                     <!--  <button  value="Start" id="cd_start" class="black_btn" style="display:none;"> Start </button>
+                      <button value="Stop"  id="cd_stop" class="red_btn" style="display: none;"/> Stop </button>
+                      <button value="Pause"  id="cd_pause" class="red_btn" style="display: none;"/> Pause </button>
+                      <button value="Reset"  id="cd_reset" class="red_btn" style="display: none;"/> Reset </button> -->
+                    </div>
+                    <input type="text" style="display: none;" value="3600" id="cd_seconds" />
+              </div>
+            {% endif %}
+            {% if not object.hide_data_feed %}
+              <div class="col-sm-12 default_awaiting panel {% if object.transparent_data_feed_background %}panel-default-transparent{% endif %}" {% if object.data_feed_distance_from_top %} style="top:{{object.data_feed_distance_from_top}}px !important; left:{{object.data_feed_distance_from_left}}px !important;" {% endif %}>
+                  <div class="panel-heading {% if object.transparent_data_feed_background %}panel-heading-transparent{% endif %}" {% if object.widget_header_color %} style="background-color:{{object.widget_header_color}};  font-size: {{object.header_font_size}}px;" {% endif %}>
+                      <h3 class="panel-title" style="color:{{object.font_color}}; font-size: {{object.header_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;">{{object.communication_box_label|default:"Data Feed"}}</h3>
+                    </div>
+                   <div class="countdown panel-body {% if object.transparent_data_feed_background %}panel-body-transparent{% endif %}"  style="background-color:{{object.widget_body_color}}" >
+                       <span id="communicationText" class="comnctnText" style="color:{{object.font_color}}; font-size: {{object.text_clue_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;">{{object.initial_data_feed_text|default:"Awaiting Transmission..."}}</span>
+                   </div>
+              </div>
+            {% endif %}
+          </div> <!-- End Row -->
+        </div>
+      </div>
+    {% endblock %}
+    
+  </body>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<link href="{% static 'pages/room/default-theme.css' %}" rel="stylesheet">
+<link href="{% static 'pages/room/theme-common.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/cachers/cacher_v2.js' %}">
+</script>
+<script type="text/javascript">
+      var strRoomJson = '{{room_data | safe}}';
+      var roomJson = JSON.parse(strRoomJson);
+      var URLS = {
+        token_validate: "{% url 'token_validate' %}"
+      }
+    </script>
+<script type="text/javascript" src="{% static 'pages/room/tablet_live_window.js' %}">
+</script>
+{% endblock %}

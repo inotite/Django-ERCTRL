@@ -1,0 +1,23 @@
+<form class="puzzle-update-form" method="POST" enctype="multipart/form-data" data-puzzle-id="{{puzzle.id}}" data-room-id="{{room_id}}" data-action="{% url 'dashboard_rooms_puzzle_edit' room_id puzzle.id%}" id="id-puzzle-update-{{puzzle.id}}" id="id-puzzle-update-form-{{puzzle.id}}">
+    {% csrf_token %}
+    <div class="page_form col-md-8">
+      <div class="page_form_field col-md-12">
+        {{ puzzle_form.puzzle_name.errors }}
+        <label for="{{ puzzle_form.puzzle_name.id_for_label }}">Puzzle Name*</label>
+        {{ puzzle_form.puzzle_name }}
+      </div>
+      <div class="page_form_field col-md-12">
+        {{ puzzle_form.reset_instructions.errors }}
+        <label for="{{ puzzle_form.reset_instructions.id_for_label }}">Reset Instructions*</label>
+        {{ puzzle_form.reset_instructions }}
+      </div>
+      <div class="page_form_field col-md-12">
+        {{ puzzle_form.damage_or_notes.errors }}
+        <label for="{{ puzzle_form.damage_or_notes.id_for_label }}">Damage/Notes</label>
+        {{ puzzle_form.damage_or_notes }}
+      </div>
+      <div class="page_form_field col-md-6 col-md-offset-2">
+        <input type="submit" name="submit" value="Puzzle Update" class="btn btn-primary purple-btn-puzzle">
+      </div>
+    </div>
+  </form>

@@ -1,0 +1,23 @@
+{% for automation in automations %}
+  <tr>
+    <td>{{automation.event_reference.event.event_name}}{% if automation.event_reference.event_min%} ({{automation.event_reference.event_min}}m {{automation.event_reference.event_sec}}s){% endif %}
+
+    {% if automation.event_reference.poll_interval%}
+    - {{automation.event_reference.poll_interval}}ms
+    {% endif %}
+    </td>
+    <td>
+      <ul class="automation-action-references">
+        {% with automation.action_reference.all as aars %}
+          {% for aar in aars %}
+            <li> {{aar.action.action_name}}</li>
+          {% endfor %}
+        {% endwith %}
+      </ul>
+    </td>
+    <td>
+      <a href="{% url 'edit_automations' room_id automation.id %}" class="automation_edit_btn" data-id="{{automation.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+      <a href="#" class="automation_delete_btn" data-automation-id="{{automation.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i> </a></td>
+    </td>
+  </tr>
+{% endfor %}

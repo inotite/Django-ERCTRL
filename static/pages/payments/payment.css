@@ -1,0 +1,152 @@
+@font-face { font-family: 'proxima_nova_rgregular'; src: url('../fonts/proximanova-regular-webfont.woff2') format('woff2'), url('../fonts/proximanova-regular-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'proxima_novalight'; src: url('../fonts/proximanova-light-webfont.woff2') format('woff2'), url('../fonts/proximanova-light-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'HelveticaNeue-CondensedBold'; src: url('../fonts/HelveticaNeue-CondensedBold.eot?#iefix') format('embedded-opentype'), url('../fonts/HelveticaNeue-CondensedBold.otf') format('opentype'), url('../fonts/HelveticaNeue-CondensedBold.woff') format('woff'), url('../fonts/HelveticaNeue-CondensedBold.ttf') format('truetype'), url('../fonts/HelveticaNeue-CondensedBold.svg#HelveticaNeue-CondensedBold') format('svg'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'ProximaNovaCond-Semibold'; src: url('../fonts/ProximaNovaCond-Semibold.eot?#iefix') format('embedded-opentype'), url('../fonts/ProximaNovaCond-Semibold.otf') format('opentype'), url('../fonts/ProximaNovaCond-Semibold.woff') format('woff'), url('../fonts/ProximaNovaCond-Semibold.ttf') format('truetype'), url('../fonts/ProximaNovaCond-Semibold.svg#ProximaNovaCond-Semibold') format('svg'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'proxima_nova_rgbold'; src: url('../fonts/proximanova-bold-webfont.woff2') format('woff2'), url('../fonts/proximanova-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'proxima_novasemibold'; src: url('../fonts/proximanova-semibold-webfont.woff2') format('woff2'), url('../fonts/proximanova-semibold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.payment_heading{ text-align:center; margin-bottom:30px}
+.payment_heading h2 {
+    color: #3c4a53;
+    font-family: "ProximaNovaCond-Semibold";
+    font-size: 40px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    position: relative;
+    text-align: center;
+}
+
+.payment_heading h2::after {
+    background: #27a9e3 none repeat scroll 0 0;
+    border-radius: 5px;
+    bottom: 0;
+    content: "";
+    height: 5px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 60px;
+}
+
+.payment_heading p{    font-family: "proxima_novasemibold";
+    font-size: 20px;
+	 color: #3c4a53;
+}
+
+
+.price_plain_box{   border: 1px solid #3c4a53; border-radius: 0 0 5px 5px;   border-radius: 0 0 5px 5px; padding: 0px 0 15px;  }
+.price_plain_box h3{
+    background: #3c4a53 none repeat scroll 0 0;
+    color: #fff;
+    font-family: "proxima_novasemibold";
+    font-size: 24px;
+	text-align:center;
+	 padding: 13px;
+	 position:relative;
+	}
+	
+.price_plain_box h3::after {
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-top: 35px solid #3c4a53;
+    bottom: -35px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+}
+.price_plain_box h2 {
+    color: #3c4a53;
+  font-family: 'proxima_nova_rgbold'; 
+    font-size: 35px;
+    padding: 64px 0 25px;
+    text-align: center;
+}
+.price_plain_box ul{text-align:center; margin: 0 0 90px;}
+.price_plain_box li{display:block;color: #3c4a53; padding:15px 0; border-top: 1px solid #3c4a53; font-size:16px;}
+
+.buy_btn{  padding: 0 45px;}
+.buy_btn a {
+    background-color: #27a9e3;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-family: "proxima_nova_rgregular";
+    font-size: 18px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.hightlight{
+    background-color: #e7e7ea;
+}
+
+.faq_img img{width:100%;}
+
+
+.accordion .panel-default{   border: 1px solid #3c4a53;}
+.accordion .panel-default > .panel-heading {
+   background-color: #27a9e3;
+       color: #fff;
+	   border:none;
+	   padding:0;
+	  
+}
+.accordion .panel-default > .panel-heading a{     font-size:20px; display:block; padding: 10px 15px;}
+.accordion .panel-default > .panel-heading a:hover{  color: #fff;}
+.accordion .panel-body{    color: #3c4a53; font-size: 16px;}
+
+.accordion .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #fff;
+}
+
+.accordion .panel-default > .panel-heading a span {
+    display: block;
+    float: right;
+    position: relative;
+}
+
+
+.accordion .panel-default > .panel-heading a span img{
+    clip: rect(8px, 15px, 15px, 0px);
+    float: right;
+    margin-top: 2px;
+    position: absolute;
+    right: 0;
+}
+.accordion.panel-group .panel{margin-bottom:15px}
+
+.subscribe_box{background-color: #3c4a53; padding:60px 0; }
+.subscribe_box .payment_heading h2{color:#fff;}
+.subscribe_box .payment_heading p{color:#fff;}
+
+
+.subscribe_email {
+    padding: 0 270px 0 0px;
+	    margin: 40px 0 0;
+    position: relative;
+}
+.subscribe_email button{position:absolute; right:0; top:0;  border-radius: 4px; width: 250px;}
+.subscribe_email input {
+    background: transparent none repeat scroll 0 0;
+    border-radius: 4px;
+    color: #fff;
+    height: 40px;
+}
+
+.faq_box{padding:30px 0}
+.price_box{padding:30px 0}
+
+
+
+.font-color-black input{
+    color: #000000 !important;
+}

@@ -1,0 +1,75 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+        <div class="inner_left_panel">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page_heading">Analytics</h1>
+                    <div class="col-md-3">
+                      <div class="page_form">
+                        <div class="page_form_field">
+                          <label for="id_from_date">From Date:</label>
+                          <input type="text" name="from_date" maxlength="255" id="id_from_date">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="page_form">
+                        <div class="page_form_field">
+                          <label for="id_to_date">To Date:</label>
+                          <input type="text" name="to_date" maxlength="255" id="id_to_date">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="page_form">
+                          <div class="page_form_field">
+                            <button class="btn purple_btn generate-graph-btn" type="submit">Generate Graph</button>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="page_form">
+                        <div class="page_form_field graph-filter-actions">
+                           <label>Filter By:</label>
+                           <button type="button" class="btn purple_btn filter-btn active" data-filter-type="week">Current Week</button>
+                           <button type="button" class="btn purple_btn filter-btn" data-filter-type="month">Current Month</button>
+                           <button type="button" class="btn purple_btn filter-btn" data-filter-type="year">Current Year</button>
+                           <span>Display analytics info for the current week, month and year according to selection.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="TimeseriesChart" class="font-color-black">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/d3js/js/d3.v4.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/billboardjs/js/billboard.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'vendor/billboardjs/css/billboard.min.css' %}">
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/momentjs/moment.js' %}"></script>
+<link href="{% static 'global/css/application.css' %}" rel="stylesheet">
+<link href="{% static 'pages/users/tracker.css' %}" rel="stylesheet">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script type="text/javascript">
+    var graph_data = '{{tracker_list | safe }}';
+    var local_data = JSON.parse(graph_data);
+    var URLS = {
+        ajax_user_tracker: "{% url 'ajax_user_tracker' %}"
+    }
+</script>
+<script type="text/javascript" src="{% static 'pages/users/tracker.js' %}"></script>
+{% endblock %}
+
+

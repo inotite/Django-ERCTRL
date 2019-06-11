@@ -1,0 +1,131 @@
+{% extends base_portal %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+        <div class="inner_left_panel">
+            <div class="row">
+              <div class="col-md-12">  
+                <ul class="nav nav-tabs nav-input-output-tabs">
+                  <li class="active"><a data-toggle="tab" href="#inbox-tab">Inbox</a></li>
+                  <li><a data-toggle="tab" href="#out-box">Outbox</a></li>
+                </ul>
+                <h2>
+                  <a href="{% url 'messages_compose' %}" class="btn btn-primary pull-right">Send Message</a>
+                </h2>
+                <div class="col-sm-12 autmation-message">
+                  <div id="message-dialog" class="alert alert-success"
+                   style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+                    <p> <strong></strong></p>
+                  </div>
+                </div>
+
+                <div class="tab-content">
+                  <div id="inbox-tab" class="tab-pane fade in active">
+                    <h1 class="page_heading">Inbox</h1>
+                    <div class="grey_box">
+                      <div class="reponsive_tabel">
+                        <table cellpadding="0" cellspacing="0" border="0" id="user-table">
+                            <thead>
+                              <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Subject</th>
+                                <th>Sender</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>  
+                              {% for msg in object_list %}
+                                  <tr>
+                                      <td><input type="checkbox"></td>
+                                      <td>{{msg.subject}}</td>
+                                      <td>
+                                        <span class="label label-success">{{msg.creator.email}}</span><br>
+                                      </td>
+                                      <td>{{msg.sent_date}}</td>
+                                      <td><a href="#" data-id="{{msg.id}}" class="btn btn-danger delete-inbox-msg">Delete</a></td>
+                                  </tr>
+                              {% empty %}
+                                  <li>No user yet.</li>
+                              {% endfor %}
+                            </tbody>  
+                          </table>
+                        </div>
+                      </div> 
+                  </div>
+                  <div id="out-box" class="tab-pane fade">
+                    <h1 class="page_heading">Outbox</h1>
+                    <div class="grey_box">
+                      <h2>
+                        <a href="{% url 'messages_compose' %}" class="btn btn-primary">Send Message</a>
+                      </h2>
+                      <div class="reponsive_tabel">
+                        <table cellpadding="0" cellspacing="0" border="0" id="user-table">
+                            <thead>
+                              <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Subject</th>
+                                <th>Recivers</th>
+                                <th>Date</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>  
+                              {% for out_msg in outbox_list %}
+                                  <tr>
+                                      <td><input type="checkbox"></td>
+                                      <td>{{out_msg.subject}}</td>
+                                      <td>
+                                        {% with out_msg.recipient_messages.all as recipients %}
+                                          {% if recipients|length >= 2 %}
+                                            <a href="javascript:void(0);" class="message-recipients"> View Recipients </a>
+                                            <div style="display: none">
+                                                <a title="Close" class="popover-close" href="javascript:void(0);"></a>
+
+                                                <div class="bootstrap-tagsinput-evaluation">
+                                                    {% for rec in recipients %}
+                                                      <span class="label label-success ">{{ rec.recipient.email }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                          {% else %}
+                                            {% for rec in recipients %}
+                                              <span class="label label-success">{{rec.recipient.email}}</span>
+                                            {% endfor %}
+                                          {% endif %}  
+                                        {% endwith %}<br>
+                                      </td>
+                                      <td>{{out_msg.sent_date}}</td>
+                                      <td><a href="#" data-id= "{{out_msg.id}}" class="btn btn-danger delete-outbox-msg">Delete</a></td>
+                                  </tr>
+                              {% empty %}
+                                  <li>No user yet.</li>
+                              {% endfor %}
+                            </tbody>  
+                          </table>
+                        </div>
+                      </div> 
+                  </div>
+                </div>
+              </div>  
+            </div>
+        </div>
+    </div>     
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/bootstrap_tagsinput/bootstrap-tagsinput.js' %}"></script>
+<link href="{% static 'vendor/bootstrap_tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet">
+<link href="{% static 'pages/messages_system/message.css' %}" rel="stylesheet">
+<script type="text/javascript">
+  var URLS = {
+    user_inbox_delete_message: "{% url 'user_inbox_delete_message' 44444444 %}",
+    user_outbox_delete_message: "{% url 'user_outbox_delete_message' 44444444 %}",
+  }
+</script>
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/messages_system/message-list.js' %}"></script>
+{% endblock %}

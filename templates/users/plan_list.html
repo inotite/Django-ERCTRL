@@ -1,0 +1,42 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+  <div class="page_right_panel col-md-10">
+    <div class="inner_left_panel">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page_heading">Plans</h1>
+        </div>
+        <div class="col-md-12">
+          <div class="grey_box">
+            <h2>
+                <a href="{% url 'users_plan_create' %}" class="btn btn-primary">Add New Plan</a>
+            </h2>
+            <div class="reponsive_tabel">
+              <table cellpadding="0" cellspacing="0" border="0" id="user-table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Currency</th>
+                    <th>Interval</th>
+                    <th>Trial Period Days</th>
+                  </tr>
+                  {% for plan in object_list %}
+                    <tr>
+                      <td>{{plan.name}}</td>
+                      <td>{{plan.amount}}</td>
+                      <td>{{plan.currency}}</td>
+                      <td>{{plan.interval}}</td>
+                      <td>{{plan.trial_period_days}}</td>
+                    </tr>
+                  {% empty %}
+                      <li>No plan yet.</li>
+                  {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>       
+{% endblock %}

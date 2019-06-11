@@ -1,0 +1,41 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+      <div class="inner_left_panel">
+          <div class="row">
+              <div class="col-md-4">
+
+            <h1 class="page_heading">User Management</h1>
+            <div class="grey_box">
+              <h2>Add User</h2>
+              <div class="page_form">
+                  <form method="post" action="."  id="id-user-form">
+                  {% csrf_token %}
+                    {% for field in form %}
+                        <div class="page_form_field">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                      {% endfor %}
+
+                      {% for r_field in role_form %}
+                        <div class="page_form_field">
+                            {{ r_field.label_tag }}
+                            {{ r_field }}
+                            {{ r_field.errors }}
+                        </div>
+                      {% endfor %}
+                  <div class="page_form_field">
+                      <button type="submit" class="purple_btn">Save</button>
+                      <a href="{% url 'users-settings-management' %}" class="btn btn-default btn_cancel">Cancel</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

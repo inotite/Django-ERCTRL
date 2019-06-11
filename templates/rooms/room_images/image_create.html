@@ -1,0 +1,14 @@
+<table id="table-image" class="table table-striped table-bordered">
+    <tbody>
+      {% for imag in images%}
+        <tr data-clue-id="{{imag.id}}">
+            <td>
+                <img src="{{STATIC_URL}}{{ imag.img_name.url }}" width="100" height="100">
+            </td>
+            <td class="actions-image-td">
+                <a href="#" data-id="{{imag.id}}" class="btn btn-primary pull-right delete-image-a">Delete</a>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

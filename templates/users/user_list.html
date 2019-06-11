@@ -1,0 +1,72 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+        <div class="inner_left_panel">
+            <div class="row">
+                <div class="col-md-12">
+                  <h1 class="page_heading">User Management</h1>
+                </div>
+                <div class="col-sm-12 clue-message">
+                    <div id="message-dialog" class="alert alert-success"
+                     style="display: none;"><p> <strong></strong></p>
+                    </div>
+                  </div>
+                <div class="col-md-12">
+                    <div class="grey_box">
+                    <h2>
+                        <a href="{% url 'create-user' %}" class="btn btn-primary">Add New User</a>
+                    </h2>
+                    <div class="reponsive_tabel">
+                        <table cellpadding="0" cellspacing="0" border="0" id="user-table">
+                            <tr>
+                              <th>Email</th>
+                              <th>Name</th>
+                              {% if user.is_superuser %}
+                                <th>Business Name</th>
+                                <th>Total Pay</th>
+                                <th>Last Login</th>
+                              {% endif %}
+                              <th>Role</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </tr>
+                            {% for usr in object_list %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'user_edit' usr.id %}">{{usr.email}}</a>
+                                    </td>
+                                    <td>{{usr.first_name}} {{usr.last_name}}</td>
+                                    {% if user.is_superuser %}
+                                        <td>{{usr.user_business.business_name|default:"-"}}</td>
+                                        <td>{{usr.profile.get_total_pay}}</td>
+                                        <td>{{usr.last_login|default:"-"}}</td>
+                                    {% endif %}
+                                    <td>{{usr.profile.get_role}}</td>
+                                    <td>{% if usr.is_active %}<span class="label label-success user-status" data-user-id="{{usr.id}}" data-status="Active" id="user_status_{{usr.id}}">Active</span>{% else %}<span class="label label-danger user-status" data-user-id="{{usr.id}}" data-status="Deactive" id="user_status_{{usr.id}}">Deactive</span>{% endif%}</td>
+                                    <td><a href="{% url 'user_delete' usr.id%}" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            {% empty %}
+                                <li>No user yet.</li>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript">
+    var URLS = {
+      ajax_user_status: "{% url 'ajax_user_status' %}",
+    }
+</script>
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/users/user_list.js' %}"></script>
+{% endblock %}
+

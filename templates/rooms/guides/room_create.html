@@ -1,0 +1,102 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% block content %}
+
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page_heading">Create Room</h1>
+      </div>
+      <div class="col-md-12">
+        <div style="display: block;" class="tabs_box">
+          <div class="col-sm-12">
+          <form class="room-form" id="create-room-form" method="POST" action="{% url form_action %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="theme-box-group">
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Room</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                        {{ form.room_name.errors }}
+                        <label for="{{ form.room_name.id_for_label }}">Name*:</label>
+                        {{ form.room_name }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.default_time_limit.errors }}
+                        <label for="{{ form.default_time_limit.id_for_label }}">Default time limit*:</label>
+                        {{ form.default_time_limit }}
+                    </div>
+                    <div class="page_form_field" >
+                      <label for="{{ form.admin_pin.id_for_label }}">Admin PIN (4 digits)*:</label>
+                      {{ form.admin_pin }}
+                      {{ form.admin_pin.errors }}
+                      <div id = "admin_error"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="page_form_field theme-form-submit">
+              <button class="purple_btn">save</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="customCssModel" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Rules & Example to write Css</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<!-- Le javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js'%}">
+</script>
+<link href="{% static 'pages/room/room.css' %}" rel="stylesheet">
+
+
+<script type="text/javascript"> 
+// function IsAlphaOrIsNumeric(str) {
+//   return /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/.test(str);
+// }
+// $(document).on("submit","#create-room-form",function(event){ 
+//     var admin_pin = $('#id_admin_pin').val()
+//     if(IsAlphaOrIsNumeric(admin_pin) == false){
+//       if($.isNumeric(admin_pin) == false){
+//         $("#admin_error").append("<p>Enter a valid value. </p>");
+//         event.preventDefault();
+//       }
+//     }
+//     if (admin_pin.length < 4 ){
+//       $("#admin_error").append("<p>Ensure this value has at least 4 characters.(it has " + admin_pin.length +") </p>");
+//       event.preventDefault();
+//     }
+//   })
+</script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="alert alert-danger" style="display: none;" id="stripe-error-message">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong class="pull-right">Danger!</strong> Indicates a dangerous or potentially negative action.
+      </div>
+    <div class="col-md-12">      
+      <h1 class="page_heading">Create Plan</h1></div>
+      <div class="col-md-5">
+
+        <div class="grey_box">
+          <h2></h2>
+           <form class="create-plan-form" method="POST" action="{% url 'users_plan_create' %}">
+            {% csrf_token %}
+              {{ form.non_field_errors }}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            <div class="page_form">
+                {% for field in form %} 
+                    <div class="page_form_field">
+                      
+                        {{ field.label_tag }}
+                        {{ field.errors }}
+                        {{ field }}
+                        {{ field.help_text }}
+                      
+                    </div>
+                {% endfor %}
+                <div class="page_form_field">
+                    <button class="purple_btn" type="submit">Save</button>
+                    <button class="red_btn">Cancel</button>
+                </div>
+            </div>
+        </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

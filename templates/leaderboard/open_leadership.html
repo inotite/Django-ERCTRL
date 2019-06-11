@@ -1,0 +1,130 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+
+{% block body %}
+  <body class="inner_page_body newinner_page_body" {% if not leaderboard.background_color %}  {% endif %}>
+  {% block content %}
+  <div class="waitng_page">
+	  {% for board in room_boards %}
+	  <div class="inner_left_panel room-leadership-slide {% if forloop.counter == 1 %}active{% endif %}">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="leader_heading" {% if leaderboard.column_background_color %} style="background-color:{{leaderboard.column_background_color}}" {% endif %}>
+                <h1 style="color: {{leaderboard.column_font_color}}; font-size: {{leaderboard.room_name_font_size}}px;">{{board.room.room_name}}</h1>
+                  {% if board.room.leaderboard_image %}
+                    <div style="overflow:hidden;">
+                      <img src="{{MEDIA_URL}}{{board.room.leaderboard_image.url}}" alt="Leaderboard Image" class="leaderboard_img">
+                    </div>
+                  {% endif %}
+                <h2 style="color: {{leaderboard.column_font_color}};">
+					<span class="room-play-percent">{{board.escape_rate}}%</span>
+                  <span style="color: {{leaderboard.column_font_color}}; font-size: {{leaderboard.room_escape_rate_font_size}}px;">{{leaderboard.escape_rate_label|default:"Escape Rate"}}</span></h2>
+                <div style="font-size:22px;width:80%;text-align:center;margin:auto;">{{board.room.leaderboard_room_description|default:""}}</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="leader_box" {% if leaderboard.column_body_color %} style="background-color:{{leaderboard.column_body_color}}" {% endif %}>
+                <h2 class="dark_blue_box" {% if leaderboard.column_week_header_color %} style="background-color:{{leaderboard.column_week_header_color}}; font-size: {{leaderboard.column_header_font_size}}px;" {% endif %}>{{leaderboard.week_label|default:"Current Week"}}</h2>
+                <div class="leader_table">
+                  <table cellpadding="0" cellspacing="0" border="0">
+					{% if not board.week_winners %}
+                    <tr>
+                      <td style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{leaderboard.no_winners_yet_label|default:"No winner this week ... "}}</td>
+                    </tr>
+					{% else %}
+					{% for winner in board.week_winners %}
+                    <tr>
+					  <td align="left" style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{winner.team_name }}</td>
+					  <td align="right" style="color: {{leaderboard.font_color}}; font-size:{{leaderboard.time_font_size}}px;">{{winner.time_left}}</td>
+                    </tr>
+					{% endfor %}
+					{% endif %}
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="leader_box" {% if leaderboard.column_body_color %} style="background-color:{{leaderboard.column_body_color}}" {% endif %}>
+                <h2 class="dark_green_box" {% if leaderboard.column_month_header_color %} style="background-color:{{leaderboard.column_month_header_color}}; font-size: {{leaderboard.column_header_font_size}}px;" {% endif %}>{{leaderboard.month_label|default:"Current Month"}}</h2>
+                <div class="leader_table" {% if leaderboard.column_body_color %} style="background-color:{{leaderboard.column_body_color}}" {% endif %}>
+                  <table cellpadding="0" cellspacing="0" border="0">
+					{% if not board.month_winners %}
+                    <tr>
+                      <td style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{leaderboard.no_winners_yet_label|default:"No winner this month ... "}}</td>
+                    </tr>
+					{% else %}
+					{% for winner in board.month_winners %}
+                    <tr>
+					  <td align="left" style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{winner.team_name }}</td>
+					  <td align="right" style="color: {{leaderboard.font_color}}; font-size:{{leaderboard.time_font_size}}px;">{{winner.time_left}}</td>
+                    </tr>
+					{% endfor %}
+					{% endif %}
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="leader_box" {% if leaderboard.column_body_color %} style="background-color:{{leaderboard.column_body_color}}" {% endif %}>
+                <h2 class="dark_orange_box" {% if leaderboard.column_year_header_color %} style="background-color:{{leaderboard.column_year_header_color}}; font-size: {{leaderboard.column_header_font_size}}px;" {% endif %}>{{leaderboard.year_label|default:"Current Year"}}</h2>
+                <div class="leader_table">
+                  <table cellpadding="0" cellspacing="0" border="0">
+					{% if not board.year_winners %}
+                    <tr>
+                      <td style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{leaderboard.no_winners_yet_label|default:"No winner this year ... "}}</td>
+                    </tr>
+					{% else %}
+					{% for winner in board.year_winners %}
+                    <tr>
+					  <td align="left" style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{winner.team_name }}</td>
+					  <td align="right" style="color: {{leaderboard.font_color}}; font-size:{{leaderboard.time_font_size}}px;">{{winner.time_left}}</td>
+                    </tr>
+					{% endfor %}
+					{% endif %}
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="leader_box" {% if leaderboard.column_body_color %} style="background-color:{{leaderboard.column_body_color}}" {% endif %}>
+                <h2 class="green_box" {% if leaderboard.column_alltime_header_color %} style="background-color:{{leaderboard.column_alltime_header_color}}; font-size: {{leaderboard.column_header_font_size}}px;" {% endif %}>{{leaderboard.all_time_label|default:"All Time"}}</h2>
+                <div class="leader_table">
+                  <table cellpadding="0" cellspacing="0" border="0">
+					{% if not board.alltime_winners %}
+                    <tr>
+                      <td style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{leaderboard.no_winners_yet_label|default:"No winner till now "}}</td>
+                    </tr>
+					{% else %}
+					{% for winner in board.alltime_winners %}
+                    <tr>
+					  <td align="left" style="color: {{leaderboard.font_color}};font-size:{{leaderboard.team_name_font_size}}px;">{{winner.team_name }}</td>
+					  <td align="right" style="color: {{leaderboard.font_color}}; font-size:{{leaderboard.time_font_size}}px;">{{winner.time_left}}</td>
+                    </tr>
+					{% endfor %}
+					{% endif %}
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  {% endfor %}
+    </div>
+  {% endblock %}
+</body>
+{% endblock %}
+
+
+{% block extra_js %}
+{{ block.super }}
+<link href="{% static 'pages/leaderboard/open-leaderboard.css' %}" rel="stylesheet">
+<script>
+var scrollSpeed = {{leaderboard.scroll_speed}};
+var refreshInterval = {{leaderboard.refresh_interval}};
+</script>
+<script type="text/javascript" src="{% static 'pages/leaderboard/main.js' %}"></script>
+
+
+{% endblock %}

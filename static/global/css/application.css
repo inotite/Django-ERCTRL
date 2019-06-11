@@ -1,0 +1,218 @@
+#id-user-form .errorlist, #id-edit-user-form .errorlist, #change-password-form .errorlist,
+#id-password-confirmation-form .errorlist{
+	color: #D81B60;
+}
+
+.create-billing-form .errorlist{ color: #D81B60; }
+
+#id-user-form .errorlist li , #id-edit-user-form .errorlist li, #id-password-confirmation-form .errorlist li { display:inline; }
+#id-user-form .errorlist li:after , #id-edit-user-form .errorlist li:after, #id-password-confirmation-form .errorlist li:after{ content:"\A"; white-space:pre; }
+#user-table .btn-danger{
+	color: #fff !important;
+}
+
+.login-btn, .login-btn:hover{
+	color: #337ab7;
+    text-decoration: none;
+}
+
+.font-color-black h1, .font-color-black h2, .font-color-black h3, .font-color-black h4,
+.font-color-black h5, .font-color-black h6, .font-color-black span, .font-color-black p,
+.font-color-black th, .font-color-black td, {
+	color: #000000 !important;
+}
+
+#message-dialog p strong{
+	color: #000000;
+}
+
+.select2-dropdown ul li{
+    margin: 0;
+    padding: 0;
+    list-style: block;
+}
+
+.inner_left_panel .nav-tabs>li.active>a {
+	color: #fff;
+    text-decoration: none;
+    background: #3c4a53 none repeat scroll 0 0;
+}
+.inner_left_panel .nav-tabs>li>a {
+	color: #000;
+    text-decoration: none;
+}
+.lb-settings .nav-tabs>li.active>a {
+	color: #555;
+    background-color: #fff;
+}
+
+/*.inner_left_panel .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+}    */
+
+.confirmation-modal .modal-body{
+	color: #000000 !important;
+}
+
+/*.no-user-header-right-panel{
+	height: 50px;
+}*/
+
+.no-user-full-dashboard p, .no-user-full-dashboard h3{
+	color: #000000;
+}
+
+.bb-tooltip td{
+	color: #000000 !important;
+}
+
+.error-input{
+	color: #c7254e !important;
+}
+
+.success-input{
+	color: #5cb85c !important;
+}
+
+/*.no_user_body .header_right_panel {
+    height: 49px;
+}*/
+
+.no_user_body .profile_img span i {
+    transition: ease 1s;
+    margin-top: 10px;
+}
+
+.no_user_body .profile_drop_down {
+    top: 49px;
+}
+
+
+.light_blue_btn {
+    background-color: #27a9e3;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    font-family: 'proxima_nova_rgregular';
+}
+
+
+.light_blue_btn:hover { background: #2291c2; color: #fff;}
+
+
+.signup_form {
+    margin: 100px auto;
+    /* max-width: 350px; */
+    /* border: none; */
+}
+
+.alert-error{
+	color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.gmStatusDetails h1, .gmStatusDetails h3, .gmStatusDetails th, .gmStatusDetails td{
+    color: #000000 !important;
+}
+
+.popover-title{color: black;}
+.popover-content{color: black;}
+
+/*           Text color css                   */
+.text-secondary {
+    color: #6c757d!important;
+}
+
+.text-success {
+    color: #28a745!important;
+}
+
+.text-danger {
+    color: #dc3545!important;
+}
+
+.text-primary {
+    color: #007bff!important;
+}
+
+.text-warning {
+    color: #ffc107!important;
+}
+
+.text-info {
+    color: #17a2b8!important;
+}
+
+.text-light {
+    color: #f8f9fa!important;
+}
+
+.bg-dark {
+    background-color: #343a40!important;
+}
+
+.text-dark {
+    color: #343a40!important;
+}
+
+.text-muted {
+    color: #6c757d!important;
+}
+
+.text-white {
+    color: #fff!important;
+}
+
+.bg-dark {
+    background-color: #343a40!important;
+}
+
+.comment {
+    background-color: #f0f0f0;
+    margin: 10px;
+}
+a.morelink {
+    text-decoration:none;
+    outline: none;
+}
+.morecontent span {
+    display: none;
+
+}
+
+.errorlist li {
+    color: #a94442;
+}
+
+.page_form_field #admin_error p{
+    color: #d41919
+}
+
+#clue-form .plz_file_uploads span.plz_file  {
+    width: 484px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-404 h3, .page-403 h3, .page-404 p, .page-403 p{
+    color: #000000;
+}
+
+#id-edit-user-form .btn_cancel, #id-user-form .btn_cancel{
+    width: 21%;
+    display: inline;
+    padding: 8px 14px 5px 15px;
+    color: #333333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.phue_dropdown #availableGroups, .phue_dropdown #availableScenes,.phue_dropdown #blinkGroup, .phue_dropdown  #testConfig{
+    color: #000000;
+}

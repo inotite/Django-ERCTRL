@@ -1,0 +1,96 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="{% static 'vendor/bootstrap/images/favicon.ico' %}"/>
+<title>Escape Room Ctrl | Dashboard</title>
+<meta name="description" content="EscapeRoom Ctrl">
+<meta name="author" content="ERC">
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/progressbars/progress_bar.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/bootstrap/css/style.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/bootstrap/css/font-awesome.css' %}" rel="stylesheet">
+<link href="{% static 'global/css/application.css' %}" rel="stylesheet">
+
+{% block extra_css %}
+{% endblock %}
+
+</head>
+  {% block body %}
+  <body>
+    {% block main_body %}
+    {% endblock %}
+  </body>
+  {% endblock %}
+
+
+{% block extra_js %}
+  {{ block.super }}
+
+  <script src="{% static 'vendor/bootstrap/js/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'vendor/progressbars/progress_bar.js' %}"></script>
+  <script src="{% static 'vendor/cachers/cacher_v2.js' %}"></script>
+  <script src="{% static 'vendor/timerjs/timerjs.js' %}"></script>
+  <script src="{% static 'vendor/socketiojs/socket.io.js' %}"></script>
+<!-- Le javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% endblock %}
+<script type="text/javascript" charset="utf-8">
+
+  $(".profile_img").click(function(){
+      $(".profile_drop_down").slideToggle('slow');
+    $(".profile_img").toggleClass('profile_arrow');
+  });
+
+  $(".menu_toogle a").click(function(){
+    if(!$('body').hasClass('gmRoomController')){
+      $(".page_left_panel").toggleClass('page_left_panel_hide');
+      $(".page_right_panel").toggleClass('page_right_panel_hide');
+    }
+    $("body").toggleClass('body_scroll');
+  });
+
+  $(".setting").click(function(){
+      $(".setting_drop_down").slideToggle('slow');
+  });
+  $(".notifation").click(function(){
+      $(".notification_drop_down").slideToggle('slow');
+  });
+
+  $(function () {
+    var tabContainers = $('div.tabs > div');
+    var select_ele = ':first';
+    try{
+      ttn = tab_type_number;
+    }catch (e) {
+      ttn = 1;
+    }
+    if (ttn == "4"){
+      tabContainers.hide().filter(':last').show();
+      select_ele = ':last';
+    }else{
+      tabContainers.hide().filter(':first').show();
+    }
+    $('div.tabs ul.tab-nav a').click(function () {
+      tabContainers.hide();
+      tabContainers.filter(this.hash).show();
+      $('div.tabs ul.tab-nav a').removeClass('selected');
+      $(this).addClass('selected');
+      return false;
+    }).filter(select_ele).click();
+
+  });
+
+  $(".left_panel_menu ul li").each(function(i, e){
+    if(e.children[0].getAttribute('href') == '#'){
+      $(this).addClass('heading_hide');
+    }
+  });
+  </script>
+</script>
+</html>

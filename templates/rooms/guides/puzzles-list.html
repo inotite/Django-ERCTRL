@@ -1,0 +1,124 @@
+<table id="table-puzzle" class="table table-bordered">
+  <tbody>
+    {% for puzzle in puzzles %}
+    <tr data-puzzle-id="{{puzzle.id}}">
+      <td class="actions-puzzle-td">
+        <div class="panel-group">
+          <div class="panel panel-default" id="panel-{{puzzle.id}}">
+            <div class="panel-heading">
+              <div class="panel-title puzzle-panel-title">
+                <div class="for_mar">
+                  <span class="glyphicon glyphicon-move" id="glyphicon-move-{{puzzle.id}}"></span>
+                  <span class="puzzle-name text" id="puzzle-name-{{puzzle.id}}">{{puzzle.puzzle_name}}</span>
+                </div>
+                <span class="enable_bt">
+                  <form  action="{% url 'room_puzzle_clue_options'  puzzle.id %}" method="POST" onchange="clue_options(this)">
+                    {% csrf_token %}
+                    <div id="spin"></div>
+                    <div id="message-dialog" class="alert alert-success" style="bottom: 10px; right: 20px; display: none; z-index: 4000"><p> <strong></strong></p>
+                    </div>
+                    <input type="checkbox" name="enabled_puzzle_clue"{% if puzzle.enabled_puzzle_clue %} checked {% endif %}>
+                    <label>Enabled</label>
+                  </form>
+                </span>
+                <span> <a href="#collapse{{puzzle.id}}" data-room-id="{{puzzle.room.id}}" data-id="{{puzzle.id}}" class="btn btn-default pull-right edit-puzzle-a accordion-toggle" data-toggle="collapse" id="id-edit-puzzle-{{puzzle.id}}"> Edit</a>
+              </span>
+              <span>
+                <form id = puzzle_id_{{puzzle.id}} action="{% url 'dashboard_rooms_puzzle_delete' puzzle.id %}"
+                method="POST" onclick="puzzle_delete(this)">
+                  {% csrf_token %}
+                  <a href="#" data-room-id="{{puzzle.room.id}}" data-id="{{puzzle.id}}" class=" pull-right delete-puzzle-a btn btn-danger">Delete</a >
+                </form>
+            </span>
+            </div>
+          </div>
+          <div id="collapse{{puzzle.id}}" class="panel-collapse collapse">
+            <div class="page_form_field puzzle_form_filed">
+             <form  action="{% url 'room_puzzle_clue_options'  puzzle.id %}" method="POST" enctype="multipart/form-data"  onchange="clue_options(this)">
+              {% csrf_token %}
+              <div id="spin"></div>
+              <div id="message-dialog" class="alert alert-success" style="bottom: 10px; right: 20px; display: none; z-index: 4000"><p> <strong></strong></p>
+              </div>
+              <div class="error-message-dialog_{{puzzle.id}}" class="alert alert-success" style="color:red ;bottom: 10px; right: 20px; display: none; z-index: 4000"><p> <strong></strong></p>
+              </div>
+              <div class="show-Dash-icon">
+              <label> Dashboard Icon</label>
+              {% if puzzle.dashboard_icon %}
+                <span class="dashIcon_img">
+                  <img id="dashboard_icon_{{puzzle.id}}" src="{{puzzle.dashboard_icon.url}}"></span>
+                <span class="icon_clear" style="display: inline;"><input name="icon-clear" id = "icon_clear_checkbox" type="checkbox"> <label>Clear</label></span>
+              {% else %}
+                <span class="dashIcon_img">
+                <img id="dashboard_icon_{{puzzle.id}}" src=""></span>
+                <span  class="icon_clear" style="display: none;"><input name="icon-clear" type="checkbox"> <label>Clear</label></span>
+              {% endif %}
+              </div>
+              <div class="choose-icon">
+                 <label>Change : </label>
+                 <input type="file" name="dashboard_icon">
+              </div>
+          </form>
+        </div>
+      </form>
+      <div class="panel-body-group " id="panel-body-{{puzzle.id}}" >
+        {% for clue in puzzle.puzzleclue_set.all %}
+          <div class="puzzle_clue_border puzzle_clue_item" >
+           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <div class="list-group-item-header panel-title clearfix">
+                        <form  id="clue-form" class="for_change" action="{% url 'room_puzzle_clue_create' puzzle.id %}"  method="POST" onchange="clue_function(this)">
+                          {% csrf_token %}
+                          <div class="col-md-2 col-xs-12 clue_checkbox">
+                            <input type="checkbox" name="clue_checkbox" {% if clue.clue_checkbox %} checked {% endif %} >
+                            <label>{{clue.clue_type}}</label>
+                          </div>
+                          <div class="col-md-5 col-xs-12 score-penalty">
+                            <label class="penalty_label">Score Penatly</label><input type="number" name="score_penatly" value="{{clue.score_penatly}}">
+                            <input name="clue_id" value="{{clue.id}}"  hidden>
+                          </div>
+                        </form>
+                         <div class="clue_id col-md-3 col-xs-6 item-right" value ="{{clue.id}}">
+                          <div class="clue_textarea_{{clue.id}}" value = "{{clue.clue_textarea }}" hidden></div>
+                          {% if clue.clue_file_uploads.url != None  %}
+                            <div class="clue_file_uploads_{{clue.id}}" value = "{{clue.clue_file_uploads.url}}"></div>
+                          {% endif %}
+                          {% if clue.clue_icon.url != None  %}
+                            <div class="clue_icon_{{clue.id}}" value = "{{clue.clue_icon.url}}" hidden></div>
+                          {% endif %}
+                          <div class ="puzzle_id" value ="{{ puzzle.id }}" hidden></div>
+                          <div class="dropdown">
+                            <select  name="clue_file_type" class="clue_file_type_{{clue.id}} btn btn-primary dropdown-toggle" id="clue_file_type-{{clue_id}}">
+                              <option value="Text">Text</option>
+                              <option value="Image">Image</option>
+                              <option value="Audio">Audio</option>
+                              <option value="Video">Video</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-2 col-xs-6 puzzleEdit">
+                             <a class="btn btn-default pull-right edit-puzzle-a clue_edit" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_{{clue.id}}" aria-expanded="true" aria-controls="collapseOne">Edit</a>
+                        </div>
+                  </div>
+                </div>
+                <div id="collapse_{{clue.id}}" class="panel-collapse collapse edit-clue" role="tabpanel" aria-labelledby="">
+                  <div class="panel-body">
+                      <div class="col-sm-12" id = "panel-body_{{clue.id}}" ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+</div>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+  

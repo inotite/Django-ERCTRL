@@ -1,0 +1,133 @@
+p.edit-question ,.sound-info-table p, .video-info-table p, .puzzle-info-table p{
+	color: #000000 !important;
+}
+
+.clue-message #message-dialog p {
+	color: #3c763d !important;
+}
+
+.modal-content b{
+	color: #000000 !important;
+}
+
+.help-block-img-name, .help-block-sound-name, .help-block-video-name, .help-block-puzzle-name,  ul.help-block{
+	color: #a94442;
+}
+.puzzle-panel-title a.edit-puzzle-a{
+	margin: 0px 4px 0px 0px;
+	font-weight: bold;
+    font-size: 20px;
+}
+
+.puzzle-panel-title a.delete-puzzle-a{
+	margin: 0px 4px 0px 0px;
+	color: #ffffff;
+	font-weight: bold;
+    font-size: 19px;
+}
+
+.puzzle-panel-title span{
+	font-weight: bold;
+    font-size: 19px;
+}
+
+.actions-puzzle-td .panel-default>.panel-heading {
+	background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.actions-puzzle-td .panel-default {
+    border-color: #ffffff;
+    border-radius: 0px !important;
+    box-shadow: none;
+}
+
+.actions-puzzle-td .panel-body{
+	color: #000000 !important;
+}
+
+#table-puzzle panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body {
+    border-top: none !important;
+}
+
+#puzzle-form .btn-primary{
+	color: #ffffff !important;
+}
+
+.puzzle-update-form .error{
+	color: #a94442 !important;
+}
+
+.font-preview{
+	color: #000 !important;
+	font-size: 20px;
+    margin-top: 5px;
+}
+
+
+#predefinedClues{
+	max-height: 158px;
+    overflow: hidden;
+}
+
+.room-form .display-theme-image{
+	margin-top: 10px;
+}
+
+.room-form input{
+
+}
+
+/*.page_form_field input[type="checkbox"] {
+    display: inline-block;
+    height: inherit;
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding: 0;
+    width: auto;
+}*/
+.clear-page_form_field a {
+    max-width: 223px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.clear-page_form_field {
+    color: #000;
+}
+
+/*   Custom Css For room [7-5-2018]
+=====================================*/
+.theme-box-group .page_form {
+    font-size: 0px;
+    margin-left: -20px;
+}
+.theme-box-group .page_form > .page_form_field {
+    width: 33.33%;
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: top;
+    font-size: 16px;
+}
+.theme-box-group .page_form > .full-field {
+    width: 100%
+}
+.grey_box h2 {
+    font-size: 22px;
+    text-align: center;
+}
+.theme-form-submit {
+    text-align: right;
+}
+.theme-form-submit button.purple_btn {
+    padding: 10px 50px;
+    margin-right: 0px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #3c4a54;
+}

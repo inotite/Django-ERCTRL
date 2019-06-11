@@ -1,0 +1,100 @@
+{% extends "portals/base_administration_portal.html" %}
+
+{% load staticfiles %}
+{% block extra_css %}
+{{ block.super }}
+<link href="{% static 'vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page_heading">Leaderboard Entries</h1>
+	  </div>
+      <div class="col-sm-12 clue-message">
+		<div id="message-dialog" class="alert alert-success"
+		  style="display: none;"><p> <strong></strong></p>
+		</div>
+	  </div>
+      <div class="col-md-12">
+        <div class="entries-wrapper">
+          <div class="header">
+			<div class="action-item" style="display: inline-block;">
+				<a href="{% url 'leaderboard_create_entry' %}" class="btn btn-primary">Add Entry</a>
+			</div>
+			<div class="action-item" style="display: inline-block;">
+				<a href="{% url 'leaderboard_export_entries' %}" class="btn btn-success">Export All entries to CSV</a>
+			</div>
+
+			<div class="float-right" style="float: right; display: inline-block;">
+                <select class="bs-select sel-room" id="entriesSelRoom">
+					{% for room in rooms %}
+					<option value="{{room.id}}" {% if active_room.id == room.id %} selected {% endif %}>{{room.room_name }}</option>
+                    {% endfor %}
+			    </select>
+		    </div>
+		  </div>
+
+		  <div class="reponsive_tabel" style="margin-top: 15px;">
+            <table  border="0" id="lb-entries-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Time Remaining</th>
+                  <th>Num Players</th>
+                  <th>Clues Given</th>
+                  <th>Completion Date</th>
+				  <th></th>
+			    </tr>
+		      </thead>
+			  <tbody>
+                {% for entry in entries %}
+				<tr class="lb-entry" data-value="{{entry.id}}">
+                    <td>{{ entry.team_name }}</td>
+                    <td>{{ entry.time_left }}</td>
+                    <td>{{ entry.num_players }}</td>
+                    <td>{{ entry.num_clues }}</td>
+					<td>{{ entry.completed_on|date:"M d, Y" }}</td>
+					<td>
+						<a class="link-actions" href="{% url 'leaderboard_edit_entry' pk=entry.id %}"><i class="fa fa-pencil"></i></a>
+						<a class="link-actions link-delete" style="color: red;"><i class="fa fa-trash"></i></a>
+					</td>
+				  </tr>
+
+				{% endfor %}
+			  </tbody>
+	        </table>
+
+		  </div>
+		</div>
+
+	    </div>
+
+	  </div>
+
+	</div>	
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var csrf_token = "{{csrf_token}}";
+</script>
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/momentjs/moment.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/leaderboard/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	  $('.bs-select').selectpicker();
+});
+</script>
+{% endblock %}

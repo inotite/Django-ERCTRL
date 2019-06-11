@@ -1,0 +1,190 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page_heading">Update Room {{object.room_name}} </h1>
+      </div>
+      <div id="spin"></div>
+      <div class="col-sm-12 clue-message">
+         <div id="message-dialog" class="alert alert-success"
+         style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+          <p> <strong></strong></p>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="tabs">
+          <ul class="tab-nav">
+            <li><a href="#room-tab">Room</a></li>
+            <li><a href="#puzzle-tab">Puzzles</a></li>
+            <li><a href="#scoring-tab">Scoring</a></li>
+            <li><a href="#ending-game-tab">Ending Game</a></li>
+          </ul>
+          <div style="display: block;" id="room-tab" class="tabs_box">
+            <div class="col-sm-12">
+              <form id="edit-room-form" method="POST" action="{% url action_url object.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div id = "object_id" value = {{object.id}}></div>
+                <div class="theme-box-group">
+                  <div class="box-card">
+                    <div class="grey_box">
+                      <h2>Room Edit</h2>
+                      <div class="page_form">
+                        <div class="page_form_field">
+                            <label for="{{ form.room_name.id_for_label }}">Game name*:</label>
+                            {{ form.room_name }}
+                            {{ form.room_name.errors }}
+                        </div>
+                        <div class="page_form_field clear-page_form_field">
+                            <label for="{{ form.logo.id_for_label }}">Game logo</label>
+                            {{ form.logo }}
+                            {{ form.logo.errors }}
+                        </div>
+                        <div class="page_form_field">
+                            <label for="{{ form.default_time_limit.id_for_label }}">Game time (minutes)*:</label>
+                            {{ form.default_time_limit }}
+                            {{ form.default_time_limit.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.display_timer_milliseconds.id_for_label }}">
+                              <input type="checkbox" name="{{form.display_timer_milliseconds.name}}" id="id_{{form.display_timer_milliseconds.name}}" {% if form.display_timer_milliseconds.value %} checked {% endif %}> Display hundredths of a second on time:
+                          </label>
+                          {{ form.display_timer_milliseconds.errors }}
+                        </div>
+                        <div class="page_form_field clear-page_form_field">
+                            <label for="{{ form.video_brief.id_for_label }}">Video brief</label>
+                            {{ form.video_brief }}
+                            {{ form.video_brief.errors }}
+                        </div>
+                        <div class="page_form_field">
+                            <label for="{{ form.start_timer_after_video_brief.id_for_label }}">
+                                <input type="checkbox" name="{{form.start_timer_after_video_brief.name}}" id="id_{{form.start_timer_after_video_brief.name}}" {% if form.start_timer_after_video_brief.value %} checked {% endif %}> Start timer after video brief
+                            </label>
+                            {{ form.start_timer_after_video_brief.errors }}
+                        </div>
+                        <div class="page_form_field">
+                            <label for="{{ form.admin_pin.id_for_label }}">Admin PIN (4 digits)*:</label>
+                            {{ form.admin_pin }}
+                            {{ form.admin_pin.errors }}
+                          <div id = "admin_error"></div>
+                        </div>
+                        <div class="page_form_field clear-page_form_field">
+                            <label for="{{ form.background_image.id_for_label }}">Background image</label>
+                              {{ form.background_image }}
+                              {{ form.background_image.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.background_color.id_for_label }}">Background Color</label>
+                          <input type="color" name="{{ form.background_color.name }}" maxlength="255" id="id_{{ form.background_color.name }}" required="true" value="{% if form.background_color.value%}{{form.background_color.value}}{% else %}#000000{% endif%}">
+                            {{ form.background_color.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.font_color.id_for_label }}">Font Color</label>
+                          <input type="color" name="{{ form.font_color.name }}" maxlength="255" id="id_{{ form.font_color.name }}" required="true" value="{%if form.font_color.value %}{{form.font_color.value}}{% else %}#ffffff{% endif %}">
+                            {{ form.font_color.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.widget_header_color.id_for_label }}">Header Color</label>
+                          <input type="color" name="{{ form.widget_header_color.name }}" maxlength="255" id="id_{{ form.widget_header_color.name }}" required="true" value="{% if form.widget_header_color.value%}{{form.widget_header_color.value}} {% else %}#555555{% endif %}">
+                            {{ form.widget_header_color.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.hide_timer.id_for_label }}">
+                              <input type="checkbox" name="{{form.hide_timer.name}}" id="id_{{form.hide_timer.name}}" {% if form.hide_timer.value %} checked {% endif %}> Always keep timer/score visible:
+                          </label>
+                          {{ form.hide_timer.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.hint.id_for_label }}">
+                              <input type="checkbox" name="{{form.hint.name}}" id="id_{{form.hint.name}}" {% if form.hint.value %} checked {% endif %}> Tap anywhere on screen to leave a hint:
+                          </label>
+                          {{ form.hint.errors }}
+                        </div>
+                         <div class="page_form_field">
+                            <label for="{{ form.final_code.id_for_label }}">Final Code:</label>
+                            {{ form.final_code }}
+                            {{ form.final_code.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.hint_tap_exit.id_for_label }}">
+                              <input type="checkbox" name="{{form.hint_tap_exit.name}}" id="id_{{form.hint_tap_exit.name}}" {% if form.hint_tap_exit.value %} checked {% endif %}> Tap anywhere on a hint to close immediately:
+                          </label>
+                          {{ form.hint_tap_exit.errors }}
+                        </div>
+                        <div class="page_form_field">
+                          <label for="{{ form.hints_full_screen.id_for_label }}">
+                              <input type="checkbox" name="{{form.hints_full_screen.name}}" id="id_{{form.hints_full_screen.name}}" {% if form.hints_full_screen.value %} checked {% endif %}> Always show hints fullscreen over header
+                          </label>
+                          {{ form.hints_full_screen.errors }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="page_form_field theme-form-submit">
+                  <button class="purple_btn">save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div style="display: block;" id="puzzle-tab" class="tabs_box">
+            <div class="col-sm-12">
+              <form id="edit-puzzle-form" method="POST">
+                {% csrf_token %}
+                {{ puzzles_form.non_field_errors }}
+                <div class="theme-box-group">
+                  <div class="box-card">
+                    <div class="grey_box">
+                      <h2>Puzzle Edit</h2>
+                      <div class="page_form">
+                        <div class="page_form_field">
+                            <label for="{{ puzzles_form.puzzle_name.id_for_label }}">Name*:</label>
+                            {{ puzzles_form.puzzle_name }}
+                            {{ puzzles_form.puzzle_name.errors }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="page_form_field theme-form-submit">
+                  <button class="purple_btn">save</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-12 puzzles-info-table ">
+              {% include 'rooms/guides/puzzles-list.html' %}
+            </div>
+          </div>
+          <div style="display: block;" id="scoring-tab" class="tabs_box">
+            <div class="col-sm-12 scoring-tab">
+              {% include 'rooms/guides/scoring_create.html' %}
+            </div>
+          </div>
+          <div style="display: block;" id="ending-game-tab" class="tabs_box">
+            <div class="col-sm-12 ending-game-tab">
+              {% include 'rooms/guides/ending_game_create.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block extra_js %}
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/room/guide_room.js' %}"></script>
+<script type="text/javascript">
+  var tab_type_number = "{{tab_type_number}}";
+</script>
+
+{% endblock %}

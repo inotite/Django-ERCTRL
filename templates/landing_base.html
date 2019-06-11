@@ -1,0 +1,102 @@
+<!-- <h1>
+	<a href="{% url 'user_login' %}">Login</a>
+	<a href="{% url 'erctrl_faq' %}">Faq</a>
+	<a href="{% url 'pricing_plan' %}">Pricing Plan</a>
+</h1>
+ -->
+{% load i18n static %}
+<!doctype html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="shortcut icon" type="image/png" href="{% static 'vendor/bootstrap/images/favicon.ico' %}"/>
+	    <title>Escape Room Control</title>
+	    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	    <link href="{% static 'vendor/bootstrap/css/font-awesome.css' %}" rel="stylesheet">
+	    <link href="{% static 'vendor/carousel/owl.carousel.css' %}" rel="stylesheet">
+	    <link href="{% static 'vendor/landing/css/style.css' %}" rel="stylesheet">
+	    <link href="{% static 'vendor/landing/css/media-queries.css' %}" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i" rel="stylesheet">
+	    {% block extra_css %}
+	    {% endblock %}
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+	    {% block header_sec %}
+		    <header>
+		        <nav class="navbar navbar-inverse navbar-fixed-top">
+		            <div class="container">
+		                <div>
+		                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		                        <span class="icon-bar"></span>
+		                        <span class="icon-bar"></span>
+		                        <span class="icon-bar"></span>
+		                    </button>
+		                    <a class="navbar-brand" href="/"><img src="{% static 'vendor/bootstrap/images/landing/logo.png' %}" alt="" /></a>
+		                </div>
+		                <div class="collapse navbar-collapse" id="myNavbar">
+		                    <ul class="nav navbar-nav navbar-right">
+		                        <ul class="nav navbar-nav">
+		                            <li class="active"><a href="{% url 'erctrl_home'%}">Home</a></li>
+									{% comment %}
+		                            <li><a href="{% url 'pricing_plan'%}">Pricing</a></li>
+									{% endcomment %}
+		                            <li><a href="{% url 'erctrl_faq'%}">Faq</a></li>
+		                            <li><a href="{% url 'erctrl_contact'%}">Contact</a></li>
+		                            <li><a href="{% url 'user_login'%}">LOGIN</a></li>
+		                            <li><a href="{% url 'erctrl_contact'%}">Request Demo</a></li>
+		                        </ul>
+		                    </ul>
+		                </div>
+					</div>
+		        </nav>
+		    </header>
+	    {% endblock %}
+	    {% block main_sec_body %}
+		{% endblock %}
+        {% block footer_section %}
+		    <footer>
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-sm-4">
+		                    <a href="#" class="footer_logo"><img src="{% static 'vendor/bootstrap/images/landing/footer_logo.png' %}" alt="" /></a>
+		                </div>
+		                <div class="col-sm-4">
+		                    <ul class="footer_menu">
+		                        <li><a href="#">Policy</a></li>
+		                        <li><a href="#">Support</a></li>
+		                        <li><a href="{% url 'erctrl_contact' %}">Contact</a></li>
+		                    </ul>
+		                </div>
+		                <div class="col-sm-4 text-right">
+		                    <ul class="share_icons">
+		                        <li><a href="https://www.facebook.com/Escaperoomctrl-1978351169124270"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+		                        <li><a href="https://www.twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+		                        <li><a href="https://www.instagram.com/californiastateescape/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+		                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+		                        <li><a href="https://plus.google.com/100765298395364023632"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+		                        <li><a href="https://www.youtube.com/channel/UC_1QNv29jLAwuAHrRZ7UPIQ"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+		                    </ul>
+		                </div>
+		                <div class="col-sm-12 text-right">
+		                    <p>Copyright © 2018 escaperoomctrl</p>
+		                </div>
+		            </div>
+		        </div>
+		    </footer>
+		{% endblock %}
+	    <script src="{% static 'vendor/bootstrap/js/jquery.min.js' %}"></script>
+	    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	    <script src="{% static 'vendor/landing/js/owl.carousel.js' %}"></script>
+	    <script src="{% static 'vendor/landing/js/custom.js' %}"></script>
+	    {% block extra_js %}
+	    {% endblock %}
+	</body>
+</html>

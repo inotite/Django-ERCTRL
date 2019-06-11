@@ -1,0 +1,23 @@
+{% extends "portals/base_administration_portal.html" %}
+
+{% block content %}
+
+<div class="page_right_panel col-md-10">
+    <div class="inner_left_panel">
+        <div class="row">  
+            <div class="error-wrapper">
+                <div class="row">
+                    <div class="well col-md-6 col-md-offset-3">
+                        <h3>Error 500: Internal Server Error</h3>
+
+                        <p>The requested URL {{ request.path }} had a
+                            server problem that prevented the webpage from
+                            displaying.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>          
+
+{% endblock %}

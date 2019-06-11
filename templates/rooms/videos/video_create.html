@@ -1,0 +1,21 @@
+ <div class="grey_box">
+  <h2>Videos</h2>
+  <form id="video-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="page_form">
+      <div class="page_form_field">
+        {{ video_form.video_img.errors }}
+        <label for="{{ video_form.video_img.id_for_label }}">Video</label>
+        {{ video_form.video_img }}
+      </div>
+      <div class="page_form_field">
+        {{ video_form.name.errors }}
+        <label for="{{ video_form.name.id_for_label }}">Name</label>
+        {{ video_form.name }}
+      </div>
+      <div class="page_form_field">
+        <input type="submit" name="submit" value="Upload New Video" class="purple_btn btn">
+      </div>
+    </div>
+  </form>
+</div>

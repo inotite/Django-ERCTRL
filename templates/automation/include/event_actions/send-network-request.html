@@ -1,0 +1,9 @@
+<div class="page_form_field">
+  <label>URL:</label>
+  <input type="text" name="url" id="id_url" {% if is_edit and action_referen.url %} value="{{action_referen.url}}" {% endif %} value="http://" />
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

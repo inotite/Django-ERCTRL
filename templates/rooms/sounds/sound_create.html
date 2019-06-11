@@ -1,0 +1,21 @@
+ <div class="grey_box">
+  <h2>Sounds</h2>
+  <form id="sound-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="page_form">
+      <div class="page_form_field">
+        {{ sound_form.sound_img.errors }}
+        <label for="{{ sound_form.sound_img.id_for_label }}">Sound</label>
+        {{ sound_form.sound_img }}
+      </div>
+      <div class="page_form_field">
+        {{ sound_form.name.errors }}
+        <label for="{{ sound_form.name.id_for_label }}">Name</label>
+        {{ sound_form.name }}
+      </div>
+      <div class="page_form_field">
+        <input type="submit" name="submit" value="Upload New Sound" class="purple_btn btn">
+      </div>
+    </div>
+  </form>
+</div>

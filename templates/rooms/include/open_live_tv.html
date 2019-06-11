@@ -1,0 +1,162 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% load room_helper %}
+
+{% block body %}
+  <body id="clue-communication-body" {% if not object.background_video %} style="background-color:{{object.background_color}}" {% endif %} class="newinner_page_body tv_live_window {%if object.background_video %} overlayVideoText{% endif %}">
+    {% block content %}
+      <div class="waitng_page newwaiting_page tv_default_window">
+        <div id="photoClueContainer" class="showfullscreen" style="display: none;">
+          <div class="outerWrapperThing">
+            <img id="photoClueOutput" src="{%if object.overlay_image%}{{MEDIA_URL}}{{object.overlay_image.url}}{% endif %}" style="text-align:center;" alt="">
+          </div>
+        </div>
+        {% if object.background_video %}
+          <video height="100%" {% if not object.start_background_video_on_timer_start %} autoplay {% endif %} {% if object.loop_background_video %} loop {% endif %} id="bgvidObject" class="bg-container" src="" width="100%">
+            <source src="" type="video/mp4" id="bgvidSrc">
+          </video>
+        {% endif %}
+
+        {% if object.background_image %}
+          <div class="bg-container bg-container-img" style="display: none;">
+            <img src="{{MEDIA_URL}}{{object.background_image.url}}" alt="BG Image" style="height:100%;display:block;margin:auto;">
+          </div>
+        {% endif %}
+        <!-- In Progress -->
+        {% if object.success_video %}
+          <video height="100%" id="successVideo" width="100%" class="success-video-container" style="display:none;" src="" width="100">
+              <source src="" type="video/mp4" id="successVideoSrc">
+          </video>
+        {% endif %}
+
+        {% if object.fail_video %}
+          <video height="100%" id="failVideo" width="100%" class="fail-video-container" style="display:none;" src="" width="100%">
+            <source src="" type="video/mp4" id="failVideoSrc">
+          </video>
+        {% endif %}
+         <!-- end In Progress -->
+
+        <div id="videoBriefContainer" class="showfullscreen" style="display:none;">
+          <video height="100%" id="videoBriefObject" width="100%">
+            <source id="vidSrc" src="{%if object.video_brief %}{{MEDIA_URL}}{{object.video_brief.url}}{% endif %}" type="video/mp4">
+          </video>
+        </div>
+        <div id="videoClueContainer" class="showfullscreen" style="display: none;">
+          <video height="100%" id="videoClueObject" src="" width="100%">
+            <source id="vidClueSrc" src="" type="video/mp4">
+          </video>
+        </div>
+        <div id="roomCompleted" class="roomEnd room-success-screen" style="display: none;">
+          <div id="successBranding" class="roomEndTop">{{object.success_screen_header}}</div>
+          <div id="completedRoomHeader" class="roomEndMiddle">00:00</div>
+          <div id="successMessage" class="roomEndBottom">{{object.success_screen_footer}}</div>
+        </div>
+        <div id="timeExpiredNotification" class="roomEnd room-failure-screen" style="display: none;">
+          <div id="failureBranding" class="roomEndTop">{{object.failure_screen_header}}</div>
+          {% if not object.hide_time_remaining_on_failure %}
+            <div class="roomEndMiddle">{% if object.display_timer_milliseconds %}00:00.0{%else%}00:00{% endif %}</div>
+          {% endif %}
+          <div id="failureMessage" class="roomEndBottom">{{object.failure_screen_footer}}</div>
+        </div>
+
+      <div class="theam_box" id="bodyMainContainerDiv">
+        {% if not object.background_video %}
+          <div class="theam_img"><img src="{% static 'vendor/bootstrap/images/TV.png' %}" alt=""></div>
+        {% endif %}
+
+        <div class="container position_fram">
+          <div class="row height100prsnt">
+            <div class="col-md-6 logo-container">
+              {%if object.logo %}
+                <img src="{{MEDIA_URL}}{{object.logo.url}}" alt="{{object.room_name}}" style="max-height:{{object.logo_max_height}}px;">
+              {% endif %}
+            </div>
+            <div class="col-md-12 default_countdown height100prsnt">
+              <div class=" tv_left_box height100prsnt">
+              <div class="inner_waiting_timer inner_time_box countdown-container">
+                <div class="default_head_ttl">
+                <h2 style="font-family: {{object.live_view_font.font_name}} !important;"></h2>
+                </div>
+
+                 <div class=" tv_clue_box default_cluesBox">
+                    <h2 id="clueLabel" style="font-size: {{object.clue_label_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;">{{object.clue_label}}</h2>
+                    <ul class="displayValue newclue_lock tv-ul" id="liveClueDisplay">
+                      {% for nc in object.num_clues|times %}
+                        <li class="gm-clue-element">
+                          <a href="#" id="fa-off-{{nc}}" data-lock-id="{{nc}}" class="gm-clue-off">
+                            {% if object.clue_count_off_img %}
+                              <img src="{{MEDIA_URL}}{{object.clue_count_off_img.url}}"  {% if object.clue_count_img_width > 0 %}  style="width:{{object.clue_count_img_width}}px" {% endif %}>
+                            {% else %}
+                              <i class="fa fa-lock" aria-hidden="true"></i>
+                            {% endif %}
+                          </a>
+                          <a href="#" id="fa-on-{{nc}}" data-lock-id="{{nc}}" style="display: none;" class="gm-clue-on">
+                            {% if object.clue_count_available_img %}
+                              <img src="{{MEDIA_URL}}{{object.clue_count_available_img.url}}"  {% if object.clue_count_img_width > 0 %}  style="width:{{object.clue_count_img_width}}px" {% endif %}>
+                            {% else %}
+                              <i class="fa fa-lock" aria-hidden="true"></i>
+                            {% endif %}
+                          </a>
+                          <a href="#" id="fa-used-{{nc}}" data-lock-id="{{nc}}" style="display: none;" class="gm-clue-used">
+                            {% if object.clue_count_used_img %}
+                              <img src="{{MEDIA_URL}}{{object.clue_count_used_img.url}}"  {% if object.clue_count_img_width > 0 %}  style="width:{{object.clue_count_img_width}}px" {% endif %}>
+                            {% else %}
+                              <i class="fa fa-close" aria-hidden="true"></i>
+                            {% endif %}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                <div class="cust_counter_wrap">
+                  <div class="countdown">
+                   <form id="tv-form">
+                      {% if not object.hide_timer %}
+                        {% if object.display_timer_milliseconds %}
+                          <span id="countdown" style="font-size: {{object.timer_font_size}}px; font-family: {{object.live_view_font.font_name}} !important; color:{{object.font_color}};">{{object.default_time_limit}}:00.00</span>
+                        {% else %}
+                          <span id="countdown" style="font-size: {{object.timer_font_size}}px; font-family: {{object.live_view_font.font_name}} !important;">{{object.default_time_limit}}:00</span>
+                        {% endif %}
+                      {% endif %}
+                      <input type='text' name='startTime' value='3600' style='width:30px; display: none;' id="liveTimeRemaining" />
+                    </form>
+                   <!--  <button  value="Start" id="cd_start" class="black_btn" style="display:none;"> Start </button>
+                    <button value="Stop"  id="cd_stop" class="red_btn" style="display: none;"/> Stop </button>
+                    <button value="Pause"  id="cd_pause" class="red_btn" style="display: none;"/> Pause </button>
+                    <button value="Reset"  id="cd_reset" class="red_btn" style="display: none;"/> Reset </button> -->
+                  </div>
+
+                  <input type="text" style="display: none;" value="3600" id="cd_seconds" />
+                  </div>
+                  {% if not object.hide_data_feed %}
+                    <div class="default_awaiting data_feed_v_scrooler">
+                      <h1 style="font-family: {{object.live_view_font.font_name}} !important;" id="communicationText">{{object.initial_data_feed_text}}</h1>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    {% endblock %}
+    {% include 'rooms/include/common_theme.html' %}
+  </body>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<link href="{% static 'pages/room/TV.css' %}" rel="stylesheet">
+<link href="{% static 'pages/room/theme-common.css' %}" rel="stylesheet">
+<script type="text/javascript">
+$(document).ready(function(){
+    {{object.custom_js |safe}}
+    {{object.custom_header_includes |safe}}
+  });
+</script>
+<script type="text/javascript" src="{% static 'pages/room/live_window.js' %}">
+</script>
+{% endblock %}

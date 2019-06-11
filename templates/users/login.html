@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="{% static 'vendor/bootstrap/images/favicon.ico' %}"/>
+  <title>Escape Room Control | Log in</title>
+  <meta name="description" content="EscapeRoom Ctrl">
+  <meta name="author" content="ERC">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/font-awesome.css' %}" rel="stylesheet">
+  </head>
+  <body class="inner_page_body login_bg">
+    <div class="messages col-md-9 col-md-offset-3">
+    {% if messages %}
+    {% for message in messages %}
+    <div class='alert alert-{% if message.tags %}{{ message.tags }}{% endif %}'>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <span class="alert-message-text">{{ message }}</span>
+    </div>
+    {% endfor %}
+    {% endif %}
+              </div>
+    <div class="full_dashboard">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="login_form grey_box">
+              <h2>Sign in to start your session</h2>
+              {% if request.GET.next and 'tablet' in request.GET.next%}
+                <form class="login" method="POST" action="{% url 'user_login'%}?next=/tablet/rooms/live-views" data-next={{request.GET.next}}>
+              {% else %}
+                 <form class="login" method="POST" action="." data-next={{request.GET.next}}>
+              {% endif %}
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                  <ul>
+                    {% for error in form.non_field_errors %}
+                      <li>
+                            <div class="alert alert-danger">
+                              {{ error }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="page_form">
+                    {% for field in form %}
+                      <div class="page_form_field">
+                          {{ field.label_tag }}
+                          {{field}}
+                      </div>
+                    {% endfor %}
+                    <div class="page_form_field">
+                      <button class="purple_btn" type="submit">Sign In</button>
+                    </div>
+                    <div class="page_form_field">
+                      <a href="{% url 'password_reset' %}">I forgot my password</a>
+                    </div>
+                    {% comment %}
+                      <div class="page_form_field">
+                        <a href="{% url 'pricing_plan' %}" >Pricing Plan</a>
+                      </div>
+                    {% endcomment %}
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'vendor/bootstrap/js/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/scripts.js' %}"></script>
+</html>

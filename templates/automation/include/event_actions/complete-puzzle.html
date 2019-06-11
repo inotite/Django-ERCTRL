@@ -1,0 +1,14 @@
+<div class="page_form_field">
+  <label>Puzzle:</label>
+  <select name="puzzle" id="id_puzzle">
+    <option value>-- No Image Selected --</option>
+    {% for puzzle in puzzles %} 
+        <option value="{{puzzle.id}}" {% if is_edit and action_referen.puzzle and action_referen.puzzle == puzzle %} selected {% endif %}>{{puzzle.puzzle_name}}</option>
+    {% endfor %}
+  </select>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

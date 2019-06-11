@@ -1,0 +1,165 @@
+<div class="page_left_panel col-md-2 popup_left_panel">
+  <div class="left_panel_menu">
+   <ul>
+        <li>
+          <a href="#">
+            <h4>ROOM MANAGEMENT</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'dashboard_rooms' %}">
+         <!--  <span>
+            <i class="fa fa-tachometer" aria-hidden="true"></i>
+          </span> -->
+              <p>Room Dashboard</p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'dashboard_rooms_automation' %}">
+       <!--    <span> <i class="fa fa-tachometer" aria-hidden="true"></i></span> -->
+              <h4></h4>
+              <p>Automation</p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'dashboard_rooms_ph_hue' %}">
+       <!--    <span> <i class="fa fa-tachometer" aria-hidden="true"></i></span> -->
+              <h4></h4>
+              <p>Philips Hue Settings</p>
+            </a>
+        </li>
+
+
+
+        <li>
+          <a href="{% url 'leaderboards_rooms_create' %}">
+          <!-- <span> <i class="fa fa-flag" aria-hidden="true"></i> </span> -->
+            <h4></h4>
+            <p>Create Room</p>
+            </a>
+        </li>
+        <li>
+          <a href="#">
+            <h4>TABLET ROOMS</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'tablet_rooms' %}">
+          <!-- <span> <i class="fa fa-flag" aria-hidden="true"></i> </span> -->
+            <h4></h4>
+            <p>Room Dashboard</p>
+            </a>
+        </li>
+         <li>
+          <a href="#">
+            <h4>SELF GUIDE ROOMS</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'dashboard_guide_rooms' %}">
+          <!-- <span> <i class="fa fa-flag" aria-hidden="true"></i> </span> -->
+            <h4></h4>
+            <p>Room Dashboard</p>
+            </a>
+        </li>
+       <!--  <li>
+          <a href="#">
+              <h4>WAIVERS</h4>
+              <p></p>
+            </a>
+        </li> -->
+        <!-- <li>
+          <a href="{% url 'waivers-events-create' %}"> <span> <i class="fa fa-tachometer" aria-hidden="true"></i></span>
+              <h4></h4>
+              <p>Events</p>
+            </a>
+        </li> -->
+        <li>
+          <a href="#">
+            <h4>LEADERBOARDS</h4>
+            <p></p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'leadership_top' %}" target="_blank">
+          <!-- <span> <i class="fa fa-flag" aria-hidden="true"></i> </span> -->
+          <h4></h4>
+          <p>Open Leaderboard App</p>
+          </a>
+        </li>
+        <li>
+			<a href="{% url 'leaderboard_entries' room_id=0 %}" >
+            <h4></h4>
+            <p>Entries</p>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'leaderboard_settings' %}">
+            <h4></h4>
+            <p>Leaderboard Settings</p>
+          </a>
+        </li>
+        <li>
+			<a href="{% url 'leaderboard_import_entries' %}">
+            <h4></h4>
+            <p>Import Entries</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+              <h4>ACCOUNT SETTINGS</h4>
+              <p></p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'change_password' %}">
+         <!--  <span> <i class="fa fa-key" aria-hidden="true"></i> </span> -->
+              <h4></h4>
+              <p>Change Password</p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'users-settings-management' %}">
+         <!--  <span> <i class="fa fa-key" aria-hidden="true"></i> </span> -->
+              <h4></h4>
+              <p>User Management</p>
+            </a>
+        </li>
+        <li>
+          <a href="{% url 'account_settings' %}">
+         <!--  <span> <i class="fa fa-key" aria-hidden="true"></i> </span> -->
+              <h4></h4>
+              <p>Business Info</p>
+            </a>
+        </li>
+        <li>
+           <a href="{%url 'update_billing' %}">
+           <!-- <span> <i class="fa fa-key" aria-hidden="true"></i> </span> -->
+              <h4></h4>
+              <p>Update Billing CC</p>
+            </a>
+        </li>
+        <li>
+           <a href="{%url 'user_messages' %}">
+              <h4></h4>
+              <p>Message</p>
+            </a>
+        </li>
+      {% if user.is_superuser %}
+        <li>
+           <a href="{%url 'user_tracker' %}">
+              <h4></h4>
+              <p>Analytics</p>
+            </a>
+        </li>
+        <li>
+          <a href="{%url 'users_plan_list' %}">
+            <h4></h4>
+            <p>Plans</p>
+          </a>
+        </li>
+        {% endif %}
+    </ul>
+  </div>
+</div>

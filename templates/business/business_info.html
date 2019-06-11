@@ -1,0 +1,61 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+    <div class="col-md-12">  <h1 class="page_heading">Business Info</h1></div>
+      <div class="col-md-4">
+    
+        <div class="grey_box">
+          <h2>Account Settings</h2>
+          <div class="page_form">
+            <div class="page_form_field">
+              <label>Business Name*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>Locations Name</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>Address 1*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>Address 2*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>City*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>State*</label>
+              <input type="text"/>
+            </div>
+             <div class="page_form_field">
+              <label>Zip*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>Phone Number*</label>
+              <input type="text"/>
+            </div>
+            <div class="page_form_field">
+              <label>Time Zone</label>
+               <select>
+                <option>ERP Admin</option>
+              </select>
+            </div>
+            <div class="page_form_field">
+              <button class="purple_btn">Save</button>
+              <button class="red_btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

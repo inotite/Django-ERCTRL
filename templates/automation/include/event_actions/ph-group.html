@@ -1,0 +1,9 @@
+<div class="page_form_field">
+  <label>Gropu:</label>
+  <select name="group_id" id="id_ph_group">
+    <option value>-- No Group Selected --</option>
+    {% for idxg, gval in phGroups.items %}
+      <option value="{{idxg}}"  {% if is_edit and action_referen.group_id and action_referen.group_id|stringformat:'s' == idxg %} selected {% endif %}>{{gval.name}}</option>
+    {% endfor %}
+  </select>
+</div>

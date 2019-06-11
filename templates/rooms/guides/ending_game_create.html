@@ -1,0 +1,129 @@
+<form id="ending-game-scoring-form" method="POST" action="{% url 'room_ending_game_create' object.id %}" enctype="multipart/form-data" >
+  {% csrf_token %}
+  {{ ending_form.non_field_errors }}
+  <div class="theme-box-group">
+    <div class="box-card">
+      <div class="grey_box">
+        <h2>Success Screen</h2>
+        <div class="page_form">
+         <!-- {{ ending_form.success_ending_type }} -->
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.success_ending_type.id_for_label }}"></label>{{ ending_form.success_ending_type.1}}<br /> <br />
+            <label for="{{ ending_form.success_video.id_for_label }}">Video brief</label>
+            {{ ending_form.success_video }}
+            {{ ending_form.success_video.errors }}
+          </div>
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.success_ending_type.id_for_label }}"></label>{{ ending_form.success_ending_type.1 }}<br>
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.success_screen_header.id_for_label }}">Top Level Text:</label>
+              {{ ending_form.success_screen_header }}
+              {{ ending_form.success_screen_header.errors }}
+          </div>
+           <div class="page_form_field">
+              <label for="{{ ending_form.success_screen_footer.id_for_label }}">Bottom Level Text:</label>
+              {{ ending_form.success_screen_footer }}
+              {{ ending_form.success_screen_footer.errors }}
+          </div>
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.end_game_success_background.id_for_label }}">Background image</label>
+            {{ ending_form.end_game_success_background }}
+            {{ ending_form.end_game_success_background.errors }}
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.game_end_screen_background_color.id_for_label }}">Background Color
+              </label>
+              <input type="color" name="{{ ending_form.game_end_screen_background_color.name }}" maxlength="255" id="id_{{ ending_form.game_end_screen_background_color.name }}" required="true" value="{% if ending_form.game_end_screen_background_color.value%}{{ending_form.game_end_screen_background_color.value}}{% else %}#000000{% endif%}">
+                {{ ending_form.game_end_screen_background_color.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.game_end_screen_font_color.id_for_label }}">Font Color</label>
+            <input type="color" name="{{ ending_form.game_end_screen_font_color.name }}" maxlength="255" id="id_{{ ending_form.game_end_screen_font_color.name }}" required="true" value="{%if ending_form.game_end_screen_font_color.value %}{{ending_form.game_end_screen_font_color.value}}{% else %}#ffffff{% endif %}">
+              {{ ending_form.game_end_screen_font_color.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.timer_font_size.id_for_label }}">Font size*:</label>
+            {{ ending_form.timer_font_size }}
+            {{ ending_form.timer_font_size.errors }}
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.success_timer_size.id_for_label }}">Timer size*:</label>
+              {{ ending_form.success_timer_size }}
+              {{ ending_form.success_timer_size.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.success_hide_timer.id_for_label }}">
+                <input type="checkbox" name="{{ending_form.success_hide_timer.name}}" id="id_{{ending_form.success_hide_timer.name}}" {% if ending_form.success_hide_timer.value %} checked {% endif %}>Hide timer on ending screen:
+            </label>
+            {{ ending_form.success_hide_timer.errors }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-box-group">
+    <div class="box-card">
+      <div class="grey_box">
+        <h2>Failure Screen</h2>
+        <div class="page_form">
+         <!-- {{ ending_form.success_ending_type }} -->
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.success_ending_type.id_for_label }}"></label>{{ ending_form.fail_ending_type.0 }}<br /> <br />
+            <label for="{{ ending_form.fail_video.id_for_label }}">Video brief</label>
+            {{ ending_form.fail_video }}
+            {{ ending_form.fail_video.errors }}
+          </div>
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.fail_ending_type.id_for_label }}"></label>{{ ending_form.fail_ending_type.1 }}<br>
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.failure_screen_header.id_for_label }}">Top Level Text:</label>
+              {{ ending_form.failure_screen_header }}
+              {{ ending_form.failure_screen_header.errors }}
+          </div>
+           <div class="page_form_field">
+              <label for="{{ ending_form.failure_screen_footer.id_for_label }}">Bottom Level Text:</label>
+              {{ ending_form.failure_screen_footer }}
+              {{ ending_form.failure_screen_footer.errors }}
+          </div>
+          <div class="page_form_field clear-page_form_field">
+            <label for="{{ ending_form.end_game_failure_background.id_for_label }}">Background image</label>
+            {{ ending_form.end_game_failure_background }}
+            {{ ending_form.end_game_failure_background.errors }}
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.game_end_screen_background_color.id_for_label }}">Background Color
+              </label>
+              <input type="color" name="{{ ending_form.game_end_screen_background_color.name }}" maxlength="255" id="id_{{ ending_form.game_end_screen_background_color.name }}" required="true" value="{% if ending_form.game_end_screen_background_color.value%}{{ending_form.game_end_screen_background_color.value}}{% else %}#000000{% endif%}">
+                {{ ending_form.game_end_screen_background_color.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.game_end_screen_font_color.id_for_label }}">Font Color</label>
+            <input type="color" name="{{ ending_form.game_end_screen_font_color.name }}" maxlength="255" id="id_{{ ending_form.game_end_screen_font_color.name }}" required="true" value="{%if ending_form.game_end_screen_font_color.value %}{{ending_form.game_end_screen_font_color.value}}{% else %}#ffffff{% endif %}">
+              {{ ending_form.game_end_screen_font_color.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.timer_font_size.id_for_label }}">Font size*:</label>
+            {{ ending_form.timer_font_size }}
+            {{ ending_form.timer_font_size.errors }}
+          </div>
+          <div class="page_form_field">
+              <label for="{{ ending_form.fail_timer_size.id_for_label }}">Timer size*:</label>
+              {{ ending_form.fail_timer_size }}
+              {{ ending_form.fail_timer_size.errors }}
+          </div>
+          <div class="page_form_field">
+            <label for="{{ ending_form.hide_time_remaining_on_failure.id_for_label }}">
+                <input type="checkbox" name="{{ending_form.hide_time_remaining_on_failure.name}}" id="id_{{ending_form.hide_time_remaining_on_failure.name}}" {% if ending_form.hide_time_remaining_on_failure.value %} checked {% endif %}>Hide timer on ending screen:
+            </label>
+            {{ ending_form.hide_time_remaining_on_failure.errors }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page_form_field theme-form-submit">
+    <button class="purple_btn">save</button>
+  </div>
+</form>

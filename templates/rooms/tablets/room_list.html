@@ -1,0 +1,99 @@
+{% extends base_portal %}
+{% load staticfiles %}
+{% block content %}
+  {% include 'rooms/include/_cache_popup.html' %}
+  <div class="page_right_panel col-md-10">
+    <div class="inner_left_panel">
+      <div class="row">
+        <div class="col-sm-12 room-message">
+          <div id="message-dialog" class="alert alert-success"
+           style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+            <p> <strong></strong></p>
+          </div>
+        </div>
+        {% for room in object_list %}
+          <div class="col-sm-4 darhboard_box">
+            <div class="dashboard_color_box">
+              <h2>{{room.room_name}}</h2>
+                {% if not user.profile.is_normal_user %}
+                  <ul class="dashboard_color_box_icon">
+                    {% with room.room_puzzles.all|length as  room_puzzle_count %}
+                      {% if room_puzzle_count > 0 %}
+                        <li><a href="{% url 'puzzle-gm-stat' room.id %}" title="Game Master Stats"><i class="fa fa-folder-open-o" aria-hidden="true" ></i> </a></li>
+                        <li><a href="{% url 'puzzle-print' room.id %}" target="_blank" title="Print Puzzles">
+                        <i class="fa fa-print" aria-hidden="true"></i> </a>
+                      {% endif %}
+                    {% endwith%}
+                    <li><a href="#" data-room-id="{{room.id }}" class="delete-tablet-room"><i class="fa fa-trash-o" aria-hidden="true" title="Delete Room"></i> </a>
+                    </li>
+                    <li><a href="{% url 'dashboard_tablet_rooms_update' room.id %}" title="Update Room"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></li>
+                  </ul>
+                {% endif %}
+              <p><span><i class="fa fa-clock-o" aria-hidden="true"></i> </span> Time limit: {{room.default_time_limit}} mins</p>
+              <p><span><i class="fa fa-puzzle-piece" aria-hidden="true"></i> </span> Clues: {{room.num_clues}}</p>
+              <div class="dashboard_color_footer" > <a href="{% url 'tablet_room_details' room.id%}">Start Room <span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </span></a> </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}
+            <div class="col-md-12 darhboard_box_break"></div>
+          {% endif %}
+        {% endfor %}
+        {% if user.profile.is_administrator %}
+          <div class="col-sm-4 darhboard_box">
+            <div class="dashboard_color_box">
+              <h2><a href="{% url 'tablet_dashboard_rooms_create' %}"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> </a> </h2>
+              <div class="dashboard_color_footer"> <a href="{% url 'tablet_dashboard_rooms_create' %}">Add Room <span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </span></a>
+            </div>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+      <div class="col-sm-5 col-sm-offset-7">
+        <div id="message-dialog" class="alert alert-success"
+        style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+          <p> <strong></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<link href="{% static 'pages/room/room-list.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+<script type="text/javascript">
+  var URLS = {
+    room_delete: "{% url 'room-delete' 11111111 %}",
+  }
+
+  // Delete room for js
+  $("a.delete-tablet-room").click(function(){
+    var link = $(this);
+    $.confirm({
+      'text': '<b>Are you sure?</b>',
+      confirm: function () {
+        $.ajax({
+          type: "POST",
+          url: URLS.room_delete.replace('11111111', link.data("room-id")),
+          success: function (res) {
+            link.parents(".darhboard_box").remove();
+            var message_dialog = $("#message-dialog");
+            message_dialog.find('p strong').html('Successfully deleted');
+            message_dialog.alert().show();
+            $(window).scrollTop($('#message-dialog').offset().top);
+            message_dialog.fadeOut(10000);
+          }
+        });
+      },
+      cancel: function (button) {
+      },
+      confirmButton: "Yes",
+      cancelButton: "Cancel"
+    });
+  });
+
+</script>
+{% endblock %}

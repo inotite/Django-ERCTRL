@@ -1,0 +1,18 @@
+<div class="page_form_field">
+  <label>Name:</label>
+  <input type="text" name="script_name" id="id_script_name" {% if is_edit %} value="{{action_referen.script_name}}" {% endif %}/>
+</div>
+<div class="page_form_field">
+  <label for="id_script_text">Script:</label>
+  <textarea name="script_text" id="id_script_text" rows="10" cols="40">{% if is_edit and action_referen.script_text %}{{action_referen.script_text}}{% endif %}</textarea>
+  <span id="error_script_text" class="text-danger execute-message" style="display:none;"></span>
+  <span id="success_script_text" class="text-success execute-message" style="display:none;"></span>
+</div>
+<div class="page_form_field">
+	<button class="btn btn-default" id="test-script">Test Script</button>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

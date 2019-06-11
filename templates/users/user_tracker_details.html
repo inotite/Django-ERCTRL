@@ -1,0 +1,21 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+        <div class="inner_left_panel">
+            <div class="row">
+                <div class="col-md-12">
+                  <h1 class="page_heading">Tracker</h1>
+                </div>
+            </div>
+        </div>
+    </div>     
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript">
+</script>
+{% endblock %}

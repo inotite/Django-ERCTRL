@@ -1,0 +1,89 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+{% include "automation/form_builder_templates.html" %}
+  <div class="page_right_panel col-md-10">
+    <div class="inner_left_panel">
+      <div class="row">
+        <div class="col-md-10">
+          <h1 class="page_heading">{{room.room_name}}</h1>
+        </div>
+          <!-- <input type="hidden" name="room_id" value="{{room_id}}"> -->
+          <div class="col-md-8 create-automation">
+            <div class="grey_box">
+              <h2>Event</h2>
+              <div class="page_form">
+                <div class="page_form_field">
+                  <select id="event-type" name="event_type">
+                    {% for event in events %}
+                      <option value="{{event.id}}">{{event.event_name}}</option>
+                    {% endfor %}
+                  </select>
+                  <p class="event-help-message">When the running timer has elapsed past the specified min and
+                  sec,the attached actions will fire</p>
+                </div>
+                <div class="event-box-body">
+                  <div class="page_form_field">
+                    <label>Min:</label>
+                    <input type="number" name="event_min" value="0" />
+                  </div>
+                  <div class="page_form_field">
+                    <label>Sec:</label>
+                    <input type="number" name="event_sec" value="0" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grey_box">
+              <h2>Actions <button class="green_btn add-multiple-action-form">Add Action</button></h2>
+              <div class="action-box-body">
+                <div class="page_form">
+                  <div class="page_form_field">
+                    <select class="event-action" name="event_action">
+                      {% for act in actions %}
+                        <option value="{{act.id}}">{{act.action_name}}</option>
+                      {% endfor %}
+                    </select>
+                    <p class="action-help-message">Display this text to the players</p>
+                  </div>
+                  <div class="action-inner-box-body">
+                    <div class="page_form_field">
+                      <label>Clue Text</label>
+                      <input type="text" name="clue_text"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       <form id="create-automation-form" method="post" action="{% url 'automation_new' room_id %}">
+          {% csrf_token %}
+          <input type="hidden" name="data_json" >
+          <div class="col-md-12">
+            <div class="page_form_field">
+              <button class="purple_btn automation_submit" type="submit">Save</button>
+              <!-- <input id="save_btn" class="purple_btn" type="submit" value="Save"> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<link href="{% static 'pages/automation/automation.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/jqueryvalidate/jquery.validate.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/underscorejs/underscore-min.js' %}"></script>
+<script type="text/javascript">
+  var isCreate = true;
+  var room_id = "{{room_id}}";
+  var get_url_status = "{% url 'get_url_status' %}";
+</script>
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'pages/automation/automation.js' %}"></script>
+{% endblock %}

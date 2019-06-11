@@ -1,0 +1,66 @@
+{% extends base_portal %}
+{% load staticfiles %}
+{% block content %}
+  <div class="page_right_panel col-md-10">
+    <div class="inner_left_panel">
+      <div class="row">
+        <div class="col-sm-12 room-message">
+          <div id="message-dialog" class="alert alert-success"
+           style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+            <p> <strong></strong></p>
+          </div>
+        </div>
+        {% for room in object_list %}
+          <div class="col-sm-4 darhboard_box">
+            <div class="dashboard_color_box">
+              <h2>{{room.room_name}}</h2>
+                {% if not user.profile.is_normal_user %}
+                  <ul class="dashboard_color_box_icon">
+                    {% with room.room_puzzles.all|length as  room_puzzle_count %}
+                    {% endwith%}
+                    <li><a href="#" data-room-id="{{room.id }}" class="delete-tablet-room"><i class="fa fa-trash-o" aria-hidden="true" title="Delete Room"></i> </a>
+                    </li>
+                    <li><a href="{% url 'guide_dashboard_rooms_update' room.id %}" title="Update Room"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></li>
+                  </ul>
+                {% endif %}
+              <p><span><i class="fa fa-clock-o" aria-hidden="true"></i> </span> Time limit: {{room.default_time_limit}} mins</p>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}
+            <div class="col-md-12 darhboard_box_break"></div>
+          {% endif %}
+        {% endfor %}
+        {% if user.profile.is_administrator %}
+          <div class="col-sm-4 darhboard_box">
+            <div class="dashboard_color_box">
+              <h2><a href=""><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> </a> </h2>
+              <div class="dashboard_color_footer"> <a href="{% url 'guide_dashboard_rooms_create' %}">Add Room <span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </span></a>
+            </div>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+      <div class="col-sm-5 col-sm-offset-7">
+        <div id="message-dialog" class="alert alert-success"
+        style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+          <p> <strong></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<link href="{% static 'pages/room/room-list.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'global/js/common.js' %}"></script>
+<script type="text/javascript">
+  var URLS = {
+    guide_dashboard_rooms_delete: "{% url 'guide_dashboard_rooms_delete' 111111 %}",
+  }
+</script>
+<script type="text/javascript" src="{% static 'pages/room/guide_room.js' %}"></script>
+{% endblock %}

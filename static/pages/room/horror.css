@@ -1,0 +1,14 @@
+.transparent-panel-theme .default_window .displayValue {
+    color: #ff0b0b;
+}
+.transparent-panel-theme span#communicationText {
+    color: #ff0b0b;
+    background-color: rgba(0,0,0,0.6);
+    padding: 2px 5px;
+}
+.default_cluesBox ul.horror-lock li a.gm-clue-off i {
+	color:  #ff0b0b;
+}
+.default_cluesBox ul.horror-lock li a.gm-clue-on i {
+	color: rgba(20, 195, 211, 1);
+}

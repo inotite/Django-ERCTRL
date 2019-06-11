@@ -1,0 +1,14 @@
+<div class="page_form_field">
+  <label>Image:</label>
+  <select name="room_images">
+    <option value="">-- No Image Selected --</option>
+    {% for imag in images %} 
+        <option value="{{imag.id}}" {% if is_edit and action_referen.room_images and action_referen.room_images == imag %} selected {% endif %} >{{imag.img_name}}</option>
+    {% endfor %}
+  </select>
+</div>
+{% if is_edit and action_reference_count > 1 %}
+	<div class="page_form_field">
+		<button class="red_btn remove-action-form">Delete</button>
+	</div>
+{% endif %}

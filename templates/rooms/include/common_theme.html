@@ -1,0 +1,28 @@
+<style type="text/css">
+{{object.override_css}}
+</style>
+<script type="text/javascript">
+  // window.onunload = refreshParent;
+  // function refreshParent() {
+  //   window.opener.set_winRef();
+  // }
+
+  var host_url = window.location.origin;
+  var roomId = "{{object.id}}";
+  var videoBriefMediaUrl = "{% if object.video_brief %}"+host_url+"{{object.video_brief.url}}{% endif %}";
+  var backgroundVideoMediaUrl = "{%if object.background_video %}"+host_url+"{{object.background_video.url}}{%endif%}";
+  var successVideoMediaUrl = "{% if object.success_video %}"+host_url+"{{object.success_video.url}}{%endif%}";
+  var failVideoMediaUrl = "{% if object.fail_video %}"+host_url+"{{object.fail_video.url}}{%endif%}";
+  var alertToneMediaUrl = host_url + "{% if object.audio_alert %}{{object.audio_alert.url}}{% else %}/static/audios/alert_tone.mp3{%endif%}";
+  var soundTrackAudioMediaUrl = "{% if object.soundtrack %}"+host_url+"{{object.soundtrack.url}}{%endif%}";
+  var successAudioMediaUrl = "{%if object.success_audio%}"+host_url+"{{object.success_audio.url}}{%endif%}";
+  var failedAudioMediaUrl = "{%if object.failed_audio%}"+host_url+"{{object.failed_audio.url}}{%endif%}";
+  var overlayImageMediaUrl = "{% if object.overlay_image %}"+host_url+"{{object.overlay_image.url}}{% endif %}"
+
+  var backgroundImageMediaUrl = "{% if object.background_image %}"+host_url+"{{object.background_image.url}}{% endif %}"
+  var endGameSuccessBackgroundMediaUrl = "{% if object.end_game_success_background %}"+host_url+"{{object.end_game_success_background.url}}{% endif %}"
+  var failureBackgroundImageMediaUrl = "{% if object.end_game_failure_background %}"+host_url+"{{object.end_game_failure_background.url}}{% endif %}"
+  var mic_biquad_filter = "{{object.mic_biquad_filter.name}}"
+
+ 
+</script>

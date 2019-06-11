@@ -1,0 +1,10 @@
+.graph-filter-actions button.active{
+    background: #ed6225 !important;
+    background-color: #ed6225 !important;
+    color: #fff !important;
+    border-color: #ed6225 !important;
+}
+
+.generate-graph-btn {
+    margin-top: 26px !important;
+}

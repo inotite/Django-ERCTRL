@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,400i,700,700i,900,900i');
+
+/*font-family: 'Lato', sans-serif;*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+@font-face { font-family: 'proxima_nova_rgregular'; src: url('../../bootstrap/fonts/proximanova-regular-webfont.woff2') format('woff2'), url('../../bootstrap/fonts/proximanova-regular-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'proxima_novalight'; src: url('../../bootstrap/fonts/proximanova-light-webfont.woff2') format('woff2'), url('../../bootstrap/fonts/proximanova-light-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HelveticaNeue-CondensedBold'; src: url('../../bootstrap/fonts/HelveticaNeue-CondensedBold.eot?#iefix') format('embedded-opentype'), url('../../bootstrap/fonts/HelveticaNeue-CondensedBold.otf') format('opentype'), url('../fonts/HelveticaNeue-CondensedBold.woff') format('woff'), url('../../bootstrap/fonts/HelveticaNeue-CondensedBold.ttf') format('truetype'), url('../../bootstrap/fonts/HelveticaNeue-CondensedBold.svg#HelveticaNeue-CondensedBold') format('svg'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'ProximaNovaCond-Semibold'; src: url('../fonts/ProximaNovaCond-Semibold.eot?#iefix') format('embedded-opentype'), url('../../bootstrap/fonts/ProximaNovaCond-Semibold.otf') format('opentype'), url('../../bootstrap/fonts/ProximaNovaCond-Semibold.woff') format('woff'), url('../fonts/ProximaNovaCond-Semibold.ttf') format('truetype'), url('../../bootstrap/fonts/ProximaNovaCond-Semibold.svg#ProximaNovaCond-Semibold') format('svg'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'proxima_nova_rgbold'; src: url('../../bootstrap/fonts/proximanova-bold-webfont.woff2') format('woff2'), url('../../bootstrap/fonts/proximanova-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'proxima_novasemibold'; src: url('../../bootstrap/fonts/proximanova-semibold-webfont.woff2') format('woff2'), url('../../bootstrap/fonts/proximanova-semibold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+@font-face {
+    font-family: 'Unquiet-Spirits';
+    src: url('../../bootstrap/fonts/UnquietSpirits.eot');
+    src: url('../../bootstrap/fonts/UnquietSpirits.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/UnquietSpirits.woff2') format('woff2'),
+        url('../../bootstrap/fonts/UnquietSpirits.woff') format('woff'),
+        url('../../bootstrap/fonts/UnquietSpirits.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Benguiat';
+    src: url('../../bootstrap/fonts/BenguiatBold.eot');
+    src: url('../../bootstrap/fonts/BenguiatBold.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/BenguiatBold.woff2') format('woff2'),
+        url('../../bootstrap/fonts/BenguiatBold.woff') format('woff'),
+        url('../../bootstrap/fonts/BenguiatBold.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Beyond Wonderland';
+    src: url('../../bootstrap/fonts/BeyondWonderland.eot');
+    src: url('../../bootstrap/fonts/BeyondWonderland.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/BeyondWonderland.woff2') format('woff2'),
+        url('../../bootstrap/fonts/BeyondWonderland.woff') format('woff'),
+        url('../../bootstrap/fonts/BeyondWonderland.ttf') format('truetype'),
+        url('../../bootstrap/fonts/BeyondWonderland.svg#BeyondWonderland') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Digital-7';
+    src: url('../../bootstrap/fonts/Digital-7.eot');
+    src: url('../../bootstrap/fonts/Digital-7.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/Digital-7.woff2') format('woff2'),
+        url('../../bootstrap/fonts/Digital-7.woff') format('woff'),
+        url('../../bootstrap/fonts/Digital-7.ttf') format('truetype'),
+        url('../../bootstrap/fonts/Digital-7.svg#Digital-7') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Digital dream';
+    src: url('../../bootstrap/fonts/Digitaldream.eot');
+    src: url('../../bootstrap/fonts/Digitaldream.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/Digitaldream.woff2') format('woff2'),
+        url('../../bootstrap/fonts/Digitaldream.woff') format('woff'),
+        url('../../bootstrap/fonts/Digitaldream.ttf') format('truetype'),
+        url('../../bootstrap/fonts/Digitaldream.svg#Digitaldream') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Katalyst active BRK';
+    src: url('../../bootstrap/fonts/KatalystactiveBRK.eot');
+    src: url('../../bootstrap/fonts/KatalystactiveBRK.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/KatalystactiveBRK.woff2') format('woff2'),
+        url('../../bootstrap/fonts/KatalystactiveBRK.woff') format('woff'),
+        url('../../bootstrap/fonts/KatalystactiveBRK.ttf') format('truetype'),
+        url('../../bootstrap/fonts/KatalystactiveBRK.svg#KatalystactiveBRK') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Katalyst inactive BRK';
+    src: url('../../bootstrap/fonts/KatalystinactiveBRK.eot');
+    src: url('../../bootstrap/fonts/KatalystinactiveBRK.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/KatalystinactiveBRK.woff2') format('woff2'),
+        url('../../bootstrap/fonts/KatalystinactiveBRK.woff') format('woff'),
+        url('../../bootstrap/fonts/KatalystinactiveBRK.ttf') format('truetype'),
+        url('../../bootstrap/fonts/KatalystinactiveBRK.svg#KatalystinactiveBRK') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Wizzta';
+    src: url('../../bootstrap/fonts/Wizzta.eot');
+    src: url('../../bootstrap/fonts/Wizzta.eot?#iefix') format('embedded-opentype'),
+        url('../../bootstrap/fonts/Wizzta.woff2') format('woff2'),
+        url('../../bootstrap/fonts/Wizzta.woff') format('woff'),
+        url('../../bootstrap/fonts/Wizzta.ttf') format('truetype'),
+        url('../../bootstrap/fonts/Wizzta.svg#Wizzta') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} 
+/*@import'bootstrap.css';
+*/
+ .container{
+    max-width: 1170px;
+    width: 100%;
+}
+ * {
+     margin: 0px;
+     padding: 0px;
+     text-decoration: none;
+}
+ img {
+     max-width: 100%;
+     border: 0px;
+     height: auto;
+     width: auto;
+    /* ie8 */
+}
+ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+     display: block;
+}
+ body {
+     margin: 0px;
+     padding: 0px;
+     background: #fff;
+     color: #000;
+     font-family: 'Open Sans', sans-serif;
+     font-size: 16px;
+}
+ h1 {
+     font-size: 24px;
+     font-weight: normal;
+}
+ h2 {
+     font-size: 22px;
+     font-weight: normal;
+}
+ h3 {
+     font-size: 20px;
+     font-weight: normal;
+}
+ h4 {
+     font-size: 18px;
+     font-weight: normal;
+}
+ h5 {
+     font-size: 16px;
+     font-weight: normal;
+}
+ h6 {
+     font-size: 14px;
+     font-weight: bold;
+}
+ a{
+    -webkit-transition: all 300ms;
+     -moz-transition: all 300ms;
+     -o-transition: all 300ms;
+     transition: all 300ms;
+}
+/*--Banner---*/
+header .navbar-right{margin-right:0;}
+ .banner{
+     min-height:700px;
+     background:url(../../bootstrap/images/landing/banner.jpg);
+     background-size:cover;
+}
+ header nav.navbar.navbar-inverse {
+    background-color: transparent;
+    border: 0px;
+    margin: 0;
+    padding: 30px 0px;
+    transition: all .5s;
+}
+ header .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+     background-color:transparent;
+}
+ header ul.nav.navbar-nav li a {
+     color: #fff;
+     font-size: 20px;
+     text-transform: uppercase;
+     font-weight: 500;
+}
+ header ul.nav.navbar-nav li a {
+     color: #fff;
+     font-size: 20px;
+     text-transform: uppercase;
+     font-weight: 500;
+     padding: 10px 32px;
+}
+ header .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+     margin-left:0;
+}
+ header ul.nav.navbar-nav li a:hover{
+     background-color:#ffffff;
+     color:#ff0000;
+     border-radius:9px;
+}
+ header ul li.active{
+     background-color:#ffffff;
+     color:#ff0000;
+     border-radius:9px;
+}
+ header ul li.active a{
+     color:#ff0000 !important;
+}
+ header ul li{
+     padding:0 4px;
+}
+ .banner {
+     min-height: 700px;
+     background: url(../../bootstrap/images/landing/banner.jpg);
+     background-size: cover;
+     padding-top: 90px;
+}
+ .banner_caption h2 {
+     font-size: 50px;
+     color: #fff;
+     margin-bottom: 0;
+}
+ .banner_caption h3{
+     font-size:35px;
+     color:#fff;
+     margin-top:8px;
+}
+ header .navbar-inverse .navbar-brand {
+     padding: 0;
+}
+ .banner_content {
+     margin-top: 60px;
+}
+ .banner_caption h6 {
+     margin-top: 38px;
+     color: #fff;
+     font-weight: normal;
+     font-size: 17px;
+}
+ a.read_more_btn {
+     color: #ff0000;
+     background-color: #fff;
+     padding: 8px 16px;
+     border-radius: 8px;
+     margin-top: 18px;
+     display: inline-block;
+     font-size: 15px;
+     text-transform: uppercase;
+}
+/*---Slider Dots -----*/
+ .owl-dot {
+     display: inline-block;
+     width: 8px;
+     height: 8px;
+     background-color: red;
+     border-radius: 50%;
+     margin: 3px;
+}
+ .owl-dots {
+     text-align: center;
+     margin-top: 17px;
+}
+ .owl-nav {
+     width: 18%;
+     margin: 10px auto 0;
+}
+ .owl-prev {
+     float: left;
+     color:#fff;
+     font-size:24px;
+}
+ .owl-next {
+     float: right;
+     color:#fff;
+     font-size:24px;
+}
+ .owl-stage-outer {
+     border-radius: 3px;
+     border: 2px solid #fff;
+}
+ .owl-dot.active {
+     background-color: #fff;
+}
+/*---Slider Dots end -----*/
+/*--Banner end---*/
+/*--Category--*/
+ .category {
+    padding: 75px 0;
+}
+
+ .category h3 span{
+     color:#ff2f2f;
+}
+ .category_box {
+     margin-top:50px;
+}
+ .category_box h4{
+     font-size:20px;
+     color:#000;
+}
+ .category_box h4 {
+     font-size: 20px;
+     color: #000;
+     font-weight: 600;
+     text-transform: uppercase;
+}
+ .category_image {
+     border-radius: 4px;
+     border: 3px solid #e55953;
+     margin-bottom: 10px;
+     display: inline-block;
+     height: 253px;
+}
+ .category_image img{
+     height:100%;
+}
+ .category_box p {
+     font-size: 14px;
+     color: #828282;
+     text-align: justify;
+}
+/*--Category end--*/
+/*--digital--*/
+ .digital {
+     padding: 50px 0;
+     min-height: 475px;
+     background: url(../../bootstrap/images/landing/digital_bg.jpg);
+}
+ .digital h3 {
+     margin-top: 4px;
+     font-size: 32px;
+     text-align: center;
+     font-weight: 600;
+     color: #000000;
+}
+ .digital h3 span{
+     color:#ff2f2f;
+}
+ .digital h4{
+}
+ .heading_d {
+     margin-top: 4px;
+     font-size: 32px;
+     text-align: center;
+     font-weight: 600;
+     color: #000000;
+}
+ .heading_d span{
+     color:#ff2f2f;
+}
+ .heading_small{
+     font-size: 20px;
+     color: #000;
+     font-weight: 600;
+     text-transform: uppercase;
+}
+ .digital h4{
+     font-size: 20px;
+}
+ .heading_small{
+     font-size: 20px;
+     color: #000;
+     font-weight: 600;
+     text-transform: uppercase;
+}
+ .digital_box {
+     background-color: #ffffffbd;
+     padding: 27px 11px;
+     border: 1px solid #c7c8ca;
+     border-radius: 2px;
+     margin-top: 17px;
+}
+ .normal_text {
+     font-size: 14px;
+     color: #828282;
+     text-align: justify;
+     margin-top: 5px;
+     display: inline-block;
+}
+ a.read_more_bd_btn {
+     border: 1px solid #ff0000;
+     color: #ff0000;
+     font-size: 11px;
+     text-transform: uppercase;
+     padding: 8px 22px;
+     border-radius: 8px;
+     font-weight: bold;
+     display: inline-block;
+     margin-top: 20px;
+}
+/*--digital end--*/
+ .work{
+     padding:90px 0;
+}
+ .work_image{
+     margin-bottom:44px;
+}
+ .work_box p {
+     font-size: 18px;
+     font-weight: 600;
+     margin-bottom: 0;
+}
+ .work_box {
+     text-align: center;
+     width: 20%;
+     display: inline-block;
+     padding: 18px 20px;
+     transition:all .5s;
+}
+ .all_boxes {
+     font-size: 0;
+     margin-top:45px;
+}
+ .work_image img + img {
+     display: none;
+}
+ .work_box:hover .work_image img + img {
+     display: block;
+}
+ .work_box:hover .work_image img {
+     display: none;
+}
+ .work_image img {
+     margin: 0 auto;
+}
+ .work_box:hover p{
+     color:#ff0000;
+}
+ footer {
+     background-color: #000;
+     padding: 25px 0;
+}
+ ul.footer_menu {
+     text-align: center;
+     color: #fff;
+     padding: 10px 0;
+}
+ ul.footer_menu li {
+     display: inline-block;
+     padding: 10px 0px;
+     color: #fff;
+}
+
+
+ ul.footer_menu li:after{ content:"|"; margin:0 15px; }
+  ul.footer_menu li:last-child:after{ content:""; margin:0px;}
+ 
+ ul.footer_menu li a{
+     color:#fff;
+}
+ ul.share_icons li {
+     display: inline-block;
+     padding: 10px 14px;
+}
+ ul.share_icons li a{
+     font-size:34px;
+     color:#fff;
+}
+ ul.share_icons li {
+     display: inline-block;
+     padding: 0px 8px;
+}
+ footer p {
+     color: #fefefe;
+     font-size: 14px;
+     font-weight: normal;
+     margin-top: 10px;
+}
+ a.footer_logo {
+     padding: 14px 0px;
+     display: inline-block;
+}
+ ul.share_icons {
+     padding: 5px 0;
+}
+ .faq_header nav.navbar.navbar-inverse.navbar-fixed-top {
+     background: linear-gradient(to bottom, #e35852 0%, #6d5998 50%, #6d5998 100%);
+    padding:30px 15px;
+    
+}
+header nav.navbar.navbar-inverse.navbar-fixed-top.nav_fix {
+    /* background: -moz-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(134,174,204,1) 50%, rgba(106,84,144,1) 100%);
+     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(134,174,204,1)), color-stop(50%, rgba(134,174,204,1)), color-stop(100%, rgba(106,84,144,1)));
+     background: -webkit-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(134,174,204,1) 50%, rgba(106,84,144,1) 100%);
+     background: -o-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(134,174,204,1) 50%, rgba(106,84,144,1) 100%);
+    */
+    /* background: -ms-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(134,174,204,1) 50%, rgba(106,84,144,1) 100%);
+    */
+     background: linear-gradient(to bottom, #e35852 0%, #6d5998 50%, #6d5998 100%);
+     padding: 20px 0;
+}
+ .faq_content {
+     padding: 60px 0 0;
+     margin-top: 90px;
+}
+ .faq_content .heading_d {
+     text-align: left;
+     margin-bottom: 35px;
+}
+.faq_content h4.panel-title {
+     font-size: 18px;
+     color: #000;
+     text-transform: uppercase;
+     font-weight: 600;
+}
+.faq_content .panel-default>.panel-heading {
+     background-color: #f1f1f1;
+     border-color: #ddd;
+     padding:20px 10px;
+}
+.faq_content .panel.panel-default {
+     border: 0;
+}
+.faq_content .panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body {
+     border: 0;
+}
+
+.faq_content .panel-body p {
+    color: #828282;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+header .navbar-toggle {
+    margin: 3px 0 0 0;
+    padding: 0;
+    border: 0;
+}
+header .navbar-collapse{
+	
+	border-top:0;
+}
+header a.navbar-brand{
+	height:auto;
+	}
+header .navbar-toggle .icon-bar {
+    width: 25px;
+    height: 3px;
+}
+header .navbar-nav {
+    margin: 0;
+}
+header .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
+	background-color:transparent;}
+
+
+.login_form {
+    margin: 150px auto 50px;
+    max-width: 350px;
+    border: none;
+}
+.login_form.grey_box h2 {
+    color: #3c4a53;
+    background: none;
+    text-align: center;
+    font-weight: bold;
+}
+.page_form_field {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.page_form_field  label {
+    font-size: 16px;
+    color: #27a9e3;
+    display: block;
+    font-family: "proxima_novasemibold";
+    font-weight: normal;
+}
+.page_form_field input {
+    height: 36px;
+    border: 1px solid #b5b5b5;
+    border-radius: 3px;
+    padding: 5px 15px;
+    color: #18191c;
+    font-size: 18px;
+    font-family: 'proxima_nova_rgregular';
+    display: block;
+    width: 100%;
+}
+.page_form_field button {
+    margin: 0 15px 0 0;
+    display: inline-block;
+}
+.purple_btn {
+    background-color: #6a90f1;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    font-family: 'proxima_nova_rgregular';
+}
+.red_btn {
+    background-color: #ff5b5b;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 5px 15px;
+    font-family: 'proxima_nova_rgregular';
+}

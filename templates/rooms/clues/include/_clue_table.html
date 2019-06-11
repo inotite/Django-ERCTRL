@@ -1,0 +1,16 @@
+<table id="table-clue" class="table table-striped">
+	<tbody>
+	  {% for clue in clues%}
+	    <tr data-clue-id="{{clue.id}}">
+		    <td>
+		    	<p class="edit-question" data-id="{{clue.id}}">{{clue.name}}</p>
+		    </td>
+		    <td class="actions-clue-td">
+		    	<a href="#" data-id="{{clue.id}}" class="btn btn-primary pull-right delete-clue-a">Delete</a>
+		    	<a href="#" data-id="{{clue.id}}" class="btn btn-primary pull-right edit-clue-a"><i class="glyphicon glyphicon-edit glyphicon-edit-clue"></i></a>
+		    </td>
+
+		</tr>
+	  {% endfor %}
+	</tbody>
+</table>

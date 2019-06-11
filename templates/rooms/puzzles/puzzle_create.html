@@ -1,0 +1,26 @@
+ <div class="grey_box">
+  <h2>Puzzles</h2>
+  <form id="puzzle-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="page_form">
+      <div class="page_form_field">
+        {{ puzzle_form.puzzle_name.errors }}
+        <label for="{{ puzzle_form.puzzle_name.id_for_label }}">Puzzle Name*</label>
+        {{ puzzle_form.puzzle_name }}
+      </div>
+      <div class="page_form_field">
+        {{ puzzle_form.reset_instructions.errors }}
+        <label for="{{ puzzle_form.reset_instructions.id_for_label }}">Reset Instructions*</label>
+        {{ puzzle_form.reset_instructions }}
+      </div>
+      <div class="page_form_field">
+        {{ puzzle_form.damage_or_notes.errors }}
+        <label for="{{ puzzle_form.damage_or_notes.id_for_label }}">Damage/Notes</label>
+        {{ puzzle_form.damage_or_notes }}
+      </div>
+      <div class="page_form_field">
+        <input type="submit" name="submit" value="Save" class="btn btn-primary">
+      </div>
+    </div>
+  </form>
+</div>

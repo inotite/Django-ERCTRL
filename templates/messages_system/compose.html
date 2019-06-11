@@ -1,0 +1,61 @@
+{% extends base_portal %}
+{% load staticfiles %}
+{% block content %}
+    <div class="page_right_panel col-md-10">
+        <div class="inner_left_panel">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page_heading">Compose Message</h1>
+                </div>
+                <div class="col-md-4">
+                    <div class="grey_box">
+                        <h2>Compose Message</h2>
+                        <form class="compose-form" method="POST" action="." enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if form.non_field_errors %}
+                                <ul>
+                                  {% for error in form.non_field_errors %}
+                                    <li>
+                                      <div class="alert alert-danger">
+                                        {{ error }}
+                                      </div>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                            {% endif %}
+                            <div class="page_form">
+                                {% for field in form %} 
+                                    <div class="page_form_field">
+                                        {{ field.label_tag }}
+                                        {{field}}
+                                    </div>
+                                {% endfor %}
+                                <div class="page_form_field">
+                                    <input type="submit" value="Send" class="purple_btn"/>
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<link href="{% static 'vendor/select2/css/select2.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/select2/js/select2.full.js' %}"></script>
+<link href="{% static 'pages/messages_system/message.css' %}" rel="stylesheet">
+
+<script type="text/javascript" src="{% static 'pages/messages_system/message.js' %}"></script>
+
+<script type="text/javascript">
+    var local_recipients = '{{ recipients | safe }}';
+    var recipients_list = JSON.parse(local_recipients);
+   
+</script>
+
+{% endblock %}
+

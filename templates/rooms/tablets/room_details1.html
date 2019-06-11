@@ -1,0 +1,270 @@
+{% extends base_portal %}
+{% load staticfiles %}
+{% load room_helper %}
+{% block body %}
+  <body class="inner_page_body newfont gmRoomController">
+    {% block main_body %}
+      {% block header %}
+        {% if user.is_authenticated %}
+          {% include "header.html" with is_no_user=False %}
+        {% endif %}
+      {% endblock %}
+      <div class="full_dashboard">
+        <div class="container">
+          <div class="row">
+            {% block messages %}
+              <div class="messages col-md-9 col-md-offset-3">
+                {% if messages %}
+                {% for message in messages %}
+                <div class='alert alert-{% if message.tags %}{{ message.tags }}{% endif %}'>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <span class="alert-message-text">{{ message }}</span>
+                </div>
+                {% endfor %}
+                {% endif %}
+              </div>
+            {% endblock %}
+            {% block sidebar_content%}
+              {% if user.is_authenticated %}
+                {% if user.profile.is_normal_user %}
+                  {% include "portals/users/sidebar.html" %}
+                {% else %}
+                  {% include "sidebar.html" %}
+                {% endif %}
+              {% endif %}
+            {% endblock %}
+
+            {% block content %}
+              <div class="page_right_panel col-md-10 run-room-right-panel">
+                {% include 'rooms/include/_communication_popup.html' %}
+                <div class="container custom-container">
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="room_banner">
+                          <h2 id="id_run_room_name">{{object.room_name}}</h2>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="popup_header_btn">
+                          <ul>
+                            <li> <a href="#"></a> </li>
+                            <li> <a href="#"></a> </li>
+                            <li> <a href="#"></a> </li>
+                            <li> <a href="#"></a> </li>
+                            <li> <a href="#"></a> </li>
+                          </ul>
+                        </div>
+                      </div>
+                        <div class="col-md-12">
+                          <div class="popup_section2">
+                            <ul class="player_btn">
+                              <!-- <li><a class="btn btn-danger" href=""></a></li> -->
+                              <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup">Reset Room <span></span></a></li>
+                              <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup" id="gmAlertButton" data-src="{%if object.audio_alert%}{{MEDIA_URL}}{{object.audio_alert.url}}{% else %}/media/avatars/alert_tone.mp3{% endif %}">Alert Tone <span><i class="fa fa-volume-up" aria-hidden="true"></i> </span></a></li>
+                              <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup">Clear Clue Box<span></span></a></li>
+                              <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup" id="completeRoom">Complete Room <span><i class="fa fa-cube" aria-hidden="true"></i> </span></a></li>
+                              <!-- <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup">Audio Controls <span><i class="fa fa-volume-off" aria-hidden="true"></i> </span></a> </li> -->
+
+                             
+
+                              {% if object.room_puzzles.all %}
+                               <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup" id="gm-puzzles-popup">Puzzles<span><i class="fa fa-puzzle-piece" aria-hidden="true"></i></span></a></li>
+                              {% endif %}
+                            </ul>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-sm-4">
+                          <div class="waiting_timer  inner_time_box ">
+                            <h2 class="dark_newgreen_box">Time Adjustment</h2>
+                            <div class="time_adjust_box">
+                              <div class="wan-spinner wan-spinner-2"> <a href="javascript:void(0)" class="minus"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                <input type="text" value="1" id="id-update-min">
+                                <a href="javascript:void(0)" class="plus"><i class="fa fa-chevron-up" aria-hidden="true"></i> </a>
+                              </div>
+                              <button class="black_btn current-text open-live-view-popup btn_add_or_remove_popup" id="btn-update-time" value="Update Time" data-room-id="{{object.id}}">Update Time</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="waiting_timer inner_time_box">
+                            <div class="tm-lap">
+                            {% if object.lap_timer %}
+                              <button href="#" id="reset" onclick="snapshotTime();" class="btn btn-xs btn-warning lapBtn">Lap</button>
+                            {% endif %}
+                            <h2 class="dark_grey_box">{{object.time_remaining_label|default:"Time Remaining"}}</h2>
+                            </div>
+                            <div class="countdown">
+                              <!-- <p> <span id="cd_m">60</span> : <span id="cd_s">00</span> : <span id="cd_ms">00</span></p>
+                              <button id="cd_start1" class="black_btn btn_add_or_remove_popup open-live-view-popup"> Start1 </button> -->
+                              <form id="runRoomTimer">
+                                {% if object.display_timer_milliseconds %}
+                                  <span id="countdown">{{object.default_time_limit}}:00.00</span>
+                                {% else %}
+                                  <span id="countdown">{{object.default_time_limit}}:00</span>
+                                {% endif %}
+                                <input class='btn btn-primary current-text open-live-view-popup btn_add_or_remove_popup btn-theme' type='button' value='Start' id="cd_start2"/>
+                                <input type='text' name='startTime' value='3600' style='width:30px; display: none;' id="id-start-time" />
+                                {% if object.enable_time_warp %}
+                                  <div class="btn-group theme_btnGroup" data-toggle="buttons" id="speedSelect">
+                                      <label class="btn btn-primary active">
+                                        <input type="radio" name="speedOptions" value="1" autocomplete="off" checked="">1x
+                                      </label>
+                                      <label class="btn btn-primary">
+                                        <input type="radio" name="speedOptions" value="2" autocomplete="off">2x
+                                      </label>
+                                      <label class="btn btn-primary">
+                                        <input type="radio" name="speedOptions" value="4" autocomplete="off">4x
+                                      </label>
+                                  </div>
+                                {% endif %}
+                              </form>
+                              <!-- <button value="Start" id="cd_start" class="black_btn" > Start </button>
+                              <button value="Pause"  id="cd_pause" class="red_btn" style="display: none;"/> Pause </button> -->
+                            </div>
+                           <!--   <button value="Stop"  id="cd_stop" class="red_btn" /> Stop </button> -->
+                           <!--  <input type="button" value="Pause" id="cd_pause" />
+                            <input type="button" value="Stop"  id="cd_stop" />
+                            <input type="button" value="Reset" id="cd_reset" /> -->
+                            <input type="text" style="display: none;" value="3600" id="cd_seconds" />
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="waiting_timer  inner_time_box">
+                            <h2 class="dark_grey_box">{{object.clue_label|default:"Clues"}}</h2>
+                            <ul class="newclue_lock" id="gmClues">
+                              {% for nc in object.num_clues|times %}
+                                <li class="gm-clue-element">
+                                  <a href="#" role="button" class="gm-clue-off" id="fa-off-{{nc}}" data-lock-id="{{nc}}">
+                                  {% if object.clue_count_off_img %}
+                                    <img src="{{MEDIA_URL}}{{object.clue_count_off_img.url}}">
+                                  {% else %}
+                                    <i class="fa fa-lock" aria-hidden="true" data-status="off"></i>
+                                  {% endif %}
+                                  </a>
+
+                                  <a href="#" role="button" class="gm-clue-on" id="fa-on-{{nc}}" data-lock-id={{nc}} style="display: none;">
+                                  {% if object.clue_count_available_img %}
+                                    <img src="{{MEDIA_URL}}{{object.clue_count_available_img.url}}">
+                                  {% else %}
+                                    <i class="fa fa-lock " data-status="on"></i>
+                                  {% endif %}
+                                  </a>
+
+                                  <a href="#" role="button" class="gm-clue-used" style="display: none;" id="fa-used-{{nc}}" data-lock-id={{nc}}>
+                                  {% if object.clue_count_used_img %}
+                                    <img src="{{MEDIA_URL}}{{object.clue_count_used_img.url}}">
+                                  {% else %}
+                                    <i class="fa fa-close" data-status="used"></i>
+                                  {% endif %}
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div id="spin"></div>
+                      <div class="col-sm-12 clue-message">
+                        <div id="message-dialog" class="alert alert-success"
+                         style="display: none;"><p> <strong></strong></p>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="communication_box custom_poupup_section4">
+                          <div id="blinkCommunicationWindow">
+                            <h2>Room Communication</h2>
+                            <button id="clearClueRequestBtn" class="btn btn-success btn-xs" style="display: none;">Clear Clue Request</button>
+                          </div>
+                          <div class="room_communication">
+                            <div class="communication_btn">
+                              <ul>
+                                <li class="dropup">
+                                  <button class="light_select_box dropdown-toggle" type="button" data-toggle="dropdown">Select a clue...<span><i class="fa fa-caret-up" aria-hidden="true"></i> </span>
+                                  </button>
+                                  {% with object.room_clues.all as roomclues %}
+                                    {% if roomclues %}
+                                      <ul class="dropdown-menu scrollable-menu" id="predefinedClues" role="menu">
+                                        {% for room_clue in roomclues %}
+                                          <li><a href="#" role="button" class="open-live-view-popup btn_add_or_remove_popup">{{room_clue.name}}</a></li>
+                                        {% endfor %}
+                                      </ul>
+                                    {% endif %}
+                                  {% endwith %}
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="textarea_box">
+                              <textarea id="gameMasterClueInput" placeholder="Write us your suggestions" rows="2"></textarea>
+                            </div>
+                            <div class="communication_send_btn">
+                              <ul>
+                                <li>
+                                  <button class="blue_btn open-live-view-popup btn_add_or_remove_popup" id="gmUpdateText">Send </button>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="awaiting_box">
+                          <h2>Clue Box Preview</h2>
+                          <div class="live_screen_preview_box tablet_live_screen_preview_box">
+                            <div class="inner_screen_box">
+                              <h1 id="gmLivePreviewText">{{object.initial_data_feed_text}}</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  <!-- End Row -->
+                    {% if customActions %}
+                      <div class="row theme_Buttons">
+                         <div class="col-sm-12">
+                            <div class="Custom_theme_Buttons awaiting_box">
+                              <h2>Custom Buttons</h2>
+                              <div class="live_screen_preview_box">
+                                <div class="inner_screen_box">
+                                  {% for custom_sction in customActions %}
+                                    <button class="pink_btn customButton" id="{{custom_sction.0}}"> {{custom_sction.1}}</button>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                      </div>
+                    {% endif %}
+                </div>
+              </div>
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+    {% include 'rooms/include/room_details_attributes.html' %}
+  </body>
+  {% endblock %}
+  {% block extra_js %}
+
+    {{ block.super }}
+   <!--  <link href="{% static 'vendor/AdminLTE/AdminLTE.min.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'vendor/bootstrap/css/newstyle.css' %}" rel="stylesheet">
+    <link href="{% static 'global/css/application.css' %}" rel="stylesheet">
+    <link href="{% static 'pages/room/room-list.css' %}" rel="stylesheet">
+
+    <script type="text/javascript" src="{% static 'vendor/bootstrap/js/wan-spinner.js' %}">
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2.js"></script> -->
+    <script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+
+    <script type="text/javascript">
+    </script>
+   
+    {% endblock %}

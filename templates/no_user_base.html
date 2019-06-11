@@ -1,0 +1,103 @@
+{% load i18n static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="{% static 'vendor/bootstrap/images/favicon.ico' %}"/>
+<title>Escape Room Control | Log in</title>
+<meta name="description" content="EscapeRoom Ctrl">
+<meta name="author" content="ERC">
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/bootstrap/css/style.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/bootstrap/css/font-awesome.css' %}" rel="stylesheet">
+<link href="{% static 'global/css/application.css' %}" rel="stylesheet">
+{% block extra_css %}
+{% endblock %}
+</head>
+  {% block main_body %}
+  <body>
+    {% block header %}
+      {% include "header.html" with is_no_user=True %}
+    {% endblock %}
+     <div class="full_dashboard no-user-full-dashboard">
+      <div class="container-fluid">
+        <div class="row">
+            {% block messages %}
+              <div class="messages col-md-9 col-md-offset-3">
+                  {% if messages %}
+                  {% for message in messages %}
+                  <div class='alert alert-{% if message.tags %}{{ message.tags }}{% endif %}'>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="alert-message-text">{{ message }}</span>
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+              </div>
+            {% endblock %}
+
+            {% block sidebar_content%}
+            {% endblock %}
+            <!-- {% block title %}Confirm user delete{% endblock %} -->
+
+            {% block content %}
+            {% endblock %}
+        </div>
+      </div>
+   </div>
+    {% block footer %}
+      {% include "footer.html" %}
+    {% endblock %}
+  </body>
+  {% endblock %}
+<script src="{% static 'vendor/bootstrap/js/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/scripts.js' %}"></script>
+
+{% block extra_js %}
+
+<!-- Le javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% endblock %}
+<script type="text/javascript" charset="utf-8">
+
+  $(".profile_img").click(function(){
+      $(".profile_drop_down").slideToggle('slow');
+    $(".profile_img").toggleClass('profile_arrow');
+  });
+
+  $(".menu_toogle a").click(function(){
+    $(".page_left_panel").toggleClass('page_left_panel_hide');
+    $(".page_right_panel").toggleClass('page_right_panel_hide');
+    $("body").toggleClass('body_scroll');
+  });
+
+  $(".setting").click(function(){
+      $(".setting_drop_down").slideToggle('slow');
+  });
+  $(".notifation").click(function(){
+      $(".notification_drop_down").slideToggle('slow');
+  });
+
+  $(function () {
+    var tabContainers = $('div.tabs > div');
+    tabContainers.hide().filter(':first').show();
+    $('div.tabs ul.tab-nav a').click(function () {
+      tabContainers.hide();
+      tabContainers.filter(this.hash).show();
+      $('div.tabs ul.tab-nav a').removeClass('selected');
+      $(this).addClass('selected');
+      return false;
+    }).filter(':first').click();
+  });
+
+  $(".left_panel_menu ul li").each(function(i, e){
+    if(e.children[0].getAttribute('href') == '#'){
+      $(this).addClass('heading_hide');
+    }
+  });
+  </script>
+</script>
+</html>

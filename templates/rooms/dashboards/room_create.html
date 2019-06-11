@@ -1,0 +1,742 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% block content %}
+
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page_heading">Create Room</h1>
+      </div>
+      <div class="col-md-12">
+        <div style="display: block;" class="tabs_box">
+          <div class="col-sm-12">
+          <form class="room-form" id="create-room-form" method="POST" action="{% url form_action %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="theme-box-group">
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Room</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                        {{ form.room_name.errors }}
+                        <label for="{{ form.room_name.id_for_label }}">Name*:</label>
+                        {{ form.room_name }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.default_time_limit.errors }}
+                        <label for="{{ form.default_time_limit.id_for_label }}">Default time limit*:</label>
+                        {{ form.default_time_limit }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.display_timer_milliseconds.errors }}
+                      <label for="{{ form.display_timer_milliseconds.id_for_label }}">
+                          <input type="checkbox" name="{{form.enable_time_warp.name}}" id="id_{{form.display_timer_milliseconds.name}}" {% if form.display_timer_milliseconds.value %} checked {% endif %}> Display timer milliseconds:
+                      </label>
+                      <span>Show milliseconds counting down on the timer display</span>
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.num_clues.errors }}
+                        <label for="{{ form.num_clues.id_for_label }}">Number of clues*:</label>
+                        {{ form.num_clues }}
+                    </div>
+                    {% if form.enable_time_warp %}
+                      <div class="page_form_field">
+                          {{ form.enable_time_warp.errors }}
+                          <label for="{{ form.enable_time_warp.id_for_label }}">
+                              <input type="checkbox" name="{{form.enable_time_warp.name}}" id="id_{{form.enable_time_warp.name}}" {% if form.enable_time_warp.value %} checked {% endif %}> Enable Time Warp:
+                          </label>
+                          <span>When checked, allows GM to speed up countdown</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Live View Text</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                        {{ form.clue_label.errors }}
+                        <label for="{{ form.clue_label.id_for_label }}">Clue label</label>
+                        {{ form.clue_label }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.time_remaining_label.errors }}
+                        <label for="{{ form.time_remaining_label.id_for_label }}">Time remaining label</label>
+                        {{ form.time_remaining_label }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.communication_box_label.errors }}
+                        <label for="{{ form.communication_box_label.id_for_label }}">Communication box label</label>
+                        {{ form.communication_box_label }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.initial_data_feed_text.errors }}
+                        <label for="{{ form.initial_data_feed_text.id_for_label }}">Initial data feed text</label>
+                        {{ form.initial_data_feed_text }}
+                        <span>Initial text seen by players before first clue is sent</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Success/Failure Text</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                        {{ form.success_screen_header.errors }}
+                        <label for="{{ form.success_screen_header.id_for_label }}">Success screen header</label>
+                        {{ form.success_screen_header }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.success_screen_footer.errors }}
+                        <label for="{{ form.success_screen_footer.id_for_label }}">Success screen footer</label>
+                        {{ form.success_screen_footer }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.failure_screen_header.errors }}
+                        <label for="{{ form.failure_screen_header.id_for_label }}">Failure screen header</label>
+                        {{ form.failure_screen_header }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.failure_screen_footer.errors }}
+                        <label for="{{ form.failure_screen_footer.id_for_label }}">Failure screen footer</label>
+                        {{ form.failure_screen_footer }}
+                        <span>Initial text seen by players before first clue is sent</span>
+                    </div>
+                    {% if form.hide_time_remaining_on_failure %}
+                      <div class="page_form_field">
+                          {{ form.hide_time_remaining_on_failure.errors }}
+                          <label for="{{ form.hide_time_remaining_on_failure.id_for_label }}">
+                              <input type="checkbox" name="{{form.hide_time_remaining_on_failure.name}}" id="id_{{form.hide_time_remaining_on_failure.name}}"  {% if form.hide_time_remaining_on_failure.value %} checked {% endif %}> Hide time remaining on failure
+                          </label>
+                          <span>Do not display 00:00.00 remaining on failure screen</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Live View Theme</h2>
+                   <div class="page_form">
+                    {% if form.theme %}
+                      <div class="page_form_field full-field">
+                        {{ form.theme.errors }}
+                        <label for="{{ form.theme.id_for_label }}">Theme</label>
+                        {{ form.theme }}
+                        <div class="display-theme-image">
+                          <img src="" alt="" width="450" height="350">
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="page_form_field">
+                        {{ form.logo.errors }}
+                        <label for="{{ form.logo.id_for_label }}">Logo</label>
+                        {{ form.logo }}
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.logo_max_height.errors }}
+                        <label for="{{ form.logo_max_height.id_for_label }}">Logo max height*</label>
+                        {{ form.logo_max_height }}
+                        <span>Maximum height of logo in pixels</span>
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.font_color.errors }}
+                      <label for="{{ form.font_color.id_for_label }}">Font color*</label>
+                      <input type="color" name="{{ form.font_color.name }}" maxlength="255" id="id_{{ form.font_color.name }}" required="true" value="#ffffff">
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.background_color.errors }}
+                      <label for="{{ form.background_color.id_for_label }}">Background color*</label>
+                      <input type="color" name="{{ form.background_color.name }}" maxlength="255" id="id_{{ form.background_color.name }}" required="true" value="#000000">
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.widget_header_color.errors }}
+                      <label for="{{ form.widget_header_color.id_for_label }}">Widget header color*</label>
+                      <input type="color" name="{{ form.widget_header_color.name }}" maxlength="255" id="id_{{ form.widget_header_color.name }}" required="true" value="#555555">
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.widget_body_color.errors }}
+                      <label for="{{ form.widget_body_color.id_for_label }}">Widget body color*</label>
+                      <input type="color" name="{{ form.widget_body_color.name }}" maxlength="255" id="id_{{ form.widget_body_color.name }}" required="true" value="#444444">
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.game_end_screen_font_color.errors }}
+                      <label for="{{ form.game_end_screen_font_color.id_for_label }}">Game end screen font color*</label>
+                      <input type="color" name="{{ form.game_end_screen_font_color.name }}" maxlength="255" id="id_{{ form.game_end_screen_font_color.name }}" required="true" value="#ffffff">
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.game_end_screen_background_color.errors }}
+                      <label for="{{ form.game_end_screen_background_color.id_for_label }}">Game end screen background color*</label>
+                      <input type="color" name="{{ form.game_end_screen_background_color.name }}" maxlength="255" id="id_{{ form.game_end_screen_background_color.name }}" required="true" value="#000000">
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.transparent_data_feed_background.errors }}
+                        <label for="{{ form.transparent_data_feed_background.id_for_label }}">
+                            <input type="checkbox" name="{{form.transparent_data_feed_background.name}}" id="id_{{form.transparent_data_feed_background.name}}" {% if form.transparent_data_feed_background.value %} checked {% endif %}> Transparent data feed background
+                        </label>
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.transparent_timer_background.errors }}
+                        <label for="{{ form.transparent_timer_background.id_for_label }}">
+                            <input type="checkbox" name="{{form.transparent_timer_background.name}}" id="id_{{form.transparent_timer_background.name}}"  {% if form.transparent_timer_background.value %} checked {% endif %}> Transparent timer background
+                        </label>
+                    </div>
+                    {% if form.override_css %}
+                    <div class="page_form_field">
+                        {{ form.custom_js.errors }}
+                        <label for="{{ form.override_css.id_for_label }}">Custom CSS</label>
+                        <span data-toggle="help-css" title="Css Instructions" data-placement="top" data-content="The formate for the css will be like give below.                                                                                                                                         
+                        #liveTimeRemaining{
+                            -webkit-transform: rotate(90deg);
+                        }
+                         #dataFeedContainer > div > div.panel-body{
+                            -webkit-transform: rotate(90deg);
+                        }
+                         #roomNameLabel{
+                            display:none;
+                        }
+                         #dataFeedContainer > div > div.panel-body{
+                            width:40%;
+                        }
+                         #dataFeedContainer > div{
+                            top:100px;
+                        }
+                         body{
+                            overflow:hidden ! important;
+                        }
+                         body{
+                            background-color:black !important;
+                        }
+                         #bodyContainerDiv > div.page-header.col-xs-12 > div.displayValue.col-md-6.text-right{
+                            -webkit-transform: rotate(90deg);
+                             top:100px;
+                        }
+                         #bodyContainerDiv > div.page-header.col-xs-12 > div.displayValue.col-md-6.text-right.clue-count-container{
+                            -webkit-transform: rotate(90deg);
+                        }
+                         .roomEnd{
+                            -webkit-transform: rotate(90deg);
+                        }
+                         
+                        Just copy this code and past into the box to understand the work of it.
+                        ">Css Instructions</span>
+                        {{ form.override_css }}
+                        
+                    </div>
+                    {% endif %}
+                    {% if form.custom_js %}
+                    <div class="page_form_field">
+                        {{ form.custom_js.errors }}
+                        <label for="{{ form.custom_js.id_for_label }}">Custom Javascript</label>
+                        <span data-toggle="help-js" title="Js Instructions" data-placement="top" data-content="Simply place this line twice inside the custom script box to advance two “clicks” instead of one.
+
+                        $('#gmClues > span:nth-child(1) > span.clueOff')[0].click();
+
+                        Just copy this code and past into the box to understand the work of it.
+                        ">Js Instructions</span>
+                        {{ form.custom_js }}
+                    </div>
+                  {% endif %}
+                  {% if form.custom_header_includes %}
+                    <div class="page_form_field">
+                        {{ form.custom_header_includes.errors }}
+                        <label for="{{ form.custom_header_includes.id_for_label }}">Custom header includes</label>
+                        <span data-toggle="help-header" title="Custom Header Instructions" data-placement="top" data-content="The formate for the Custom header will be like give below.                                                                                                                                         
+                        <script>
+                          function typewrite(){
+                              var container = document.getElementById('communicationText');
+                              var text = container.innerHTML; var chars = text.split(''); var i = 0; container.innerHTML = '';
+                              var refIntId = setInterval(function () {
+                                  if (i < chars.length) {
+                                      container.innerHTML += chars[i++];
+                                  } else {clearInterval(refIntId);}
+                              }, 80);}
+                        </script>
+
+                        Just copy this code and past into the box to understand the work of it.
+                        ">Header Instructions</span>
+                        {{ form.custom_header_includes }}
+                        <span>Include script and style include tags into the head of the live view</span>
+                      </div>
+                  {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% if form.hide_data_feed %}
+                <div class="box-card">
+                  <div class="grey_box">
+                    <h2>Live View Elements</h2>
+                    <div class="page_form">
+                      <div class="page_form_field">
+                            {{ form.hide_data_feed.errors }}
+                            <label for="{{ form.hide_data_feed.id_for_label }}">
+                                <input type="checkbox" name="{{form.hide_data_feed.name}}" id="id_{{form.hide_data_feed.name}}" {% if form.hide_data_feed.value %} checked {% endif %}> Hide data feed
+                            </label>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.hide_timer.errors }}
+                          <label for="{{ form.hide_timer.id_for_label }}">
+                              <input type="checkbox" name="{{form.hide_timer.name}}" id="id_{{form.hide_timer.name}}" {% if form.hide_timer.value %} checked {% endif %}> Hide timer
+                          </label>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.data_feed_distance_from_top.errors }}
+                          <label for="{{ form.data_feed_distance_from_top.id_for_label }}">Data feed distance from top*</label>
+                          {{ form.data_feed_distance_from_top }}
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.data_feed_distance_from_left.errors }}
+                          <label for="{{ form.data_feed_distance_from_left.id_for_label }}">Data feed distance from left*</label>
+                          {{ form.data_feed_distance_from_left }}
+                          <span>Distance to move the data feed left or right from the default centered position. A positive value moves to the right (from center) and a negative value moves to the left.</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.timer_distance_from_top.errors }}
+                          <label for="{{ form.timer_distance_from_top.id_for_label }}">Timer distance from top*</label>
+                          {{ form.timer_distance_from_top }}
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.timer_distance_from_left.errors }}
+                          <label for="{{ form.timer_distance_from_left.id_for_label }}">Timer distance from left*</label>
+                          {{ form.timer_distance_from_left }}
+                          <span>Distance to move the timer left or right from the default centered position. A positive value moves to the right (from center) and a negative value moves to the left.</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.overlay_image.errors }}
+                          <label for="{{ form.overlay_image.id_for_label }}">Overlay image</label>
+                          {{ form.overlay_image }}
+                          <span>Display this image in the room when the room is not running</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              {% if form.clue_count_off_img %}
+                <div class="box-card">
+                  <div class="grey_box">
+                    <h2>Clue Count Images</h2>
+                    <div class="page_form">
+                      <div class="page_form_field">
+                          {{ form.clue_count_off_img.errors }}
+                          <label for="{{ form.clue_count_off_img.id_for_label }}">Clue count off img</label>
+                          {{ form.clue_count_off_img }}
+                          <span>Image for a clue that can be obtained</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.clue_count_available_img.errors }}
+                          <label for="{{ form.clue_count_available_img.id_for_label }}">Clue count available img</label>
+                          {{ form.clue_count_available_img }}
+                          <span>Image for a clue that is available to be used</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.clue_count_used_img.errors }}
+                          <label for="{{ form.clue_count_used_img.id_for_label }}">Clue count used img</label>
+                          {{ form.clue_count_used_img }}
+                          <span>Image for a clue that has been used</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.clue_count_img_width.errors }}
+                          <label for="{{ form.clue_count_img_width.id_for_label }}">Clue count img width*</label>
+                          {{ form.clue_count_img_width }}
+                          <span>Max width of the clue image in pixels</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Live View Background</h2>
+                  <div class="page_form">
+                    {% if form.background_video %}
+                      <div class="page_form_field">
+                        {{ form.background_video.errors }}
+                        <label for="{{ form.background_video.id_for_label }}">Background video</label>
+                        {{ form.background_video }}
+                        <span>A video that plays in the background of the live view</span>
+                      </div>
+                    {% endif %}
+                    {% if form.loop_background_video %}
+                    <div class="page_form_field">
+                      {{ form.loop_background_video.errors }}
+                      <label for="{{ form.loop_background_video.id_for_label }}">
+                          <input type="checkbox" name="{{form.loop_background_video.name}}" id="id_{{form.loop_background_video.name}}" {% if form.loop_background_video.value %} checked {% endif %}> Loop background video
+                      </label>
+                    </div>
+                    {% endif %}
+                    {% if form.start_background_video_on_timer_start %}
+                    <div class="page_form_field">
+                      {{ form.start_background_video_on_timer_start.errors }}
+                      <label for="{{ form.start_background_video_on_timer_start.id_for_label }}">
+                          <input type="checkbox" name="{{form.start_background_video_on_timer_start.name}}" id="id_{{form.start_background_video_on_timer_start.name}}" {% if form.start_background_video_on_timer_start.value %} checked {% endif %}> Start background video on timer start
+                      </label>
+                      <span>If you are using a custom countdown timer video background, enable this to start the video when the timer starts</span>
+                    </div>
+                    {% endif %}
+                    {% if orm.override_default_timer %}
+                    <div class="page_form_field">
+                      {{ form.override_default_timer.errors }}
+                      <label for="{{ form.override_default_timer.id_for_label }}">
+                          <input type="checkbox" name="{{form.override_default_timer.name}}" id="id_{{form.override_default_timer.name}}" {% if form.override_default_timer.value %} checked {% endif %}> Override default timer
+                      </label>
+                      <span>When enabled, this bases the room time off the length of the background video. Generally for use with custom video countdown backgrounds</span>
+                    </div>
+                    {% endif %}
+                    <div class="page_form_field">
+                        {{ form.background_image.errors }}
+                        <label for="{{ form.background_image.id_for_label }}">Background image</label>
+                        {{ form.background_image }}
+                    </div>
+                    {% if form.end_game_success_background %}
+                      <div class="page_form_field">
+                          {{ form.end_game_success_background.errors }}
+                          <label for="{{ form.end_game_success_background.id_for_label }}">End game success background</label>
+                          {{ form.end_game_success_background }}
+                          <span>End of game photo background success</span>
+                      </div>
+                      <div class="page_form_field">
+                          {{ form.end_game_failure_background.errors }}
+                          <label for="{{ form.end_game_failure_background.id_for_label }}">End game failure background</label>
+                          {{ form.end_game_failure_background }}
+                          <span>End of game photo background failure</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Audio</h2>
+                  <div class="page_form">
+                    {% if form.soundtrack %}
+                    <div class="page_form_field">
+                        {{ form.soundtrack.errors }}
+                        <label for="{{ form.soundtrack.id_for_label }}">Soundtrack</label>
+                        {{ form.soundtrack }}
+                        <span>Room soundtrack</span>
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.loop_soundtrack.errors }}
+                      <label for="{{ form.loop_soundtrack.id_for_label }}">
+                          <input type="checkbox" name="{{form.loop_soundtrack.name}}" id="id_{{form.loop_soundtrack.name}}" {% if form.loop_soundtrack.value %} checked {% endif %}> Loop Soundtrack
+                      </label>
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.success_audio.errors }}
+                        <label for="{{ form.success_audio.id_for_label }}">Success audio</label>
+                        {{ form.success_audio }}
+                        <span>Soundtrack/sound played on room success</span>
+                    </div>
+                    <div class="page_form_field">
+                        {{ form.failed_audio.errors }}
+                        <label for="{{ form.failed_audio.id_for_label }}">Failed audio</label>
+                        {{ form.failed_audio }}
+                        <span>Soundtrack/sound played on room failed</span>
+                    </div>
+                    {% endif %}
+                    <div class="page_form_field">
+                        {{ form.audio_alert.errors }}
+                        <label for="{{ form.audio_alert.id_for_label }}">Audio alert</label>
+                        {{ form.audio_alert }}
+                        <span>Alert tone used to gain players attention to monitor</span>
+                    </div>
+
+                    <div class="page_form_field">
+                      {{ form.audio_alert_on_clue_send.errors }}
+                      <label for="{{ form.audio_alert_on_clue_send.id_for_label }}">
+                          <input type="checkbox" name="{{form.audio_alert_on_clue_send.name}}" id="id_{{form.audio_alert_on_clue_send.name}}" {% if form.audio_alert_on_clue_send.value %} checked {% endif %}> Audio alert on clue send
+                      </label>
+                    </div>
+                    {% if form.audio_alert_on_image_clue_send %}
+                      <div class="page_form_field">
+                        {{ form.audio_alert_on_image_clue_send.errors }}
+                        <label for="{{ form.audio_alert_on_image_clue_send.id_for_label }}">
+                            <input type="checkbox" name="{{form.audio_alert_on_image_clue_send.name}}" id="id_{{form.audio_alert_on_image_clue_send.name}}" {% if form.audio_alert_on_image_clue_send.value %} checked {% endif %}> Audio alert on image clue send
+                        </label>
+                        <span>Play audio alert on text clue</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.audio_alert_on_clue_count_change.errors }}
+                        <label for="{{ form.audio_alert_on_clue_count_change.id_for_label }}">
+                            <input type="checkbox" name="{{form.audio_alert_on_clue_count_change.name}}" id="id_{{form.audio_alert_on_clue_count_change.name}}" {% if form.audio_alert_on_clue_count_change.value %} checked {% endif %}> Audio alert on clue count change
+                        </label>
+                        <span>Play audio alert when the clue count goes up or down</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.play_soundtrack_on_timer_start.errors }}
+                        <label for="{{ form.play_soundtrack_on_timer_start.id_for_label }}">
+                            <input type="checkbox" name="{{form.play_soundtrack_on_timer_start.name}}" id="id_{{form.play_soundtrack_on_timer_start.name}}" {% if form.play_soundtrack_on_timer_start.value %} checked {% endif %}> Play soundtrack on timer start
+                        </label>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.mic_biquad_filter.errors }}
+                        <label for="{{ form.audio_alert.id_for_label }}">Mic biquad filter*</label>
+                        {{ form.mic_biquad_filter }}
+                        <span>Filter for mic to transmit voice into room</span>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% if  form.video_brief %}
+                <div class="box-card">
+                  <div class="grey_box">
+                    <h2>Video</h2>
+                    <div class="page_form">
+                      <div class="page_form_field">
+                        {{ form.video_brief.errors }}
+                        <label for="{{ form.video_brief.id_for_label }}">Video brief</label>
+                        {{ form.video_brief }}
+                        <span>A video played before the room starts</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.start_timer_after_video_brief.errors }}
+                        <label for="{{ form.start_timer_after_video_brief.id_for_label }}">
+                            <input type="checkbox" name="{{form.start_timer_after_video_brief.name}}" id="id_{{form.start_timer_after_video_brief.name}}" {% if form.start_timer_after_video_brief.value %} checked {% endif %}> Start timer after video brief
+                        </label>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.success_video.errors }}
+                        <label for="{{ form.success_video.id_for_label }}">Success video</label>
+                        {{ form.success_video }}
+                        <span>A video played when the room is sucessfully completed</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.fail_video.errors }}
+                        <label for="{{ form.fail_video.id_for_label }}">Fail video</label>
+                        {{ form.fail_video }}
+                        <span>A video played when time runs out</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.success_screen_after_success_video.errors }}
+                        <label for="{{ form.success_screen_after_success_video.id_for_label }}">
+                            <input type="checkbox" name="{{form.success_screen_after_success_video.name}}" id="id_{{form.success_screen_after_success_video.name}}" {% if form.success_screen_after_success_video.value %} checked {% endif %}> Success screen after success video
+                        </label>
+                        <span>Proceed to the normal success screen after the success video has finished playing</span>
+                      </div>
+                      <div class="page_form_field">
+                        {{ form.fail_screen_after_fail_video.errors }}
+                        <label for="{{ form.fail_screen_after_fail_video.id_for_label }}">
+                            <input type="checkbox" name="{{form.fail_screen_after_fail_video.name}}" id="id_{{form.fail_screen_after_fail_video.name}}" {% if form.fail_screen_after_fail_video.value %} checked {% endif %}> Fail screen after fail video
+                        </label>
+                        <span>Proceed to the normal fail screen after the success video has finished playing</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Live View Fonts</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                      {{ form.live_view_font.errors }}
+                      <label for="{{ form.live_view_font.id_for_label }}">Live view font*</label>
+                      <select name="live_view_font" id="id_live_view_font">
+                        {% for lvf in live_view_fonts%}
+                          <option data-value="{{lvf.font_name}}" value="{{lvf.id}}">{{lvf.get_short_font_name}}</option>
+                        {% endfor %}
+                        </select>
+
+                      <div class="font-preview">The quick brown fox jumps over the lazy dog</div>
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.header_font_size.errors }}
+                      <label for="{{ form.header_font_size.id_for_label }}">Header font size*</label>
+                      {{ form.header_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.timer_font_size.errors }}
+                      <label for="{{ form.timer_font_size.id_for_label }}">Timer font size*</label>
+                      {{ form.timer_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.clue_label_font_size.errors }}
+                      <label for="{{ form.clue_label_font_size.id_for_label }}">Clue label font size*</label>
+                      {{ form.clue_label_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.text_clue_font_size.errors }}
+                      <label for="{{ form.text_clue_font_size.id_for_label }}">Text clue font size*</label>
+                      {{ form.text_clue_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.room_end_header_font_size.errors }}
+                      <label for="{{ form.room_end_header_font_size.id_for_label }}">Room end header font size*</label>
+                      {{ form.room_end_header_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.room_end_footer_font_size.errors }}
+                      <label for="{{ form.room_end_footer_font_size.id_for_label }}">Room end footer font size*</label>
+                      {{ form.room_end_footer_font_size }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.room_end_time_font_size.errors }}
+                      <label for="{{ form.room_end_time_font_size.id_for_label }}">Room end time font size*</label>
+                      {{ form.room_end_time_font_size }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-card">
+                <div class="grey_box">
+                  <h2>Leaderboard</h2>
+                  <div class="page_form">
+                    <div class="page_form_field">
+                      {{ form.leaderboard_image.errors }}
+                      <label for="{{ form.leaderboard_image.id_for_label }}">Leaderboard image</label>
+                      {{ form.leaderboard_image }}
+                    </div>
+                    <div class="page_form_field">
+                      {{ form.leaderboard_room_description.errors }}
+                      <label for="{{ form.leaderboard_room_description.id_for_label }}">Leaderboard image</label>
+                      {{ form.leaderboard_room_description }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% if form.display_polling_output %}
+                <div class="row theme-btm-field">
+                  <div class="box-card col-md-6">
+                    <div class="grey_box">
+                      <h2>Automation</h2>
+                      <div class="page_form">
+                        <div class="page_form_field full-field">
+                          {{ form.display_polling_output.errors }}
+                          <label for="{{ form.display_polling_output.id_for_label }}">
+                            <input type="checkbox" name="{{form.display_polling_output.name}}" id="id_{{form.display_polling_output.name}}" {% if form.display_polling_output.value %} checked {% endif %}> Display polling output
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-card col-md-6">
+                    <div class="grey_box">
+                      <h2>Competitive Rooms</h2>
+                      <div class="page_form">
+                        <div class="page_form_field full-field">
+                          {{ form.lap_timer.errors }}
+                          <label for="{{ form.lap_timer.id_for_label }}">
+                            <input type="checkbox" name="{{form.lap_timer.name}}" id="id_{{form.lap_timer.name}}" {% if form.lap_timer.value %} checked {% endif %}> Lap timer
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <div class="page_form_field theme-form-submit">
+              <button class="purple_btn">save</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="customCssModel" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Rules & Example to write Css</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<!-- Le javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{{ block.super }}
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<link href="{% static 'pages/room/room.css' %}" rel="stylesheet">
+<script type="text/javascript">
+$(document).ready(function(){
+  var live_view_font_val = $("#id_live_view_font option:first").data("value");
+  display_live_view_font_by_font_family(live_view_font_val)
+  $(document).on("change", "#id_live_view_font", function () {
+    var optionSelected = $(this).find('option:selected').attr("data-value");
+    display_live_view_font_by_font_family(optionSelected)
+  });
+
+  function display_live_view_font_by_font_family(optionSelected){
+    $('.font-preview').css("font-family", optionSelected);
+  }
+
+  $(".setting").click(function(){
+      $(".setting_drop_down").slideToggle('slow');
+  });
+  $(".notifation").click(function(){
+      $(".notification_drop_down").slideToggle('slow');
+  });
+
+  // Display theme image according to theme selection
+  $("#id_theme").change(function(){
+    var theme_val = $(this).find("option:selected").text().toLowerCase();
+    var new_img_url = "/static/vendor/bootstrap/images/"+theme_val+"_demo.png"
+    $(".display-theme-image img").attr("src", new_img_url);
+  });
+
+});
+  $(function () {
+    var tabContainers = $('div.tabs > div');
+    tabContainers.hide().filter(':first').show();
+    $('div.tabs ul.tab-nav a').click(function () {
+      tabContainers.hide();
+      tabContainers.filter(this.hash).show();
+      $('div.tabs ul.tab-nav a').removeClass('selected');
+      $(this).addClass('selected');
+      return false;
+    }).filter(':first').click();
+  });
+$(document).ready(function(){
+     $('[data-toggle="help-css"]').popover(); 
+     $('[data-toggle="help-js"]').popover(); 
+     $('[data-toggle="help-header"]').popover(); 
+   });
+
+
+$(document).on('change', '#id_custom_js', function(){
+  $('.script_val').remove();
+  try{
+    eval($("#id_custom_js").val());
+    $("#id_custom_js").after("<div class='script_val' style='color:red;'>Script ran without error</div>");
+  }catch (e) {
+    $("#id_custom_js").after("<div class='script_val' style='color:red;'>Error running script (see JS console)</div>");
+    console.error(e);
+  }
+});
+
+
+$(document).on('change', '#id_custom_header_includes', function(){
+  $('.script_val').remove();
+  try{
+    eval($("#id_custom_header_includes").val());
+    $("#id_custom_header_includes").after("<div class='script_val' style='color:red;'>Script ran without error</div>");
+  }catch (e) {
+    $("#id_custom_header_includes").after("<div class='script_val' style='color:red;'>Error running script (see JS console)</div>");
+    console.error(e);
+  }
+});
+
+</script>
+{% endblock %}

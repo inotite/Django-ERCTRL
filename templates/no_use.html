@@ -1,0 +1,109 @@
+# def form_invalid(self, form, **kwargs):
+    #     import pdb;pdb.set_trace()
+    #     pass
+        # context = self.get_context_data(**kwargs)
+        # context['form'] = form
+        # # here you can add things like:
+        # context[show_results] = False
+        # return self.render_to_response(context)    
+    # initial={'date_of_death':'12/10/2016',}
+
+    # def get(self, request, args, *kwargs):
+    #     # self.object = self.get_object()
+    #     # language_obj = ViewLanguageTranslation.objects.get(pk=self.kwargs['pk'])
+    #     # form = ViewLanguageTranslationForm(request.POST, instance=language_obj)
+    #     import pdb;pdb.set_trace()
+    #     pass
+    #     # if form.is_valid():
+    #     #     data = form.save(commit=False)
+    #     #     data.save()
+
+    # def post(self, request, args, *kwargs):
+    #     # self.object = self.get_object()
+    #     # language_obj = ViewLanguageTranslation.objects.get(pk=self.kwargs['pk'])
+    #     # form = ViewLanguageTranslationForm(request.POST, instance=language_obj)
+    #     import pdb;pdb.set_trace()
+    #     if form.is_valid():
+    #         data = form.save(commit=False)
+    #         data.save()
+        #     return HttpResponseRedirect(reverse('edit-view-translation'))
+        # return HttpResponseRedirect(reverse('edit-view-translation'))
+
+    # def get(self, request, *args, **kwargs):
+    #     import pdb;pdb.set_trace()
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     context = self.get_context_data(**kwargs)
+    #     context['form'] = form
+    #     return self.render_to_response(context)
+
+    # def post(self, request, *args, **kwargs):
+    #     import pdb;pdb.set_trace()
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     if form.is_valid():
+    #         return self.form_valid(form, **kwargs)
+    #     else:
+    #         return self.form_invalid(form, **kwargs)
+
+
+    
+
+    # def form_valid(self, form, **kwargs):
+    #     context = self.get_context_data(**kwargs)
+    #     context['form'] = form
+    #     # here you can add things like:
+    #     context[show_results] = True
+    #     return self.render_to_response(context)
+
+
+
+
+    
+
+
+    # def get(self, request, *args, **kwargs):
+    #     import pdb;pdb.set_trace()
+    #     self.object = self.get_object()
+    #     return super(RoomCreate, self).get(request, *args, **kwargs)
+
+    # def post(self, request, *args, **kwargs):
+    #     import pdb;pdb.set_trace()
+    #     self.object = self.get_object()
+    #     return super(RoomCreate, self).post(request, *args, **kwargs)
+
+    # def form_valid(self, form):
+    #     # form.instance.created_by = self.request.user
+    #     # import pdb;pdb.set_trace()
+    #     return super(RoomCreate, self).form_valid(form)
+
+
+
+
+    # def create_user(request):
+#     template_name = "users/user_create.html"
+#     if request.method == "POST":
+#         form = CreateUserForm(ata=request.POST)
+#         if form.is_valid():
+#             user = form.get_user()
+#             return redirect("user-list")
+
+#     # user, created = User.objects.get_or_create(username=username, email=None)
+#     # if created:
+    #     user.set_password(password) # This line will hash the password
+
+    #     user.save() #DO NOT FORGET THIS LINE
+
+
+
+
+
+# class UserDeleteView(DeleteView):
+#     model = User
+#     success_url = reverse_lazy('user-list')
+#     def get_object(self, queryset=None):
+#         """ Hook to ensure object is owned by request.user. """
+#         obj = super(UserDeleteView, self).get_object()
+#         # if not obj.owner == self.request.user:
+#         #     raise Http404
+#         return obj

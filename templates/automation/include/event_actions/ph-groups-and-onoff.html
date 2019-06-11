@@ -1,0 +1,8 @@
+<div class="page_form_field">
+  <label>Light On/Off:</label>
+  <select name="light_state" id="id_ph_on_or_off">
+    <option value>-- No action Selected --</option>
+      <option value="1" {% if is_edit and action_referen.light_state == "1" %} selected {% endif %}>on</option>
+      <option value="0" {% if is_edit and action_referen.light_state == "0" %} selected {% endif %}>off</option>
+  </select>
+</div>

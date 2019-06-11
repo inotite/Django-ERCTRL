@@ -1,0 +1,33 @@
+/*#select2-id_recipient-results ul li{
+    margin: 0;
+    padding: 0;
+    list-style: block;
+}
+*/
+ul#select2-id_recipient-results li{
+    vertical-align: top;
+	line-height: normal;
+	display: block;
+	color: #000000 !important;
+}
+.page_form_field .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+
+.page_form_field .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    color: #000;
+}
+
+.inner_left_panel .nav-tabs ul li a {
+	color: #337ab7;
+    text-decoration: none;
+}
+
+.nav-input-output-tabs{
+	margin-bottom: 11px;
+}

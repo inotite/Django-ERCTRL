@@ -1,0 +1,90 @@
+{% extends "portals/base_administration_portal.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="page_right_panel col-md-10">
+  <div class="inner_left_panel">
+    <div class="row">
+      <div class="alert alert-danger" style="display: none;" id="stripe-error-message">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong class="pull-right">Danger!</strong> Indicates a dangerous or potentially negative action.
+      </div>
+    <div class="col-md-12">      
+      <h1 class="page_heading">Update Billing Info</h1></div>
+      <div class="col-md-4">
+
+        <div class="grey_box">
+          <h2>Current card on file: {{cardId}}</h2>
+           <form class="create-billing-form" method="POST" action="{% url 'update_billing' %}">
+            {% csrf_token %}
+              {{ form.non_field_errors }}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            <div class="page_form">
+                {% for field in form %} 
+                    <div class="page_form_field">
+                      {% if field.name != 'coupon_code'%}
+                        {{ field.label_tag }}
+                        {{ field.errors }}
+                        {{ field }}
+                        {{ field.help_text }}
+                      {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="page_form_field">
+                    <button class="purple_btn" type="submit">Update Credit Card</button>
+                    <button class="red_btn">Cancel</button>
+                </div>
+            </div>
+        </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+  <script type="text/javascript">
+    Stripe.setPublishableKey("{{publishable_key}}");
+
+    $(".create-billing-form").submit(function() {
+      if ($("#id_card_no").is(":visible")) {
+        var form = this;
+        var card = {
+          number:   $("#id_card_no").val(),
+          expMonth: $("#id_exp_month").val(),
+          expYear:  $("#id_exp_year").val(),
+          cvc:      $("#id_cvc").val()
+        };
+
+        Stripe.createToken(card, function(status, response) {
+          if (status === 200) {
+            $("#stripe-error-message").hide();
+            form.submit();
+          } else {
+            $("#stripe-error-message").text(response.error.message);
+            $("#stripe-error-message").show();
+          }
+        });
+        return false;
+      }
+    return true
+  });
+</script>
+{% endblock %}

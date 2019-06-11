@@ -1,0 +1,19 @@
+/*ul.automation-action-references{
+	margin: 0;
+    padding: 0;
+    list-style: none; 
+}
+*/
+ul.automation-action-references li{
+    vertical-align: top;
+	line-height: normal;
+	display: block;
+}
+
+.confirmation-modal, #eventCreateWarningMsg p{
+	color: #000000 !important;
+}
+
+.custom-create-room-link{
+	padding: 6px 2px;
+}

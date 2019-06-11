@@ -1,0 +1,46 @@
+{% extends "base_tablet.html" %}
+{% load staticfiles %}
+{% block main_body %}
+  <div class="col-md-12 tb-live-list">
+    <div class="inner_left_panel">
+      <div class="row">
+        <div class="col-sm-12 room-message">
+          <div id="message-dialog" class="alert alert-success"
+           style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+            <p> <strong></strong></p>
+          </div>
+        </div>
+        {% for room in object_list %}
+          <div class="col-sm-4 darhboard_box">
+            <div class="dashboard_color_box">
+              <h2>{{room.room_name}}</h2>
+              <div class="tb-short-room-info">
+                <p><span><i class="fa fa-clock-o" aria-hidden="true"></i> </span> Time limit: {{room.default_time_limit}} mins</p>
+                <p><span><i class="fa fa-puzzle-piece" aria-hidden="true"></i> </span> Clues: {{room.num_clues}}</p>
+              </div>  
+              <div class="dashboard_color_footer" > <a href="{% url 'tablet_room_live_details' room.id %}">Start Live View <span><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </span></a> </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:3 %}
+            <div class="col-md-12 darhboard_box_break"></div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="col-sm-5 col-sm-offset-7">
+        <div id="message-dialog" class="alert alert-success"
+        style="bottom: 10px; right: 20px; display: none; z-index: 4000">
+          <p> <strong></strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ block.super }}
+<link href="{% static 'pages/room/room-list.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'vendor/jqueryconfirm/jquery.confirm.js' %}"></script>
+<script type="text/javascript" src="{% static 'vendor/spinner/jquery.babypaunch.spinner.min.js' %}"></script>
+<link href="{% static 'pages/room/tablet-room-live-list.css' %}" rel="stylesheet">
+{% endblock %}
