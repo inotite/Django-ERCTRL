@@ -31,6 +31,6 @@ sorl-thumbnail==12.4.1
 stripe==1.82.1
 tinycss2==0.6.1
 tqdm==4.23.4
-urllib3==1.22
+urllib3==1.24.2
 WeasyPrint==0.41
 webencodings==0.5.1
